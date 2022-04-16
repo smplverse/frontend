@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import './index.css'
 import 'react-toastify/dist/ReactToastify.css'
 import App from 'pages/App'
 import { StrictMode } from 'react'
