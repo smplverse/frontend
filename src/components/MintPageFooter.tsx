@@ -1,6 +1,7 @@
-import { CenteredRow } from './Flex'
-import { CONTRACT_ADDRESS_RINKEBY } from '../constants'
 import styled from '@emotion/styled'
+
+import { CONTRACT_ADDRESS_RINKEBY } from '../constants'
+import { CenteredRow } from './Flex'
 
 const etherscanLink =
   'https://rinkeby.etherscan.io/address/' + CONTRACT_ADDRESS_RINKEBY
