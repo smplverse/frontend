@@ -1,8 +1,6 @@
 /** jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
-import { Centered } from 'components/Flex'
-import Identicon from 'components/Identicon'
 import { MouseEventHandler, ReactNode } from 'react'
 import { Text } from 'theme-ui'
 
@@ -11,6 +9,8 @@ import {
   useIsActivating,
   useIsActive,
 } from '../connectors/metamask'
+import { Centered } from './Flex'
+import { Identicon } from './Identicon'
 
 interface Props {
   text?: string
@@ -31,7 +31,7 @@ const SmallButtonContainer = styled(LargeButtonContainer)`
   width: calc(200px * 0.7);
 `
 
-const ConnectButton = ({ onClick, text, children }: Props) => {
+export const ConnectButton = ({ onClick, text, children }: Props) => {
   const isActive = useIsActive()
   const accounts = useAccounts()
   const displayIdenticon = isActive && accounts?.length
@@ -60,4 +60,3 @@ const ConnectButton = ({ onClick, text, children }: Props) => {
     </SmallButtonContainer>
   )
 }
-export default ConnectButton

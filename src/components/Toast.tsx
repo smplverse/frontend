@@ -24,7 +24,7 @@ export const displayErrorToast = (error: any, colorMode: any) =>
     theme: colorMode,
   })
 
-const Toast = () => (
+export const Toast = () => (
   <ToastContainer
     position="top-center"
     autoClose={5000}
@@ -37,5 +37,3 @@ const Toast = () => (
     pauseOnHover
   />
 )
-
-export default Toast

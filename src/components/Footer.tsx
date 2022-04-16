@@ -1,10 +1,7 @@
 import styled from '@emotion/styled'
 
-import { CONTRACT_ADDRESS_RINKEBY } from '../constants'
-import { CenteredRow } from './Flex'
-
-const etherscanLink =
-  'https://rinkeby.etherscan.io/address/' + CONTRACT_ADDRESS_RINKEBY
+import { ETHERSCAN_LINK } from '../constants'
+import { CenteredColumn } from './Flex'
 
 const Link = styled.div`
   border: 1px solid #008f11;
@@ -22,10 +19,10 @@ const Link = styled.div`
   margin-top: 20px;
 `
 
-export const MintPageFooter = () => (
-  <CenteredRow>
-    <a href={etherscanLink} style={{ textDecoration: 'none' }}>
+export const Footer = () => (
+  <CenteredColumn>
+    <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
       <Link>ETHERSCAN</Link>
     </a>
-  </CenteredRow>
+  </CenteredColumn>
 )

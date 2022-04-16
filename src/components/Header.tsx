@@ -2,13 +2,13 @@
 import styled from '@emotion/styled'
 import { Flex } from 'theme-ui'
 
-import Wallet from './Wallet'
+import { Wallet } from './Wallet'
 
 const HeaderContainer = styled.header``
 
 const Separator = styled.div``
 
-const Header = () => {
+export const Header = () => {
   return (
     <HeaderContainer sx={{ p: 4, display: 'flex', flexDirection: 'row' }}>
       <Flex
@@ -27,5 +27,3 @@ const Header = () => {
     </HeaderContainer>
   )
 }
-
-export default Header

@@ -18,7 +18,7 @@ interface Props {
   size: number
 }
 
-export default function Identicon({ account, ml, mt, size }: Props) {
+export function Identicon({ account, ml, mt, size }: Props) {
   const icon = useMemo(
     () => account && jazzicon(size, parseInt(account.slice(2, 10), 16)),
     [account, size]

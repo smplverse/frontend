@@ -2,9 +2,10 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther, parseEther } from '@ethersproject/units'
 import { useBreakpointIndex } from '@theme-ui/match-media'
-import Toast, {
+import {
   displayErrorToast,
   displaySuccessToast,
+  Toast,
 } from 'components/Toast'
 import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
@@ -12,9 +13,9 @@ import { Flex, Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'
-import { useContract } from '../hooks/useContract'
+import { useContract } from '../hooks'
 import { CenteredColumn, CenteredRow } from './Flex'
-import MintButton from './MintButton'
+import { MintButton } from './MintButton'
 
 export const MintingPanel = () => {
   const contract = useContract() as SMPLverse

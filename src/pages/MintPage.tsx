@@ -1,11 +1,13 @@
 /** @jsxImportSource theme-ui */
 import { Box, Text } from 'theme-ui'
 
-import Header from '../components/Header'
-import { MintingPanel } from '../components/MintingPanel'
-import { MintPageFooter } from '../components/MintPageFooter'
-import { MintPageText } from '../components/MintPageText'
-import { SmplImage } from '../components/SmplImage'
+import {
+  Footer,
+  Header,
+  MintingPanel,
+  MintPageText,
+  SmplImage,
+} from '../components'
 
 export const MintPage = () => {
   // TODO
@@ -39,7 +41,7 @@ export const MintPage = () => {
           </div>
         </div>
         <MintPageText />
-        <MintPageFooter />
+        <Footer />
       </Box>
     </div>
   )

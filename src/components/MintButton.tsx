@@ -22,7 +22,7 @@ const SmallMintButtonContainer = styled(MintButtonContainer)`
   height: calc(75px * 0.5);
 `
 
-const MintButton = ({
+export const MintButton = ({
   ethRequired,
   onClick,
   isLoading,
@@ -55,5 +55,3 @@ const MintButton = ({
     )}
   </>
 )
-
-export default MintButton

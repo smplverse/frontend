@@ -8,9 +8,9 @@ import {
   useIsActivating,
   useIsActive,
 } from '../connectors/metamask'
-import ConnectButton from './ConnectButton'
+import { ConnectButton } from './ConnectButton'
 
-const Wallet = () => {
+export const Wallet = () => {
   const error = useError()
   const isActive = useIsActive()
   const isActivating = useIsActivating()
@@ -52,5 +52,3 @@ const Wallet = () => {
 
   return <ConnectButton />
 }
-
-export default Wallet
