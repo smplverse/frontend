@@ -43,11 +43,10 @@ p {
 }
 
 .mint {
-  background-color: #008f11;
+  color: #00ff41;
   font-family: sans-serif;
   font-size: 16px;
   line-height: 1.25em;
-  color: black;
   margin-bottom: 1.5rem;
   padding: 0.75rem 0;
   text-align: center;
@@ -59,12 +58,12 @@ p {
 }
 
 .links {
-  border: 1px solid #008f11;
+  border: 1px solid #00ff41;
   border-radius: 1rem;
   font-family: sans-serif;
   font-size: 16px;
   line-height: 1.25em;
-  color: #008f11;
+  color: #00ff41;
   margin-bottom: 1.5rem;
   padding: 0.75rem 0;
   text-align: center;

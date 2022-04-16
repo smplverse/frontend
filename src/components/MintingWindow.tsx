@@ -106,7 +106,7 @@ const MintingWindow = () => {
                     fontSize: 20,
                   }}
                 >
-                  ⊞ &nbsp;
+                  ⊟ &nbsp;
                 </Flex>
                 <MintButton
                   ethRequired={ethRequired}
@@ -123,21 +123,39 @@ const MintingWindow = () => {
                     fontSize: 20,
                   }}
                 >
-                  &nbsp; ⊟
+                  &nbsp; ⊞
                 </Flex>
               </CenteredRow>
             ) : (
-              <>
-                +
+              <CenteredRow>
+                <Flex
+                  onClick={increment}
+                  style={{
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    fontSize: 20,
+                  }}
+                >
+                  ⊟ &nbsp;
+                </Flex>
                 <MintButton
                   ethRequired={ethRequired}
                   onClick={mint}
                   isLoading={isLoading}
+                  small={false}
                   quantity={quantity}
-                  small
                 />
-                -
-              </>
+                <Flex
+                  onClick={decrement}
+                  style={{
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    fontSize: 20,
+                  }}
+                >
+                  &nbsp; ⊞
+                </Flex>
+              </CenteredRow>
             )}
           </>
         ) : (

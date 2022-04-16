@@ -6,6 +6,7 @@ import { Box } from 'theme-ui'
 import smpl from '../assets/smpl.png'
 import Header from '../components/Header'
 import MintingWindow from '../components/MintingWindow'
+import { CenteredRow } from '../components/Flex'
 
 const SmplImage = styled.div`
   background: url(${smpl});
@@ -48,6 +49,7 @@ export const MintPage = () => (
         <p className="blocktext">
           NOTE ON DATA COLLECTION:
           <br />
+          <br />
           WE CALCULATE A 128-DIMENSIONAL VECTOR FROM YOUR IMAGE AND USE THIS
           ENCODING TO COMPARE AGAINST THE SMPLVERSE. NO PERSONAL DATA IS STORED
           ON OUR SERVER.
@@ -56,45 +58,44 @@ export const MintPage = () => (
       <CenteredColumn>
         <p className="blocktext">
           <br />
-          The SMPLverse is an NFT collection of synthetic facial training data
-          from the computational infrastructure of the metaverse.
+          THE SMPLVERSE IS AN NFT COLLECTION OF SYNTHETIC FACIAL TRAINING DATA
+          FROM THE COMPUTATIONAL INFRASTRUCTURE OF THE METAVERSE.
           <br />
           <br />
-          These PFPs were procedurally-generated using SMPL—a body mesh used to
-          animate avatars in mixed reality from sparse inputs—as the basis for
-          new algorithms that will improve face and gesture tracking in virtual
-          environments.
+          THESE PFPS WERE PROCEDURALLY-GENERATED USING SMPL—A BODY MESH USED TO
+          ANIMATE AVATARS IN MIXED REALITY FROM SPARSE INPUTS—AS THE BASIS FOR
+          NEW ALGORITHMS THAT WILL IMPROVE FACE AND GESTURE TRACKING IN VIRTUAL
+          ENVIRONMENTS.
           <br />
           <br />
-          // As a minter, you submit a face image with your webcam or via
-          upload, which a face recognition model uses to find the closest
-          matching image in the SMPLverse collection.
+          AS A MINTER, YOU SUBMIT A FACE IMAGE WITH YOUR WEBCAM OR VIA UPLOAD,
+          WHICH A FACE RECOGNITION MODEL USES TO FIND THE CLOSEST MATCHING
+          IMAGE IN THE SMPLVERSE COLLECTION.
           <br />
           <br />
-          // After approving the mint transaction, both images are hashed and
-          written to the [token ?].
+          AFTER APPROVING THE MINT TRANSACTION, BOTH IMAGES ARE HASHED AND
+          WRITTEN TO THE [TOKEN ?].
           <br />
           <br />
-          When the image is submitted, it receives one attribute from the
-          model: confidence.
+          WHEN THE IMAGE IS SUBMITTED, IT RECEIVES ONE ATTRIBUTE FROM THE
+          MODEL: CONFIDENCE.
           <br />
           <br />
-          Confidence is a declining measure: as more images are minted, your
-          likelihood of receiving a high confidence match decreases.
+          CONFIDENCE IS A DECLINING MEASURE: AS MORE IMAGES ARE MINTED, YOUR
+          LIKELIHOOD OF RECEIVING A HIGH CONFIDENCE MATCH DECREASES.
           <br />
           <br />
-          Conversely, your likelihood of receiving an image with rarer visual
-          attributes increases.
-          <br />
-          <br />
-          ...
+          CONVERSELY, YOUR LIKELIHOOD OF RECEIVING AN IMAGE WITH RARER VISUAL
+          ATTRIBUTES INCREASES.
         </p>
-        <p className="blocktext">
-          <div className="links">ETHERSCAN</div>
-          {/* Should have buttons for Etherscan, Zora, OpenSea, Discord, Twitter
-    See the link-buttons images for examples. Perhaps Etherscan, Zora, and OpenSea
-    are on one line and Discord + Twitter go below */}
-        </p>
+        <CenteredRow>
+          <img
+            src="https://etherscan.io/images/brandassets/etherscan-logo-light-circle.png"
+            width={30}
+            height={30}
+            alt="etherscan"
+          />
+        </CenteredRow>
       </CenteredColumn>
     </Box>
   </div>
