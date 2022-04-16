@@ -19,16 +19,16 @@ interface Props {
 }
 
 const LargeButtonContainer = styled.div`
-  width: 212px;
-  height: 74px;
+  width: 200px;
+  height: 50px;
+  display: flex;
   cursor: pointer;
   user-select: none;
   background-size: contain;
 `
 
 const SmallButtonContainer = styled(LargeButtonContainer)`
-  width: calc(212px * 0.7);
-  height: calc(74px * 0.7);
+  width: calc(200px * 0.7);
 `
 
 const ConnectButton = ({ onClick, text, children }: Props) => {
@@ -40,11 +40,11 @@ const ConnectButton = ({ onClick, text, children }: Props) => {
 
   return index > 2 ? (
     <LargeButtonContainer onClick={onClick}>
-      <Centered pb={2} pl={displayIdenticon ? 2 : 0} fontSize={3}>
-        {text ? <Text>{text}</Text> : children && children}
+      <Centered fontSize={2}>
+        {text ? <Text>{text.toUpperCase()}</Text> : children && children}
         <>
           {displayIdenticon && (
-            <Identicon account={accounts[0]} ml={2} mt={2} size={28} />
+            <Identicon account={accounts[0]} ml={2} mt={1} size={28} />
           )}
         </>
       </Centered>

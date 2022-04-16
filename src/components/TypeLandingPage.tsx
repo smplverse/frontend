@@ -1,5 +1,5 @@
-import Typewriter from 'typewriter-effect'
 import { createRoot } from 'react-dom/client'
+import Typewriter from 'typewriter-effect'
 
 interface Props {
   setEntered: (arg: boolean) => void

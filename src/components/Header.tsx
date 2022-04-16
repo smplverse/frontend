@@ -11,6 +11,9 @@ const Separator = styled.div``
 const Header = () => {
   return (
     <HeaderContainer sx={{ p: 4, display: 'flex', flexDirection: 'row' }}>
+      <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
+        SMPLverse
+      </Flex>
       <Separator sx={{ mx: 'auto' }} />
       <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
         <Wallet />
