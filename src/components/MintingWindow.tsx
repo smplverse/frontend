@@ -99,7 +99,7 @@ const MintingWindow = () => {
             {index > 2 ? (
               <CenteredRow>
                 <Flex
-                  onClick={increment}
+                  onClick={decrement}
                   style={{
                     cursor: 'pointer',
                     userSelect: 'none',
@@ -116,7 +116,7 @@ const MintingWindow = () => {
                   quantity={quantity}
                 />
                 <Flex
-                  onClick={decrement}
+                  onClick={increment}
                   style={{
                     cursor: 'pointer',
                     userSelect: 'none',
@@ -129,7 +129,7 @@ const MintingWindow = () => {
             ) : (
               <CenteredRow>
                 <Flex
-                  onClick={increment}
+                  onClick={decrement}
                   style={{
                     cursor: 'pointer',
                     userSelect: 'none',
@@ -146,7 +146,7 @@ const MintingWindow = () => {
                   quantity={quantity}
                 />
                 <Flex
-                  onClick={decrement}
+                  onClick={increment}
                   style={{
                     cursor: 'pointer',
                     userSelect: 'none',

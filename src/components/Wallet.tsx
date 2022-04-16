@@ -25,13 +25,13 @@ const Wallet = () => {
   }
 
   if (!isActive && !isActivating) {
-    return <ConnectButton onClick={connect} text="connect" />
+    return <ConnectButton onClick={connect} text="CONNECT" />
   } else if (isActivating) {
     return (
       <ConnectButton>
         <Flex sx={{ justifyContent: 'center' }}>
           <Spinner
-            color="white"
+            color="green"
             size="22"
             strokeWidth={3}
             sx={{ margin: 'none' }}
