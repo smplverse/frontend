@@ -8,7 +8,7 @@ import Toast, {
 } from 'components/Toast'
 import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
-import { Flex } from 'theme-ui'
+import { Flex, Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'
@@ -16,7 +16,7 @@ import { useContract } from '../hooks/useContract'
 import { CenteredColumn, CenteredRow } from './Flex'
 import MintButton from './MintButton'
 
-const MintingWindow = () => {
+export const MintingPanel = () => {
   const contract = useContract() as SMPLverse
   const provider = useProvider()
   const isActive = useIsActive()
@@ -159,12 +159,19 @@ const MintingWindow = () => {
             )}
           </>
         ) : (
-          <div />
+          <div
+            style={{
+              height: 40,
+              display: 'flex',
+              justifyContent: 'flex-end',
+              flexDirection: 'column',
+            }}
+          >
+            <Text>FRIDAY JUNE 24, 12PM PT</Text>
+          </div>
         )}
       </CenteredColumn>
       <Toast />
     </>
   )
 }
-
-export default MintingWindow

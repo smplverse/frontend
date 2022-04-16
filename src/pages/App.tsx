@@ -7,6 +7,6 @@ export const App = () => {
   const [entered, setEntered] = useState(false)
   console.log(entered)
   return (
-    <>{entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>
+    <>{!entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>
   )
 }
