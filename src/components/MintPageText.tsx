@@ -1,14 +1,6 @@
 export const MintPageText = () => (
   <>
     <p className="blocktext">
-      NOTE ON DATA COLLECTION:
-      <br />
-      <br />
-      WE CALCULATE A 128-DIMENSIONAL VECTOR FROM YOUR IMAGE AND USE THIS
-      ENCODING TO COMPARE AGAINST THE SMPLVERSE. NO PERSONAL DATA IS STORED ON
-      OUR SERVER.
-    </p>
-    <p className="blocktext">
       <br />
       THE SMPLVERSE IS AN NFT COLLECTION OF SYNTHETIC FACIAL TRAINING DATA FROM
       THE COMPUTATIONAL INFRASTRUCTURE OF THE METAVERSE.
@@ -39,6 +31,14 @@ export const MintPageText = () => (
       <br />
       CONVERSELY, YOUR LIKELIHOOD OF RECEIVING AN IMAGE WITH RARER VISUAL
       ATTRIBUTES INCREASES.
+    </p>
+    <p className="blocktext">
+      NOTE ON DATA COLLECTION:
+      <br />
+      <br />
+      WE CALCULATE A 128-DIMENSIONAL VECTOR FROM YOUR IMAGE AND USE THIS
+      ENCODING TO COMPARE AGAINST THE SMPLVERSE. NO PERSONAL DATA IS STORED ON
+      OUR SERVER.
     </p>
   </>
 )
