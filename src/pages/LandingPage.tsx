@@ -5,24 +5,25 @@ import { Box } from 'theme-ui'
 export const LandingPage = () => {
   return (
     <Box pl={3} pt={4}>
-      <Typewriter
-        onInit={(typewriter) => {
-          typewriter
-            .typeString(`27,000 EXPRESSION PARAMETERS.<br />`)
-            .pauseFor(450)
-            .typeString(`7,667 MESH VERTICES.<br />`)
-            .pauseFor(450)
-            .typeString(`200 SKIN TEXTURES.<br />`)
-            .pauseFor(450)
-            .typeString(`11 TYPES OF EYEWEAR.<br />`)
-            .pauseFor(450)
-            .typeString(`ONE YOU.<br />`)
-            .typeString(`<br />`)
-            .typeString(`<br />`)
-            .typeString(`<div id="logo" style="font-size: 10px;" />`)
-            .pauseFor(450)
-            .pasteString(
-              `<div style="font-size: 9px">
+      <div style={{ fontSize: 15 }}>
+        <Typewriter
+          onInit={(typewriter) => {
+            typewriter
+              .typeString(`27,000 EXPRESSION PARAMETERS.<br />`)
+              .pauseFor(450)
+              .typeString(`7,667 MESH VERTICES.<br />`)
+              .pauseFor(450)
+              .typeString(`200 SKIN TEXTURES.<br />`)
+              .pauseFor(450)
+              .typeString(`11 TYPES OF EYEWEAR.<br />`)
+              .pauseFor(450)
+              .typeString(`ONE YOU.<br />`)
+              .typeString(`<br />`)
+              .typeString(`<br />`)
+              .typeString(`<div id="logo" style="font-size: 10px;" />`)
+              .pauseFor(450)
+              .pasteString(
+                `<div style="font-size: 9px">
    _______________/\\/\\/\\/\\/\\__/\\/\\______/\\/\\__/\\/\\/\\/\\/\\____/\\/\\______________
    <br />
    ____________/\\/\\__________/\\/\\/\\__/\\/\\/\\__/\\/\\____/\\/\\__/\\/\\_______________
@@ -103,17 +104,18 @@ export const LandingPage = () => {
     <br />
       </div>
           `,
-              document.getElementById('logo')
-            )
-            .typeString(`<br />`)
-            .typeString(`<br />`)
-            .typeString(
-              `<a href="/asdf" style="color: inherit; text-decoration: none;">ENTER</a>`
-            )
-            .start()
-        }}
-        options={{ cursor: '&#9608;', delay: 35 }}
-      />
+                document.getElementById('logo')
+              )
+              .typeString(`<br />`)
+              .typeString(`<br />`)
+              .typeString(
+                `<a href="/asdf" style="color: inherit; text-decoration: none;">ENTER</a>`
+              )
+              .start()
+          }}
+          options={{ cursor: '&#9608;', delay: 35 }}
+        />
+      </div>
     </Box>
   )
 }
