@@ -2,43 +2,43 @@ export const MintPageText = () => (
   <>
     <p className="blocktext">
       <br />
-      THE SMPLVERSE IS AN NFT COLLECTION OF SYNTHETIC FACIAL TRAINING DATA FROM
-      THE COMPUTATIONAL INFRASTRUCTURE OF THE METAVERSE.
+      The smplverse is an nft collection of synthetic facial training data from
+      the computational infrastructure of the metaverse.
       <br />
       <br />
-      THESE PFPS WERE PROCEDURALLY-GENERATED USING SMPL—A BODY MESH USED TO
-      ANIMATE AVATARS IN MIXED REALITY FROM SPARSE INPUTS—AS THE BASIS FOR NEW
-      ALGORITHMS THAT WILL IMPROVE FACE AND GESTURE TRACKING IN VIRTUAL
-      ENVIRONMENTS.
+      These pfps were procedurally-generated using smpl—a body mesh used to
+      animate avatars in mixed reality from sparse inputs—as the basis for new
+      algorithms that will improve face and gesture tracking in virtual
+      environments.
       <br />
       <br />
-      AS A MINTER, YOU SUBMIT A FACE IMAGE WITH YOUR WEBCAM OR VIA UPLOAD,
-      WHICH A FACE RECOGNITION MODEL USES TO FIND THE CLOSEST MATCHING IMAGE IN
-      THE SMPLVERSE COLLECTION.
+      As a minter, you submit a face image with your webcam or via upload,
+      which a face recognition model uses to find the closest matching image in
+      the smplverse collection.
       <br />
       <br />
-      AFTER APPROVING THE MINT TRANSACTION, BOTH IMAGES ARE HASHED AND WRITTEN
-      TO THE [TOKEN ?].
+      After approving the mint transaction, both images are hashed and written
+      to the [token ?].
       <br />
       <br />
-      WHEN THE IMAGE IS SUBMITTED, IT RECEIVES ONE ATTRIBUTE FROM THE MODEL:
-      CONFIDENCE.
+      When the image is submitted, it receives one attribute from the model:
+      confidence.
       <br />
       <br />
-      CONFIDENCE IS A DECLINING MEASURE: AS MORE IMAGES ARE MINTED, YOUR
-      LIKELIHOOD OF RECEIVING A HIGH CONFIDENCE MATCH DECREASES.
+      Confidence is a declining measure: as more images are minted, your
+      likelihood of receiving a high confidence match decreases.
       <br />
       <br />
-      CONVERSELY, YOUR LIKELIHOOD OF RECEIVING AN IMAGE WITH RARER VISUAL
-      ATTRIBUTES INCREASES.
+      Conversely, your likelihood of receiving an image with rarer visual
+      attributes increases.
     </p>
     <p className="blocktext">
-      NOTE ON DATA COLLECTION:
+      Note on data collection:
       <br />
       <br />
-      WE CALCULATE A 128-DIMENSIONAL VECTOR FROM YOUR IMAGE AND USE THIS
-      ENCODING TO COMPARE AGAINST THE SMPLVERSE. NO PERSONAL DATA IS STORED ON
-      OUR SERVER.
+      We calculate a 128-dimensional vector from your image and use this
+      encoding to compare against the smplverse. no personal data is stored on
+      our server.
     </p>
   </>
 )

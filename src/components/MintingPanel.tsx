@@ -21,7 +21,7 @@ export const MintingPanel = () => {
   const provider = useProvider()
   const isActive = useIsActive()
 
-  const [quantity, setQuantity] = useState<number>(5)
+  const [quantity, setQuantity] = useState<number>(1)
   const [balance, setBalance] = useState<BigNumber>()
   const [weiRequired, setWeiRequired] = useState<BigNumber>()
   const [ethRequired, setEthRequired] = useState<string>()
@@ -80,7 +80,7 @@ export const MintingPanel = () => {
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
   const increment = () => {
-    if (quantity < 5) {
+    if (quantity < 7667) {
       setQuantity(quantity + 1)
     }
   }

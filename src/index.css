@@ -12,6 +12,7 @@ p {
 }
 
 .blocktext {
+  color: #008f11;
   margin-left: auto;
   margin-right: auto;
   width: 512px;

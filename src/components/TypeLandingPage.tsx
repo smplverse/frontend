@@ -10,19 +10,21 @@ export const TypeLandingPage = ({ setEntered }: Props) => (
     onInit={(typewriter) => {
       typewriter
         .pauseFor(2000)
-        .typeString(`27,000 EXPRESSION PARAMETERS<br />`)
-        .pauseFor(600)
-        .typeString(`7,667 MESH VERTICES<br />`)
-        .pauseFor(600)
-        .typeString(`200 SKIN TEXTURES<br />`)
-        .pauseFor(600)
-        .typeString(`11 TYPES OF EYEWEAR<br />`)
-        .pauseFor(600)
-        .typeString(`ONE YOU<br />`)
+        .typeString(`27,000 EXPRESSION PARAMETERS`)
+        .pauseFor(900)
+        .typeString(`<br />7,667 MESH VERTICES`)
+        .pauseFor(900)
+        .typeString(`<br />200 SKIN TEXTURES`)
+        .pauseFor(900)
+        .typeString(`<br />11 TYPES OF EYEWEAR`)
+        .pauseFor(900)
+        .typeString(`<br />ONE YOU`)
+        .pauseFor(900)
         .typeString(`<br />`)
         .typeString(`<br />`)
+        .typeString(`<br />`)
+        .pauseFor(900)
         .typeString(`<div id="logo" />`)
-        .pauseFor(600)
         .pasteString(
           `<div style="font-size: 12px">
    _______________/\\/\\/\\/\\/\\__/\\/\\______/\\/\\__/\\/\\/\\/\\/\\____/\\/\\______________
@@ -110,7 +112,7 @@ export const TypeLandingPage = ({ setEntered }: Props) => (
         .typeString(`<br />`)
         .typeString(`<br />`)
         .typeString(
-          `<div id="enter-button" style="display: flex;"> ENTER </div> `
+          `<div id="enter-button" style="display: flex;">ENTER </div>`
         )
         .callFunction(() => {
           const root = createRoot(
