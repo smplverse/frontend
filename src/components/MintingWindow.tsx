@@ -8,12 +8,12 @@ import Toast, {
 } from 'components/Toast'
 import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
-import { Box, Heading, Input } from 'theme-ui'
+import { Flex } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'
 import { useContract } from '../hooks/useContract'
-import { CenteredColumn } from './Flex'
+import { CenteredColumn, CenteredRow } from './Flex'
 import MintButton from './MintButton'
 
 const MintingWindow = () => {
@@ -31,7 +31,7 @@ const MintingWindow = () => {
 
   useEffect(() => {
     if (quantity) {
-      const price = BigNumber.from(parseEther('0.024'))
+      const price = BigNumber.from(parseEther('0.07'))
       const weiRequired = price.mul(quantity)
       const ethRequired = formatEther(weiRequired)
       setWeiRequired(weiRequired)
@@ -79,45 +79,72 @@ const MintingWindow = () => {
 
   const fontSize = useResponsiveValue([2, 2, 2, 6])
 
+  const increment = () => {
+    if (quantity < 5) {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
   return (
     <>
       <CenteredColumn>
         {isActive ? (
           <>
-            <Box sx={{ my: index > 2 ? 4 : 0 }}>
-              <Input
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.valueAsNumber)}
-              />
-            </Box>
-            {index > 2 && (
-              <Box>
+            <br />
+            {index > 2 ? (
+              <CenteredRow>
+                <Flex
+                  onClick={increment}
+                  style={{
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    fontSize: 20,
+                  }}
+                >
+                  ⊞ &nbsp;
+                </Flex>
                 <MintButton
                   ethRequired={ethRequired}
                   onClick={mint}
                   isLoading={isLoading}
                   small={false}
+                  quantity={quantity}
                 />
-              </Box>
+                <Flex
+                  onClick={decrement}
+                  style={{
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    fontSize: 20,
+                  }}
+                >
+                  &nbsp; ⊟
+                </Flex>
+              </CenteredRow>
+            ) : (
+              <>
+                +
+                <MintButton
+                  ethRequired={ethRequired}
+                  onClick={mint}
+                  isLoading={isLoading}
+                  quantity={quantity}
+                  small
+                />
+                -
+              </>
             )}
           </>
         ) : (
-          <Heading sx={{ fontSize, color: 'black', textAlign: 'center' }}>
-            Connect wallet to get started
-          </Heading>
+          <div />
         )}
-        <Toast />
       </CenteredColumn>
-      {index < 3 && isActive && (
-        <Box sx={{ mt: 4 }}>
-          <MintButton
-            ethRequired={ethRequired}
-            onClick={mint}
-            isLoading={isLoading}
-            small
-          />
-        </Box>
-      )}
+      <Toast />
     </>
   )
 }
