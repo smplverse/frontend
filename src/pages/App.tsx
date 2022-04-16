@@ -1,33 +1,11 @@
-/** @jsxImportSource theme-ui */
-import { Box } from 'theme-ui'
+import { useState } from 'react'
+import { MintPage } from './MintPage'
+import { LandingPage } from './LandingPage'
 
-import Header from '../components/Header'
-import MintingWindow from '../components/MintingWindow'
-
-const App = () => {
+export const App = () => {
+  const [entered, setEntered] = useState(false)
+  console.log(entered)
   return (
-    <div
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-        backgroundColor: 'background',
-      }}
-    >
-      <Header />
-      <Box
-        sx={{
-          display: 'flex',
-          flex: '1 1 auto',
-          p: 3,
-          alignItems: 'center',
-          flexDirection: 'column',
-        }}
-      >
-        <MintingWindow />
-      </Box>
-    </div>
+    <>{!entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>
   )
 }
-
-export default App

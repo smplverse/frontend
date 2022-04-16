@@ -6,13 +6,13 @@ import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'theme-ui'
 import { InitializeColorMode } from 'theme-ui'
 import { theme } from './theme'
-import { LandingPage } from 'pages/LandingPage'
+import { App } from 'pages/App'
 
 ReactDOM.render(
   <StrictMode>
     <InitializeColorMode />
     <ThemeProvider theme={theme}>
-      <LandingPage />
+      <App />
     </ThemeProvider>
   </StrictMode>,
   document.getElementById('root')
