@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+
 import smpl from '../assets/smpl.png'
 
 export const SmplImage = styled.div`

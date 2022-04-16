@@ -3,15 +3,13 @@ import { Box, Text } from 'theme-ui'
 
 import Header from '../components/Header'
 import { MintingPanel } from '../components/MintingPanel'
-import { useIsActive } from '../connectors/metamask'
 import { MintPageFooter } from '../components/MintPageFooter'
-import { SmplImage } from '../components/SmplImage'
 import { MintPageText } from '../components/MintPageText'
+import { SmplImage } from '../components/SmplImage'
 
 export const MintPage = () => {
   // TODO
   // pre-fetch all of the blockchain data during the intro page
-  const isActive = useIsActive()
   return (
     <div
       sx={{

@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther, parseEther } from '@ethersproject/units'
-import { useBreakpointIndex, useResponsiveValue } from '@theme-ui/match-media'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 import Toast, {
   displayErrorToast,
   displaySuccessToast,
@@ -77,7 +77,7 @@ export const MintingPanel = () => {
     }
   }
 
-  const fontSize = useResponsiveValue([2, 2, 2, 6])
+  // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
   const increment = () => {
     if (quantity < 5) {
