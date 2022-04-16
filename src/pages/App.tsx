@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { MintPage } from './MintPage'
+
 import { LandingPage } from './LandingPage'
+import { MintPage } from './MintPage'
 
 export const App = () => {
   const [entered, setEntered] = useState(false)

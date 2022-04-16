@@ -1,4 +1,5 @@
 import { Box } from 'theme-ui'
+
 import { TypeLandingPage } from '../components/TypeLandingPage'
 
 interface Props {
