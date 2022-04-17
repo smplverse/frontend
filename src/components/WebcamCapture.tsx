@@ -13,7 +13,6 @@ import {
   FACEMESH_TESSELATION,
 } from '@mediapipe/face_mesh'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import Webcam from 'react-webcam'
 
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
