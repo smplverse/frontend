@@ -15,15 +15,46 @@ import {
 } from '@mediapipe/face_mesh'
 import { drawConnectors } from '@mediapipe/drawing_utils'
 
-export const MediapipeCapture = () => {
-  const webcamRef = useRef(null)
-  const canvasReference = useRef(null) as any
+export const WebcamCapture = () => {
+  const webcamRef = useRef(null) as any
+  const canvasRef = useRef(null) as any
   let canvasCtx
   let camera
 
+  useEffect(() => {
+    const faceMesh = new FaceMesh({
+      locateFile: (file) =>
+        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+    })
+    faceMesh.setOptions({
+      maxNumFaces: 1,
+      refineLandmarks: true,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+    })
+    faceMesh.onResults(onResults)
+    if (webcamRef.current !== null) {
+      camera = new Camera(webcamRef.current.video, {
+        onFrame: async () => {
+          await faceMesh.send({ image: webcamRef.current.video })
+        },
+        width: 1280,
+        height: 720,
+      })
+      camera.start()
+    }
+  }, [webcamRef])
+
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot()
+    console.log(imageSrc)
+  }, [webcamRef])
+
   function onResults(results: any) {
-    canvasCtx = canvasReference.current.getContext('2d')
-    const { width, height } = canvasReference.current.canvasCtx.save()
+    console.log(results)
+    // the below doesnt work, need to add ref to the webcam canvas
+    canvasCtx = canvasRef.current.getContext('2d')
+    const { width, height } = canvasRef.current.canvasCtx.save()
     canvasCtx.clearRect(0, 0, width, height)
     canvasCtx.drawImage(results.image, 0, 0, width, height)
     if (results.multiFaceLandmarks) {
@@ -61,41 +92,14 @@ export const MediapipeCapture = () => {
     canvasCtx.restore()
   }
 
-  useEffect(() => {
-    const faceMesh = new FaceMesh({
-      locateFile: (file) =>
-        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
-    })
-    faceMesh.setOptions({
-      maxNumFaces: 1,
-      refineLandmarks: true,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
-    })
-    faceMesh.onResults(onResults)
-    if (!webcamRef.current && webcamRef.current !== null) {
-      camera = new Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          await faceMesh.send({ image: webcamRef.current.video })
-        },
-        width: 1280,
-        height: 720,
-      })
-      camera.start()
-    }
-  }, [])
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot()
-    console.log(imageSrc)
-  }, [webcamRef])
   return (
     <>
       <Webcam
         audio={false}
-        height={512}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
         width={512}
+        height={512}
         videoConstraints={videoConstraints}
       />
       <button onClick={capture}>Capture photo</button>
@@ -108,5 +112,3 @@ const videoConstraints = {
   height: 512,
   facingMode: 'user',
 }
-
-export const WebcamCapture = () => {}
