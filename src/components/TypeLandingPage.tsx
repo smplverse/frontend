@@ -9,21 +9,21 @@ export const TypeLandingPage = ({ setEntered }: Props) => (
   <Typewriter
     onInit={(typewriter) => {
       typewriter
-        .pauseFor(2000)
+        .pauseFor(3000)
         .typeString(`27,000 EXPRESSION PARAMETERS`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<br />7,667 MESH VERTICES`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<br />200 SKIN TEXTURES`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<br />11 TYPES OF EYEWEAR`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<br />ONE YOU`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<br />`)
         .typeString(`<br />`)
         .typeString(`<br />`)
-        .pauseFor(900)
+        .pauseFor(2000)
         .typeString(`<div id="logo" />`)
         .pasteString(
           `<div style="font-size: 12px">
