@@ -1,4 +1,3 @@
-/** jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
 import { MouseEventHandler, ReactNode } from 'react'

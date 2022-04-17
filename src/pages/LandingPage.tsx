@@ -7,7 +7,15 @@ interface Props {
 }
 
 export const LandingPage = ({ setEntered }: Props) => (
-  <Box pl={3} pt={4}>
+  <Box
+    sx={{
+      display: 'flex',
+      flex: '1 1 auto',
+      p: 3,
+      alignItems: 'center',
+      flexDirection: 'column',
+    }}
+  >
     <div style={{ fontSize: 15 }}>
       <TypeLandingPage setEntered={setEntered} />
     </div>

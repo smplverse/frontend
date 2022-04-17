@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import { Box, Text } from 'theme-ui'
 
 import {

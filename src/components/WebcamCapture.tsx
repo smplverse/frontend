@@ -1,25 +1,25 @@
-import { useCallback, useRef, useEffect } from 'react'
-import Webcam from 'react-webcam'
 import { Camera } from '@mediapipe/camera_utils'
+import { drawConnectors } from '@mediapipe/drawing_utils'
 import {
   FaceMesh,
-  FACEMESH_TESSELATION,
-  FACEMESH_RIGHT_EYE,
-  FACEMESH_LEFT_EYE,
-  FACEMESH_RIGHT_EYEBROW,
-  FACEMESH_LEFT_EYEBROW,
-  FACEMESH_RIGHT_IRIS,
-  FACEMESH_LEFT_IRIS,
   FACEMESH_FACE_OVAL,
+  FACEMESH_LEFT_EYE,
+  FACEMESH_LEFT_EYEBROW,
+  FACEMESH_LEFT_IRIS,
   FACEMESH_LIPS,
+  FACEMESH_RIGHT_EYE,
+  FACEMESH_RIGHT_EYEBROW,
+  FACEMESH_RIGHT_IRIS,
+  FACEMESH_TESSELATION,
 } from '@mediapipe/face_mesh'
-import { drawConnectors } from '@mediapipe/drawing_utils'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import Webcam from 'react-webcam'
 
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const canvasRef = useRef(null) as any
   let canvasCtx
-  let camera
+  const [camera, setCamera] = useState<Camera>()
 
   useEffect(() => {
     const faceMesh = new FaceMesh({
@@ -34,14 +34,15 @@ export const WebcamCapture = () => {
     })
     faceMesh.onResults(onResults)
     if (webcamRef.current !== null) {
-      camera = new Camera(webcamRef.current.video, {
+      const _camera = new Camera(webcamRef.current.video, {
         onFrame: async () => {
           await faceMesh.send({ image: webcamRef.current.video })
         },
         width: 1280,
         height: 720,
       })
-      camera.start()
+      _camera.start()
+      setCamera(_camera)
     }
   }, [webcamRef])
 
@@ -92,19 +93,7 @@ export const WebcamCapture = () => {
     canvasCtx.restore()
   }
 
-  return (
-    <>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width={512}
-        height={512}
-        videoConstraints={videoConstraints}
-      />
-      <button onClick={capture}>Capture photo</button>
-    </>
-  )
+  return <></>
 }
 
 const videoConstraints = {

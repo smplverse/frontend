@@ -23,6 +23,7 @@
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "theme-ui",
     "declaration": true,
     "baseUrl": "src"
   },
