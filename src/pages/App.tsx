@@ -9,6 +9,6 @@ export const App = () => {
   console.log(entered)
   // return <UploadPage />
   return (
-    <>{!entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>
+    <>{entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>
   )
 }

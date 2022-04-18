@@ -1,29 +1,34 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { Flex } from 'theme-ui'
+import { MintCount } from './MintCount'
+import { Text } from 'theme-ui'
 
 import { Wallet } from './Wallet'
 
 const HeaderContainer = styled.header``
 
-const Separator = styled.div``
+const WalletContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+`
 
 export const Header = () => {
   return (
-    <HeaderContainer sx={{ p: 4, display: 'flex', flexDirection: 'row' }}>
-      <Flex
-        sx={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          fontSize: 3,
-        }}
-      >
-        SMPLverse
-      </Flex>
-      <Separator sx={{ mx: 'auto' }} />
-      <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
+    <HeaderContainer
+      sx={{
+        p: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <MintCount />
+      <Text>SMPLVERSE</Text>
+      <WalletContainer>
         <Wallet />
-      </Flex>
+      </WalletContainer>
     </HeaderContainer>
   )
 }

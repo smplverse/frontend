@@ -11,13 +11,6 @@ p {
   font-size: 11px;
 }
 
-.blocktext {
-  color: #008f11;
-  margin-left: auto;
-  margin-right: auto;
-  width: 512px;
-}
-
 .top-nav {
   color: #00ff41;
   /* have a hover-over color  hover: ; */
@@ -41,21 +34,6 @@ p {
 
 .wrapper {
   text-align: center;
-}
-
-.mint {
-  color: #00ff41;
-  font-family: sans-serif;
-  font-size: 16px;
-  line-height: 1.25em;
-  margin-bottom: 1.5rem;
-  padding: 0.75rem 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 512px;
 }
 
 .links {

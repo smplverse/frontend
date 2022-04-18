@@ -31,14 +31,6 @@ export const MintPage = () => {
         }}
       >
         <SmplImage />
-        <div className="blocktext">
-          <br />
-          <div className="mint">
-            <Text>7667 / 7667</Text>
-            <Text>Ξ0.07</Text>
-            <MintingPanel />
-          </div>
-        </div>
         <MintPageText />
         <Footer />
       </Box>
