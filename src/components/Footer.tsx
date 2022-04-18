@@ -16,13 +16,29 @@ const Link = styled.div`
   display: flex;
   flex-direction: column;
   width: 512px;
-  margin-top: 20px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  &:hover {
+    filter: invert(1);
+  }
 `
 
 export const Footer = () => (
   <CenteredColumn>
     <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
-      <Link>ETHERSCAN</Link>
+      <Link>etherscan</Link>
+    </a>
+    <a
+      href="https://testnets.opensea.io/collection/smplverse"
+      style={{ textDecoration: 'none' }}
+    >
+      <Link>opensea</Link>
+    </a>
+    <a
+      href="https://testnets.opensea.io/collection/smplverse"
+      style={{ textDecoration: 'none' }}
+    >
+      <Link>zora</Link>
     </a>
   </CenteredColumn>
 )

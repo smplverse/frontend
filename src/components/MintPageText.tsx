@@ -13,6 +13,7 @@ const Container = styled.div`
   & > span {
     margin-top: 15px;
   }
+  margin-bottom: 20px;
 `
 
 export const MintPageText = () => (
