@@ -6,7 +6,6 @@ import { MintPage } from './MintPage'
 
 export const App = () => {
   const [entered, setEntered] = useState(false)
-  console.log(entered)
   // return <UploadPage />
   return (
     <>{entered ? <LandingPage setEntered={setEntered} /> : <MintPage />}</>

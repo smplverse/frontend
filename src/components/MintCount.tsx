@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { formatEther, parseEther } from '@ethersproject/units'
 import { useEffect, useState } from 'react'
 import { Text } from 'theme-ui'
 import { useContract } from '../hooks'
@@ -22,13 +23,12 @@ export const MintCount = () => {
   const [left, setLeft] = useState<number>()
   useEffect(() => {
     ;(async function () {
-      console.log(contract)
+      // this executes on every hover, TODO move to a query hook
       if (contract) {
         const totalSupply = await contract.totalSupply()
-        console.log(totalSupply)
         const collectionSize = await contract.collectionSize()
-        console.log(totalSupply)
-        setPrice((await contract.mintPrice()).toNumber())
+        const price = await contract.mintPrice()
+        setPrice(Number(formatEther(price)))
         setLeft(totalSupply.sub(collectionSize).toNumber())
       }
     })()

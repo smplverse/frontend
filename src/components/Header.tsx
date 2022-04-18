@@ -9,7 +9,6 @@ const HeaderContainer = styled.header``
 
 const WalletContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 150px;
 `
