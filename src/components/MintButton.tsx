@@ -2,7 +2,9 @@
 import styled from '@emotion/styled'
 import { Centered } from 'components/Flex'
 import { MouseEventHandler } from 'react'
-import { Spinner, Text, Flex } from 'theme-ui'
+import { Spinner, Text } from 'theme-ui'
+import { metaMask, useIsActive } from '../connectors/metamask'
+import { ConnectButton } from './ConnectButton'
 
 interface Props {
   ethRequired: string | undefined
@@ -49,6 +51,8 @@ export const MintButton = ({
 }: Props) => {
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
+  const isActive = useIsActive()
+
   const increment = () => {
     if (quantity < 7667) {
       setQuantity(quantity + 1)
@@ -68,17 +72,26 @@ export const MintButton = ({
             <Spinner color="green" size={20} />
           ) : (
             <>
-              <PlusMinusContainer onClick={decrement}>
-                ⊟ &nbsp;
-              </PlusMinusContainer>
-              <InvertOnHover>
-                <Text onClick={onClick}>
-                  MINT {quantity} FOR Ξ{ethRequired}
-                </Text>
-              </InvertOnHover>
-              <PlusMinusContainer onClick={increment}>
-                &nbsp; ⊞
-              </PlusMinusContainer>
+              {isActive ? (
+                <>
+                  <PlusMinusContainer onClick={decrement}>
+                    ⊟ &nbsp;
+                  </PlusMinusContainer>
+                  <InvertOnHover>
+                    <Text onClick={onClick}>
+                      MINT {quantity} FOR Ξ{ethRequired}
+                    </Text>
+                  </InvertOnHover>
+                  <PlusMinusContainer onClick={increment}>
+                    &nbsp; ⊞
+                  </PlusMinusContainer>
+                </>
+              ) : (
+                <ConnectButton
+                  onClick={async () => await metaMask.activate()}
+                  text="CONNECT TO MINT"
+                />
+              )}
             </>
           )}
         </Centered>
