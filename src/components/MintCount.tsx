@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { formatEther } from '@ethersproject/units'
 import { useEffect, useState } from 'react'
-import { Text } from 'theme-ui'
+import { Spinner, Text } from 'theme-ui'
 import { useContract } from '../hooks'
 
 const MintCountContainer = styled.div`
@@ -27,7 +27,7 @@ export const MintCount = () => {
         const collectionSize = await contract.collectionSize()
         const price = await contract.mintPrice()
         setPrice(Number(formatEther(price)))
-        setLeft(totalSupply.sub(collectionSize).toNumber())
+        setLeft(collectionSize.sub(totalSupply).toNumber())
       }
     })()
   }, [contract])
@@ -37,7 +37,31 @@ export const MintCount = () => {
         onMouseEnter={() => setShowPrice(true)}
         onMouseLeave={() => setShowPrice(false)}
       >
-        {showPrice ? <Text>Ξ{price}</Text> : <Text>{left} / 7667</Text>}
+        {showPrice ? (
+          <Text>
+            Ξ
+            {price || (
+              <Spinner
+                color="white"
+                size="10"
+                strokeWidth={3}
+                sx={{ margin: 'none' }}
+              />
+            )}
+          </Text>
+        ) : (
+          <Text>
+            {left || (
+              <Spinner
+                color="white"
+                size="10"
+                strokeWidth={3}
+                sx={{ margin: 'none' }}
+              />
+            )}{' '}
+            / 7667
+          </Text>
+        )}
       </MintCountContainer>
     </div>
   )
