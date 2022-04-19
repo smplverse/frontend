@@ -31,6 +31,7 @@ export const MintPage = () => {
         }}
       >
         <SmplImage />
+        <MintingPanel />
         <MintPageText />
         <Footer />
       </Box>

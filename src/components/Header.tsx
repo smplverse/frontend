@@ -5,7 +5,10 @@ import { Text } from 'theme-ui'
 
 import { Wallet } from './Wallet'
 
-const HeaderContainer = styled.header``
+const HeaderContainer = styled.header`
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+`
 
 const WalletContainer = styled.div`
   display: flex;

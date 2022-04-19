@@ -1,12 +1,10 @@
 import styled from '@emotion/styled'
-import { formatEther, parseEther } from '@ethersproject/units'
+import { formatEther } from '@ethersproject/units'
 import { useEffect, useState } from 'react'
 import { Text } from 'theme-ui'
 import { useContract } from '../hooks'
 
 const MintCountContainer = styled.div`
-  color: #00ff41;
-  font-family: sans-serif;
   font-size: 16px;
   display: flex;
   width: 150px;

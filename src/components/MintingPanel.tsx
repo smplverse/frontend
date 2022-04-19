@@ -78,100 +78,20 @@ export const MintingPanel = () => {
     }
   }
 
-  // const fontSize = useResponsiveValue([2, 2, 2, 6])
-
-  const increment = () => {
-    if (quantity < 7667) {
-      setQuantity(quantity + 1)
-    }
-  }
-
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1)
-    }
-  }
   return (
     <>
-      <CenteredColumn>
-        {isActive ? (
-          <>
-            <br />
-            {index > 2 ? (
-              <CenteredRow>
-                <Flex
-                  onClick={decrement}
-                  style={{
-                    cursor: 'pointer',
-                    userSelect: 'none',
-                    fontSize: 20,
-                  }}
-                >
-                  ⊟ &nbsp;
-                </Flex>
-                <MintButton
-                  ethRequired={ethRequired}
-                  onClick={mint}
-                  isLoading={isLoading}
-                  small={false}
-                  quantity={quantity}
-                />
-                <Flex
-                  onClick={increment}
-                  style={{
-                    cursor: 'pointer',
-                    userSelect: 'none',
-                    fontSize: 20,
-                  }}
-                >
-                  &nbsp; ⊞
-                </Flex>
-              </CenteredRow>
-            ) : (
-              <CenteredRow>
-                <Flex
-                  onClick={decrement}
-                  style={{
-                    cursor: 'pointer',
-                    userSelect: 'none',
-                    fontSize: 20,
-                  }}
-                >
-                  ⊟ &nbsp;
-                </Flex>
-                <MintButton
-                  ethRequired={ethRequired}
-                  onClick={mint}
-                  isLoading={isLoading}
-                  small={false}
-                  quantity={quantity}
-                />
-                <Flex
-                  onClick={increment}
-                  style={{
-                    cursor: 'pointer',
-                    userSelect: 'none',
-                    fontSize: 20,
-                  }}
-                >
-                  &nbsp; ⊞
-                </Flex>
-              </CenteredRow>
-            )}
-          </>
-        ) : (
-          <div
-            style={{
-              height: 40,
-              display: 'flex',
-              justifyContent: 'flex-end',
-              flexDirection: 'column',
-            }}
-          >
-            <Text>FRIDAY JUNE 24, 12PM PT</Text>
-          </div>
-        )}
-      </CenteredColumn>
+      {isActive ? (
+        <MintButton
+          ethRequired={ethRequired}
+          onClick={mint}
+          isLoading={isLoading}
+          small={false}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+      ) : (
+        <Text>FRIDAY JUNE 24, 12PM PT</Text>
+      )}
       <Toast />
     </>
   )
