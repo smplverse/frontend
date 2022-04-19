@@ -6,6 +6,7 @@ import {
   MintingPanel,
   MintPageText,
   SmplImage,
+  MintTime,
 } from '../components'
 
 export const MintPage = () => {
@@ -31,6 +32,7 @@ export const MintPage = () => {
         }}
       >
         <SmplImage />
+        <MintTime />
         <MintingPanel />
         <MintPageText />
         <Footer />
