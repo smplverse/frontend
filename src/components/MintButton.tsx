@@ -20,8 +20,8 @@ const MintButtonContainer = styled.div`
   user-select: none;
   cursor: pointer;
   height: 50px;
-  border: 1px solid #008f11;
-  color: #008f11;
+  background-color: #008f11;
+  color: #000000;
   width: 256px;
   padding: 0.75rem 0;
   border-radius: 1rem;
