@@ -13,8 +13,8 @@ const LargeButtonContainer = styled.div`
   cursor: pointer;
   user-select: none;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 150px;
 `
 
 const SmallButtonContainer = styled(LargeButtonContainer)``

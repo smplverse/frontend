@@ -10,12 +10,6 @@ const HeaderContainer = styled.header`
   font-family: 'IBM Plex Mono', monospace;
 `
 
-const WalletContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 150px;
-`
-
 export const Header = () => {
   return (
     <HeaderContainer
@@ -28,9 +22,7 @@ export const Header = () => {
     >
       <MintCount />
       <Text>SMPLVERSE</Text>
-      <WalletContainer>
-        <Wallet />
-      </WalletContainer>
+      <Wallet />
     </HeaderContainer>
   )
 }

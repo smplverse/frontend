@@ -77,18 +77,14 @@ export const MintingPanel = () => {
 
   return (
     <>
-      {isActive ? (
-        <MintButton
-          ethRequired={ethRequired}
-          onClick={mint}
-          isLoading={isLoading}
-          small={false}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-      ) : (
-        <Text>FRIDAY JUNE 24, 12PM PT</Text>
-      )}
+      <MintButton
+        ethRequired={ethRequired}
+        onClick={mint}
+        isLoading={isLoading}
+        small={false}
+        quantity={quantity}
+        setQuantity={setQuantity}
+      />
       <Toast />
     </>
   )

@@ -1,4 +1,4 @@
-import { Box, Text } from 'theme-ui'
+import { Box } from 'theme-ui'
 
 import {
   Footer,
