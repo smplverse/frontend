@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther, parseEther } from '@ethersproject/units'
-import { useBreakpointIndex } from '@theme-ui/match-media'
 import {
   displayErrorToast,
   displaySuccessToast,
@@ -9,12 +8,11 @@ import {
 } from 'components/Toast'
 import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
-import { Flex, Text } from 'theme-ui'
+import { Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'
 import { useContract } from '../hooks'
-import { CenteredColumn, CenteredRow } from './Flex'
 import { MintButton } from './MintButton'
 
 export const MintingPanel = () => {
@@ -28,7 +26,6 @@ export const MintingPanel = () => {
   const [ethRequired, setEthRequired] = useState<string>()
   const [isLoading, setIsLoading] = useState(false)
   const chainId = useChainId()
-  const index = useBreakpointIndex()
 
   useEffect(() => {
     if (quantity) {
@@ -52,7 +49,7 @@ export const MintingPanel = () => {
 
   const mint = async () => {
     if (chainId && chainId !== CHAIN_ID) {
-      displayErrorToast('Invalid network!', 'colored')
+      displayErrorToast('Invalid network!', 'dark')
       return
     }
     if (contract.signer && weiRequired && balance) {
@@ -66,13 +63,13 @@ export const MintingPanel = () => {
         })
         await tx.wait()
         setIsLoading(false)
-        displaySuccessToast(tx.hash, 'colored')
+        displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
         setIsLoading(false)
         if (err?.message) {
-          displayErrorToast(err.message, 'colored')
+          displayErrorToast(err.message, 'dark')
         } else {
-          displayErrorToast(err, 'colored')
+          displayErrorToast(err, 'dark')
         }
       }
     }

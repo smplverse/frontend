@@ -52,3 +52,15 @@ p {
   margin-right: auto;
   max-width: 512px;
 }
+
+.Toastify__toast {
+  --toastify-font-family: 'IBM Plex Mono', monospace;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  --toastify-color-success: #008f11;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  --toastify-color-error: #ff0000;
+}
