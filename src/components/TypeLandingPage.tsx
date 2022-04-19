@@ -32,9 +32,9 @@ export const TypeLandingPage = ({ setEntered }: Props) => (
         .typeString(`<br />`)
         .typeString(`<span id="enter-button">ENTER</span>`)
         .callFunction(() => {
-          const root = createRoot(
-            document.getElementById('enter-button') || new HTMLElement()
-          )
+          const div = document.getElementById('enter-button')
+          if (!div) return
+          const root = createRoot(div)
           root.render(
             <span
               onClick={() => setEntered(true)}

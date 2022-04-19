@@ -4,6 +4,7 @@ import { useCallback, useRef } from 'react'
 import { ButtonContainer } from './ButtonContainer'
 import { useState } from 'react'
 import { CenteredRow } from './Flex'
+import { MintTime } from './MintTime'
 
 const WebcamButtonContainer = styled(ButtonContainer)`
   width: 150px;
@@ -30,8 +31,17 @@ export const WebcamCapture = () => {
   }, [webcamRef])
 
   function approve() {
+    // get a smpl match quickly
+    // upload hashes of both of the images
+    // send signal to a matcher api
+    // OR
+    // use some listening api
+    // (similar to yield.is liquidator, poll every 10-15s)
     return
   }
+
+  // TODO there has to be a 'enable webcam' button in case
+  // there is not a webcam permission
   return (
     <>
       {!photo ? (
@@ -50,13 +60,15 @@ export const WebcamCapture = () => {
             height={520}
             videoConstraints={videoConstraints}
           />
+          <MintTime />
           <WebcamButtonContainer onClick={capture}>
             Capture photo
           </WebcamButtonContainer>
         </>
       ) : (
         <>
-          <img src={photo} alt="photo" />
+          <img width={520} height={520} src={photo} alt="photo" />
+          <MintTime />
           <CenteredRow>
             <WebcamButtonContainer onClick={() => setPhoto('')}>
               Try again

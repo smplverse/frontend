@@ -5,6 +5,6 @@ import smpl from '../assets/smpl.png'
 export const SmplImage = styled.div`
   background: url(${smpl});
   background-size: contain;
-  width: 512px;
-  height: 512px;
+  width: 513px;
+  height: 513px;
 `

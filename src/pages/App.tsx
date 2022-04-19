@@ -10,8 +10,8 @@ export const App = () => {
   const [entered, setEntered] = useState(false)
   const gotTokens = false
   const wantToUpload = false
-  return <UploadPage />
-  if (!entered) {
+  // return <UploadPage />
+  if (entered) {
     return <LandingPage setEntered={setEntered} />
   } else if (gotTokens && wantToUpload) {
     return <UploadPage />
