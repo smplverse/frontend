@@ -5,8 +5,8 @@ import { MouseEventHandler } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
 import { metaMask, useIsActive } from '../connectors/metamask'
-import { ConnectButton } from './ConnectButton'
 import { ButtonContainer } from './ButtonContainer'
+import { ConnectButton } from './ConnectButton'
 
 interface Props {
   ethRequired: string | undefined
