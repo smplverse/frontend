@@ -8,7 +8,6 @@ import {
 } from 'components/Toast'
 import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
-import { Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'

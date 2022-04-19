@@ -5,8 +5,8 @@ import {
   Header,
   MintingPanel,
   MintPageText,
-  SmplImage,
   MintTime,
+  SmplImage,
 } from '../components'
 
 export const MintPage = () => {

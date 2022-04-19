@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { formatEther } from '@ethersproject/units'
 import { useEffect, useState } from 'react'
 import { Spinner, Text } from 'theme-ui'
+
 import { useContract } from '../hooks'
 
 const MintCountContainer = styled.div`

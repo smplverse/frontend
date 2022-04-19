@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { MintCount } from './MintCount'
 import { Text } from 'theme-ui'
 
+import { MintCount } from './MintCount'
 import { Wallet } from './Wallet'
 
 const HeaderContainer = styled.header`

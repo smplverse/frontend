@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Centered } from 'components/Flex'
 import { MouseEventHandler } from 'react'
 import { Spinner, Text } from 'theme-ui'
+
 import { metaMask, useIsActive } from '../connectors/metamask'
 import { ConnectButton } from './ConnectButton'
 
