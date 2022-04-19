@@ -6,6 +6,7 @@ import { Spinner, Text } from 'theme-ui'
 
 import { metaMask, useIsActive } from '../connectors/metamask'
 import { ConnectButton } from './ConnectButton'
+import { ButtonContainer } from './ButtonContainer'
 
 interface Props {
   ethRequired: string | undefined
@@ -16,16 +17,8 @@ interface Props {
   setQuantity: (quantity: number) => void
 }
 
-const MintButtonContainer = styled.div`
-  user-select: none;
-  cursor: pointer;
-  height: 50px;
-  background-color: #008f11;
-  color: #000000;
+const MintButtonContainer = styled(ButtonContainer)`
   width: 256px;
-  padding: 0.75rem 0;
-  border-radius: 1rem;
-  margin-top: 2rem;
 `
 
 const PlusMinusContainer = styled.div`
