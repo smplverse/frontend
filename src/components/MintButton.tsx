@@ -48,7 +48,7 @@ export const MintButton = ({
   const isActive = useIsActive()
 
   const increment = () => {
-    if (quantity < 7667) {
+    if (quantity < 10) {
       setQuantity(quantity + 1)
     }
   }

@@ -4,22 +4,24 @@ import { ETHERSCAN_LINK } from '../constants'
 import { CenteredColumn } from './Flex'
 
 const Link = styled.div`
-  border: 1px solid #008f11;
   border-radius: 1rem;
-  font-family: sans-serif;
+  background-color: #008f11;
+  font-family: monospace;
   font-size: 16px;
   line-height: 1.25em;
-  color: #008f11;
+  color: #000000;
   margin-bottom: 1.5rem;
   padding: 0.75rem 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   width: 512px;
-  margin-top: 10px;
+  margin-top: 5px;
   text-transform: uppercase;
+  border: 1px solid #008f11;
   &:hover {
-    filter: invert(1);
+    background-color: #000000;
+    color: #008f11;
   }
 `
 
