@@ -31,11 +31,16 @@ export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
   const [photo, setPhoto] = useState<string>('')
+  const [hash, setHash] = useState<string>('')
   const [isApproving, setIsApproving] = useState(false)
+
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot()
-    setPhoto(imageSrc)
-  }, [webcamRef])
+    if (imageSrc) {
+      setPhoto(imageSrc)
+      setHash('0x' + sha256(photo))
+    }
+  }, [webcamRef, photo])
 
   async function approve() {
     if (contract) {
@@ -83,6 +88,7 @@ export const WebcamCapture = () => {
       ) : (
         <>
           <img width={520} height={520} src={photo} alt="photo" />
+          {hash && <>{hash}</>}
           <MintTime />
           <CenteredRow>
             <WebcamButtonContainer onClick={() => setPhoto('')}>
