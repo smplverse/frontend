@@ -47,15 +47,11 @@ export const WebcamCapture = () => {
       setIsApproving(true)
       const hash = '0x' + sha256(photo)
       console.log(hash)
-      await contract.getSMPL(hash, hash)
-      // TODO add a try catch coz it keeps spinning on err
-      // also handle when user double-clicks (if loading cannot click)
-      // get a smpl match quickly
-      // upload hashes of both of the images
-      // send signal to a matcher api
-      // OR
-      // use some listening api
-      // (similar to yield.is liquidator, poll every 10-15s)
+      const tokenIds = await contract.tokensOfOwner(
+        await contract.signer.getAddress()
+      )
+      // TODO check if tokenId already uploaded
+      await contract.uploadImage(hash, tokenIds[0])
       setIsApproving(false)
     }
   }
@@ -95,7 +91,9 @@ export const WebcamCapture = () => {
               Try again
             </WebcamButtonContainer>
             <EmptySpace />
-            <WebcamButtonContainer onClick={approve}>
+            <WebcamButtonContainer
+              onClick={!isApproving ? approve : () => null}
+            >
               {isApproving ? (
                 <Spinner size={24} color={'black'} />
               ) : (
