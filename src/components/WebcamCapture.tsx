@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import Webcam from 'react-webcam'
 import { Spinner } from 'theme-ui'
@@ -43,19 +43,23 @@ export const WebcamCapture = () => {
     }
   }, [webcamRef, photo])
 
-  async function detectFace() {
-    const res = await fetch('https://api.smplverse.xyz/detect-face', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        image: photo,
-      }),
-    })
-    const json = await res.json()
-    setLanmarkedPhoto(json?.image)
-  }
+  useEffect(() => {
+    ;(async function () {
+      if (photo) {
+        const res = await fetch('https://api.smplverse.xyz/detect-face', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            image: photo,
+          }),
+        })
+        const json = await res.json()
+        setLanmarkedPhoto(json?.image)
+      }
+    })()
+  }, [photo])
 
   async function approve() {
     if (contract) {
