@@ -31,6 +31,7 @@ export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
   const [photo, setPhoto] = useState<string>('')
+  const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
   const [isApproving, setIsApproving] = useState(false)
 
@@ -41,6 +42,20 @@ export const WebcamCapture = () => {
       setHash('0x' + sha256(photo))
     }
   }, [webcamRef, photo])
+
+  async function detectFace() {
+    const res = await fetch('https://api.smplverse.xyz/detect-face', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        image: photo,
+      }),
+    })
+    const json = await res.json()
+    setLanmarkedPhoto(json?.image)
+  }
 
   async function approve() {
     if (contract) {
@@ -83,7 +98,12 @@ export const WebcamCapture = () => {
         </>
       ) : (
         <>
-          <img width={520} height={520} src={photo} alt="photo" />
+          <img
+            width={520}
+            height={520}
+            src={landmarkedPhoto ? landmarkedPhoto : photo}
+            alt="photo"
+          />
           {hash && <>{hash}</>}
           <MintTime />
           <CenteredRow>

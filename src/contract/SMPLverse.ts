@@ -13,1194 +13,1194 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
+} from 'ethers'
 import type {
   FunctionFragment,
   Result,
   EventFragment,
-} from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
+} from '@ethersproject/abi'
+import type { Listener, Provider } from '@ethersproject/providers'
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
-} from "../common";
+} from './common'
 
 export declare namespace ERC721A {
   export type TokenOwnershipStruct = {
-    addr: string;
-    startTimestamp: BigNumberish;
-    burned: boolean;
-  };
+    addr: string
+    startTimestamp: BigNumberish
+    burned: boolean
+  }
 
   export type TokenOwnershipStructOutput = [string, BigNumber, boolean] & {
-    addr: string;
-    startTimestamp: BigNumber;
-    burned: boolean;
-  };
+    addr: string
+    startTimestamp: BigNumber
+    burned: boolean
+  }
 }
 
 export interface SMPLverseInterface extends utils.Interface {
   functions: {
-    "approve(address,uint256)": FunctionFragment;
-    "balanceOf(address)": FunctionFragment;
-    "baseTokenURI()": FunctionFragment;
-    "collectionSize()": FunctionFragment;
-    "devAddress()": FunctionFragment;
-    "explicitOwnershipOf(uint256)": FunctionFragment;
-    "explicitOwnershipsOf(uint256[])": FunctionFragment;
-    "getApproved(uint256)": FunctionFragment;
-    "imageHash()": FunctionFragment;
-    "isApprovedForAll(address,address)": FunctionFragment;
-    "maxMint()": FunctionFragment;
-    "mint(uint256)": FunctionFragment;
-    "mintPrice()": FunctionFragment;
-    "name()": FunctionFragment;
-    "owner()": FunctionFragment;
-    "ownerOf(uint256)": FunctionFragment;
-    "pause()": FunctionFragment;
-    "paused()": FunctionFragment;
-    "renounceOwnership()": FunctionFragment;
-    "safeTransferFrom(address,address,uint256)": FunctionFragment;
-    "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
-    "setApprovalForAll(address,bool)": FunctionFragment;
-    "setBaseTokenURI(string)": FunctionFragment;
-    "supportsInterface(bytes4)": FunctionFragment;
-    "symbol()": FunctionFragment;
-    "tokenURI(uint256)": FunctionFragment;
-    "tokensOfOwner(address)": FunctionFragment;
-    "tokensOfOwnerIn(address,uint256,uint256)": FunctionFragment;
-    "totalSupply()": FunctionFragment;
-    "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
-    "unpause()": FunctionFragment;
-    "uploadImage(bytes32,uint256)": FunctionFragment;
-    "uploads(uint256)": FunctionFragment;
-    "withdraw()": FunctionFragment;
-  };
+    'approve(address,uint256)': FunctionFragment
+    'balanceOf(address)': FunctionFragment
+    'baseTokenURI()': FunctionFragment
+    'collectionSize()': FunctionFragment
+    'devAddress()': FunctionFragment
+    'explicitOwnershipOf(uint256)': FunctionFragment
+    'explicitOwnershipsOf(uint256[])': FunctionFragment
+    'getApproved(uint256)': FunctionFragment
+    'imageHash()': FunctionFragment
+    'isApprovedForAll(address,address)': FunctionFragment
+    'maxMint()': FunctionFragment
+    'mint(uint256)': FunctionFragment
+    'mintPrice()': FunctionFragment
+    'name()': FunctionFragment
+    'owner()': FunctionFragment
+    'ownerOf(uint256)': FunctionFragment
+    'pause()': FunctionFragment
+    'paused()': FunctionFragment
+    'renounceOwnership()': FunctionFragment
+    'safeTransferFrom(address,address,uint256)': FunctionFragment
+    'safeTransferFrom(address,address,uint256,bytes)': FunctionFragment
+    'setApprovalForAll(address,bool)': FunctionFragment
+    'setBaseTokenURI(string)': FunctionFragment
+    'supportsInterface(bytes4)': FunctionFragment
+    'symbol()': FunctionFragment
+    'tokenURI(uint256)': FunctionFragment
+    'tokensOfOwner(address)': FunctionFragment
+    'tokensOfOwnerIn(address,uint256,uint256)': FunctionFragment
+    'totalSupply()': FunctionFragment
+    'transferFrom(address,address,uint256)': FunctionFragment
+    'transferOwnership(address)': FunctionFragment
+    'unpause()': FunctionFragment
+    'uploadImage(bytes32,uint256)': FunctionFragment
+    'uploads(uint256)': FunctionFragment
+    'withdraw()': FunctionFragment
+  }
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "approve"
-      | "balanceOf"
-      | "baseTokenURI"
-      | "collectionSize"
-      | "devAddress"
-      | "explicitOwnershipOf"
-      | "explicitOwnershipsOf"
-      | "getApproved"
-      | "imageHash"
-      | "isApprovedForAll"
-      | "maxMint"
-      | "mint"
-      | "mintPrice"
-      | "name"
-      | "owner"
-      | "ownerOf"
-      | "pause"
-      | "paused"
-      | "renounceOwnership"
-      | "safeTransferFrom(address,address,uint256)"
-      | "safeTransferFrom(address,address,uint256,bytes)"
-      | "setApprovalForAll"
-      | "setBaseTokenURI"
-      | "supportsInterface"
-      | "symbol"
-      | "tokenURI"
-      | "tokensOfOwner"
-      | "tokensOfOwnerIn"
-      | "totalSupply"
-      | "transferFrom"
-      | "transferOwnership"
-      | "unpause"
-      | "uploadImage"
-      | "uploads"
-      | "withdraw"
-  ): FunctionFragment;
+      | 'approve'
+      | 'balanceOf'
+      | 'baseTokenURI'
+      | 'collectionSize'
+      | 'devAddress'
+      | 'explicitOwnershipOf'
+      | 'explicitOwnershipsOf'
+      | 'getApproved'
+      | 'imageHash'
+      | 'isApprovedForAll'
+      | 'maxMint'
+      | 'mint'
+      | 'mintPrice'
+      | 'name'
+      | 'owner'
+      | 'ownerOf'
+      | 'pause'
+      | 'paused'
+      | 'renounceOwnership'
+      | 'safeTransferFrom(address,address,uint256)'
+      | 'safeTransferFrom(address,address,uint256,bytes)'
+      | 'setApprovalForAll'
+      | 'setBaseTokenURI'
+      | 'supportsInterface'
+      | 'symbol'
+      | 'tokenURI'
+      | 'tokensOfOwner'
+      | 'tokensOfOwnerIn'
+      | 'totalSupply'
+      | 'transferFrom'
+      | 'transferOwnership'
+      | 'unpause'
+      | 'uploadImage'
+      | 'uploads'
+      | 'withdraw'
+  ): FunctionFragment
 
   encodeFunctionData(
-    functionFragment: "approve",
+    functionFragment: 'approve',
     values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  ): string
+  encodeFunctionData(functionFragment: 'balanceOf', values: [string]): string
   encodeFunctionData(
-    functionFragment: "baseTokenURI",
+    functionFragment: 'baseTokenURI',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "collectionSize",
+    functionFragment: 'collectionSize',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "devAddress",
+    functionFragment: 'devAddress',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "explicitOwnershipOf",
+    functionFragment: 'explicitOwnershipOf',
     values: [BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "explicitOwnershipsOf",
+    functionFragment: 'explicitOwnershipsOf',
     values: [BigNumberish[]]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getApproved",
+    functionFragment: 'getApproved',
     values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "imageHash", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'imageHash', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "isApprovedForAll",
+    functionFragment: 'isApprovedForAll',
     values: [string, string]
-  ): string;
-  encodeFunctionData(functionFragment: "maxMint", values?: undefined): string;
-  encodeFunctionData(functionFragment: "mint", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "mintPrice", values?: undefined): string;
-  encodeFunctionData(functionFragment: "name", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'maxMint', values?: undefined): string
+  encodeFunctionData(functionFragment: 'mint', values: [BigNumberish]): string
+  encodeFunctionData(functionFragment: 'mintPrice', values?: undefined): string
+  encodeFunctionData(functionFragment: 'name', values?: undefined): string
+  encodeFunctionData(functionFragment: 'owner', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "ownerOf",
+    functionFragment: 'ownerOf',
     values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "pause", values?: undefined): string;
-  encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'pause', values?: undefined): string
+  encodeFunctionData(functionFragment: 'paused', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "renounceOwnership",
+    functionFragment: 'renounceOwnership',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     values: [string, string, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     values: [string, string, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "setApprovalForAll",
+    functionFragment: 'setApprovalForAll',
     values: [string, boolean]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "setBaseTokenURI",
+    functionFragment: 'setBaseTokenURI',
     values: [string]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "supportsInterface",
+    functionFragment: 'supportsInterface',
     values: [BytesLike]
-  ): string;
-  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'symbol', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "tokenURI",
+    functionFragment: 'tokenURI',
     values: [BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "tokensOfOwner",
+    functionFragment: 'tokensOfOwner',
     values: [string]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "tokensOfOwnerIn",
+    functionFragment: 'tokensOfOwnerIn',
     values: [string, BigNumberish, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "totalSupply",
+    functionFragment: 'totalSupply',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "transferFrom",
+    functionFragment: 'transferFrom',
     values: [string, string, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "transferOwnership",
+    functionFragment: 'transferOwnership',
     values: [string]
-  ): string;
-  encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'unpause', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "uploadImage",
+    functionFragment: 'uploadImage',
     values: [BytesLike, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "uploads",
+    functionFragment: 'uploads',
     values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
+  ): string
+  encodeFunctionData(functionFragment: 'withdraw', values?: undefined): string
 
-  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "baseTokenURI",
+    functionFragment: 'baseTokenURI',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "collectionSize",
+    functionFragment: 'collectionSize',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "devAddress", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'devAddress', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "explicitOwnershipOf",
+    functionFragment: 'explicitOwnershipOf',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "explicitOwnershipsOf",
+    functionFragment: 'explicitOwnershipsOf',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getApproved",
+    functionFragment: 'getApproved',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "imageHash", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'imageHash', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "isApprovedForAll",
+    functionFragment: 'isApprovedForAll',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "maxMint", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mintPrice", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'maxMint', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'mint', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'mintPrice', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'owner', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'ownerOf', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'pause', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'paused', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "renounceOwnership",
+    functionFragment: 'renounceOwnership',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "setApprovalForAll",
+    functionFragment: 'setApprovalForAll',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "setBaseTokenURI",
+    functionFragment: 'setBaseTokenURI',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "supportsInterface",
+    functionFragment: 'supportsInterface',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'tokenURI', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "tokensOfOwner",
+    functionFragment: 'tokensOfOwner',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "tokensOfOwnerIn",
+    functionFragment: 'tokensOfOwnerIn',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "totalSupply",
+    functionFragment: 'totalSupply',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "transferFrom",
+    functionFragment: 'transferFrom',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "transferOwnership",
+    functionFragment: 'transferOwnership',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'unpause', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "uploadImage",
+    functionFragment: 'uploadImage',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "uploads", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'uploads', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result
 
   events: {
-    "Approval(address,address,uint256)": EventFragment;
-    "ApprovalForAll(address,address,bool)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
-    "Paused(address)": EventFragment;
-    "SMPLAssigned(address,uint256,bytes32)": EventFragment;
-    "Transfer(address,address,uint256)": EventFragment;
-    "Unpaused(address)": EventFragment;
-  };
+    'Approval(address,address,uint256)': EventFragment
+    'ApprovalForAll(address,address,bool)': EventFragment
+    'OwnershipTransferred(address,address)': EventFragment
+    'Paused(address)': EventFragment
+    'SMPLAssigned(address,uint256,bytes32)': EventFragment
+    'Transfer(address,address,uint256)': EventFragment
+    'Unpaused(address)': EventFragment
+  }
 
-  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Paused"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "SMPLAssigned"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Unpaused"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'Approval'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'ApprovalForAll'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'OwnershipTransferred'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'Paused'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'SMPLAssigned'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'Transfer'): EventFragment
+  getEvent(nameOrSignatureOrTopic: 'Unpaused'): EventFragment
 }
 
 export interface ApprovalEventObject {
-  owner: string;
-  approved: string;
-  tokenId: BigNumber;
+  owner: string
+  approved: string
+  tokenId: BigNumber
 }
 export type ApprovalEvent = TypedEvent<
   [string, string, BigNumber],
   ApprovalEventObject
->;
+>
 
-export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
+export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>
 
 export interface ApprovalForAllEventObject {
-  owner: string;
-  operator: string;
-  approved: boolean;
+  owner: string
+  operator: string
+  approved: boolean
 }
 export type ApprovalForAllEvent = TypedEvent<
   [string, string, boolean],
   ApprovalForAllEventObject
->;
+>
 
-export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
+export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>
 
 export interface OwnershipTransferredEventObject {
-  previousOwner: string;
-  newOwner: string;
+  previousOwner: string
+  newOwner: string
 }
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string],
   OwnershipTransferredEventObject
->;
+>
 
 export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
+  TypedEventFilter<OwnershipTransferredEvent>
 
 export interface PausedEventObject {
-  account: string;
+  account: string
 }
-export type PausedEvent = TypedEvent<[string], PausedEventObject>;
+export type PausedEvent = TypedEvent<[string], PausedEventObject>
 
-export type PausedEventFilter = TypedEventFilter<PausedEvent>;
+export type PausedEventFilter = TypedEventFilter<PausedEvent>
 
 export interface SMPLAssignedEventObject {
-  user: string;
-  tokenId: BigNumber;
-  userImageHash: string;
+  user: string
+  tokenId: BigNumber
+  userImageHash: string
 }
 export type SMPLAssignedEvent = TypedEvent<
   [string, BigNumber, string],
   SMPLAssignedEventObject
->;
+>
 
-export type SMPLAssignedEventFilter = TypedEventFilter<SMPLAssignedEvent>;
+export type SMPLAssignedEventFilter = TypedEventFilter<SMPLAssignedEvent>
 
 export interface TransferEventObject {
-  from: string;
-  to: string;
-  tokenId: BigNumber;
+  from: string
+  to: string
+  tokenId: BigNumber
 }
 export type TransferEvent = TypedEvent<
   [string, string, BigNumber],
   TransferEventObject
->;
+>
 
-export type TransferEventFilter = TypedEventFilter<TransferEvent>;
+export type TransferEventFilter = TypedEventFilter<TransferEvent>
 
 export interface UnpausedEventObject {
-  account: string;
+  account: string
 }
-export type UnpausedEvent = TypedEvent<[string], UnpausedEventObject>;
+export type UnpausedEvent = TypedEvent<[string], UnpausedEventObject>
 
-export type UnpausedEventFilter = TypedEventFilter<UnpausedEvent>;
+export type UnpausedEventFilter = TypedEventFilter<UnpausedEvent>
 
 export interface SMPLverse extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: SMPLverseInterface;
+  interface: SMPLverseInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     approve(
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>
 
-    baseTokenURI(overrides?: CallOverrides): Promise<[string]>;
+    baseTokenURI(overrides?: CallOverrides): Promise<[string]>
 
-    collectionSize(overrides?: CallOverrides): Promise<[BigNumber]>;
+    collectionSize(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    devAddress(overrides?: CallOverrides): Promise<[string]>;
+    devAddress(overrides?: CallOverrides): Promise<[string]>
 
     explicitOwnershipOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[ERC721A.TokenOwnershipStructOutput]>;
+    ): Promise<[ERC721A.TokenOwnershipStructOutput]>
 
     explicitOwnershipsOf(
       tokenIds: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<[ERC721A.TokenOwnershipStructOutput[]]>;
+    ): Promise<[ERC721A.TokenOwnershipStructOutput[]]>
 
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[string]>
 
-    imageHash(overrides?: CallOverrides): Promise<[string]>;
+    imageHash(overrides?: CallOverrides): Promise<[string]>
 
     isApprovedForAll(
       owner: string,
       operator: string,
       overrides?: CallOverrides
-    ): Promise<[boolean]>;
+    ): Promise<[boolean]>
 
-    maxMint(overrides?: CallOverrides): Promise<[BigNumber]>;
+    maxMint(overrides?: CallOverrides): Promise<[BigNumber]>
 
     mint(
       quantity: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    mintPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    mintPrice(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    name(overrides?: CallOverrides): Promise<[string]>;
+    name(overrides?: CallOverrides): Promise<[string]>
 
-    owner(overrides?: CallOverrides): Promise<[string]>;
+    owner(overrides?: CallOverrides): Promise<[string]>
 
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[string]>
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    paused(overrides?: CallOverrides): Promise<[boolean]>;
+    paused(overrides?: CallOverrides): Promise<[boolean]>
 
     renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     setBaseTokenURI(
       _uri: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
-    ): Promise<[boolean]>;
+    ): Promise<[boolean]>
 
-    symbol(overrides?: CallOverrides): Promise<[string]>;
+    symbol(overrides?: CallOverrides): Promise<[string]>
 
     tokenURI(
       _tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[string]>
 
     tokensOfOwner(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<[BigNumber[]]>;
+    ): Promise<[BigNumber[]]>
 
     tokensOfOwnerIn(
       owner: string,
       start: BigNumberish,
       stop: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[BigNumber[]]>;
+    ): Promise<[BigNumber[]]>
 
-    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>
 
     transferFrom(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     unpause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     uploadImage(
       imageHash: BytesLike,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
+    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>
 
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   approve(
     to: string,
     tokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+  balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>
 
-  baseTokenURI(overrides?: CallOverrides): Promise<string>;
+  baseTokenURI(overrides?: CallOverrides): Promise<string>
 
-  collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+  collectionSize(overrides?: CallOverrides): Promise<BigNumber>
 
-  devAddress(overrides?: CallOverrides): Promise<string>;
+  devAddress(overrides?: CallOverrides): Promise<string>
 
   explicitOwnershipOf(
     tokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<ERC721A.TokenOwnershipStructOutput>;
+  ): Promise<ERC721A.TokenOwnershipStructOutput>
 
   explicitOwnershipsOf(
     tokenIds: BigNumberish[],
     overrides?: CallOverrides
-  ): Promise<ERC721A.TokenOwnershipStructOutput[]>;
+  ): Promise<ERC721A.TokenOwnershipStructOutput[]>
 
   getApproved(
     tokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<string>;
+  ): Promise<string>
 
-  imageHash(overrides?: CallOverrides): Promise<string>;
+  imageHash(overrides?: CallOverrides): Promise<string>
 
   isApprovedForAll(
     owner: string,
     operator: string,
     overrides?: CallOverrides
-  ): Promise<boolean>;
+  ): Promise<boolean>
 
-  maxMint(overrides?: CallOverrides): Promise<BigNumber>;
+  maxMint(overrides?: CallOverrides): Promise<BigNumber>
 
   mint(
     quantity: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  mintPrice(overrides?: CallOverrides): Promise<BigNumber>;
+  mintPrice(overrides?: CallOverrides): Promise<BigNumber>
 
-  name(overrides?: CallOverrides): Promise<string>;
+  name(overrides?: CallOverrides): Promise<string>
 
-  owner(overrides?: CallOverrides): Promise<string>;
+  owner(overrides?: CallOverrides): Promise<string>
 
-  ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>
 
   pause(
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  paused(overrides?: CallOverrides): Promise<boolean>;
+  paused(overrides?: CallOverrides): Promise<boolean>
 
   renounceOwnership(
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "safeTransferFrom(address,address,uint256)"(
+  'safeTransferFrom(address,address,uint256)'(
     from: string,
     to: string,
     tokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "safeTransferFrom(address,address,uint256,bytes)"(
+  'safeTransferFrom(address,address,uint256,bytes)'(
     from: string,
     to: string,
     tokenId: BigNumberish,
     _data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   setApprovalForAll(
     operator: string,
     approved: boolean,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   setBaseTokenURI(
     _uri: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   supportsInterface(
     interfaceId: BytesLike,
     overrides?: CallOverrides
-  ): Promise<boolean>;
+  ): Promise<boolean>
 
-  symbol(overrides?: CallOverrides): Promise<string>;
+  symbol(overrides?: CallOverrides): Promise<string>
 
-  tokenURI(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  tokenURI(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>
 
-  tokensOfOwner(owner: string, overrides?: CallOverrides): Promise<BigNumber[]>;
+  tokensOfOwner(owner: string, overrides?: CallOverrides): Promise<BigNumber[]>
 
   tokensOfOwnerIn(
     owner: string,
     start: BigNumberish,
     stop: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<BigNumber[]>;
+  ): Promise<BigNumber[]>
 
-  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>
 
   transferFrom(
     from: string,
     to: string,
     tokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   transferOwnership(
     newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   unpause(
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   uploadImage(
     imageHash: BytesLike,
     tokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+  uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>
 
   withdraw(
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     approve(
       to: string,
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>
 
-    baseTokenURI(overrides?: CallOverrides): Promise<string>;
+    baseTokenURI(overrides?: CallOverrides): Promise<string>
 
-    collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+    collectionSize(overrides?: CallOverrides): Promise<BigNumber>
 
-    devAddress(overrides?: CallOverrides): Promise<string>;
+    devAddress(overrides?: CallOverrides): Promise<string>
 
     explicitOwnershipOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<ERC721A.TokenOwnershipStructOutput>;
+    ): Promise<ERC721A.TokenOwnershipStructOutput>
 
     explicitOwnershipsOf(
       tokenIds: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<ERC721A.TokenOwnershipStructOutput[]>;
+    ): Promise<ERC721A.TokenOwnershipStructOutput[]>
 
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
-    imageHash(overrides?: CallOverrides): Promise<string>;
+    imageHash(overrides?: CallOverrides): Promise<string>
 
     isApprovedForAll(
       owner: string,
       operator: string,
       overrides?: CallOverrides
-    ): Promise<boolean>;
+    ): Promise<boolean>
 
-    maxMint(overrides?: CallOverrides): Promise<BigNumber>;
+    maxMint(overrides?: CallOverrides): Promise<BigNumber>
 
-    mint(quantity: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    mint(quantity: BigNumberish, overrides?: CallOverrides): Promise<void>
 
-    mintPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    mintPrice(overrides?: CallOverrides): Promise<BigNumber>
 
-    name(overrides?: CallOverrides): Promise<string>;
+    name(overrides?: CallOverrides): Promise<string>
 
-    owner(overrides?: CallOverrides): Promise<string>;
+    owner(overrides?: CallOverrides): Promise<string>
 
-    ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+    ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>
 
-    pause(overrides?: CallOverrides): Promise<void>;
+    pause(overrides?: CallOverrides): Promise<void>
 
-    paused(overrides?: CallOverrides): Promise<boolean>;
+    paused(overrides?: CallOverrides): Promise<boolean>
 
-    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+    renounceOwnership(overrides?: CallOverrides): Promise<void>
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    setBaseTokenURI(_uri: string, overrides?: CallOverrides): Promise<void>;
+    setBaseTokenURI(_uri: string, overrides?: CallOverrides): Promise<void>
 
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
-    ): Promise<boolean>;
+    ): Promise<boolean>
 
-    symbol(overrides?: CallOverrides): Promise<string>;
+    symbol(overrides?: CallOverrides): Promise<string>
 
     tokenURI(
       _tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     tokensOfOwner(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber[]>;
+    ): Promise<BigNumber[]>
 
     tokensOfOwnerIn(
       owner: string,
       start: BigNumberish,
       stop: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber[]>;
+    ): Promise<BigNumber[]>
 
-    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>
 
     transferFrom(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     transferOwnership(
       newOwner: string,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    unpause(overrides?: CallOverrides): Promise<void>;
+    unpause(overrides?: CallOverrides): Promise<void>
 
     uploadImage(
       imageHash: BytesLike,
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>
 
-    withdraw(overrides?: CallOverrides): Promise<void>;
-  };
+    withdraw(overrides?: CallOverrides): Promise<void>
+  }
 
   filters: {
-    "Approval(address,address,uint256)"(
+    'Approval(address,address,uint256)'(
       owner?: string | null,
       approved?: string | null,
       tokenId?: BigNumberish | null
-    ): ApprovalEventFilter;
+    ): ApprovalEventFilter
     Approval(
       owner?: string | null,
       approved?: string | null,
       tokenId?: BigNumberish | null
-    ): ApprovalEventFilter;
+    ): ApprovalEventFilter
 
-    "ApprovalForAll(address,address,bool)"(
+    'ApprovalForAll(address,address,bool)'(
       owner?: string | null,
       operator?: string | null,
       approved?: null
-    ): ApprovalForAllEventFilter;
+    ): ApprovalForAllEventFilter
     ApprovalForAll(
       owner?: string | null,
       operator?: string | null,
       approved?: null
-    ): ApprovalForAllEventFilter;
+    ): ApprovalForAllEventFilter
 
-    "OwnershipTransferred(address,address)"(
+    'OwnershipTransferred(address,address)'(
       previousOwner?: string | null,
       newOwner?: string | null
-    ): OwnershipTransferredEventFilter;
+    ): OwnershipTransferredEventFilter
     OwnershipTransferred(
       previousOwner?: string | null,
       newOwner?: string | null
-    ): OwnershipTransferredEventFilter;
+    ): OwnershipTransferredEventFilter
 
-    "Paused(address)"(account?: null): PausedEventFilter;
-    Paused(account?: null): PausedEventFilter;
+    'Paused(address)'(account?: null): PausedEventFilter
+    Paused(account?: null): PausedEventFilter
 
-    "SMPLAssigned(address,uint256,bytes32)"(
+    'SMPLAssigned(address,uint256,bytes32)'(
       user?: string | null,
       tokenId?: null,
       userImageHash?: null
-    ): SMPLAssignedEventFilter;
+    ): SMPLAssignedEventFilter
     SMPLAssigned(
       user?: string | null,
       tokenId?: null,
       userImageHash?: null
-    ): SMPLAssignedEventFilter;
+    ): SMPLAssignedEventFilter
 
-    "Transfer(address,address,uint256)"(
+    'Transfer(address,address,uint256)'(
       from?: string | null,
       to?: string | null,
       tokenId?: BigNumberish | null
-    ): TransferEventFilter;
+    ): TransferEventFilter
     Transfer(
       from?: string | null,
       to?: string | null,
       tokenId?: BigNumberish | null
-    ): TransferEventFilter;
+    ): TransferEventFilter
 
-    "Unpaused(address)"(account?: null): UnpausedEventFilter;
-    Unpaused(account?: null): UnpausedEventFilter;
-  };
+    'Unpaused(address)'(account?: null): UnpausedEventFilter
+    Unpaused(account?: null): UnpausedEventFilter
+  }
 
   estimateGas: {
     approve(
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>
 
-    baseTokenURI(overrides?: CallOverrides): Promise<BigNumber>;
+    baseTokenURI(overrides?: CallOverrides): Promise<BigNumber>
 
-    collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+    collectionSize(overrides?: CallOverrides): Promise<BigNumber>
 
-    devAddress(overrides?: CallOverrides): Promise<BigNumber>;
+    devAddress(overrides?: CallOverrides): Promise<BigNumber>
 
     explicitOwnershipOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     explicitOwnershipsOf(
       tokenIds: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    imageHash(overrides?: CallOverrides): Promise<BigNumber>;
+    imageHash(overrides?: CallOverrides): Promise<BigNumber>
 
     isApprovedForAll(
       owner: string,
       operator: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    maxMint(overrides?: CallOverrides): Promise<BigNumber>;
+    maxMint(overrides?: CallOverrides): Promise<BigNumber>
 
     mint(
       quantity: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    mintPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    mintPrice(overrides?: CallOverrides): Promise<BigNumber>
 
-    name(overrides?: CallOverrides): Promise<BigNumber>;
+    name(overrides?: CallOverrides): Promise<BigNumber>
 
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
+    owner(overrides?: CallOverrides): Promise<BigNumber>
 
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    paused(overrides?: CallOverrides): Promise<BigNumber>;
+    paused(overrides?: CallOverrides): Promise<BigNumber>
 
     renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     setBaseTokenURI(
       _uri: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    symbol(overrides?: CallOverrides): Promise<BigNumber>;
+    symbol(overrides?: CallOverrides): Promise<BigNumber>
 
     tokenURI(
       _tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    tokensOfOwner(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
+    tokensOfOwner(owner: string, overrides?: CallOverrides): Promise<BigNumber>
 
     tokensOfOwnerIn(
       owner: string,
       start: BigNumberish,
       stop: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>
 
     transferFrom(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     unpause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     uploadImage(
       imageHash: BytesLike,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+    uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>
 
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     approve(
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     balanceOf(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    baseTokenURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    baseTokenURI(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    collectionSize(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    collectionSize(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    devAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    devAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     explicitOwnershipOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     explicitOwnershipsOf(
       tokenIds: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    imageHash(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    imageHash(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     isApprovedForAll(
       owner: string,
       operator: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    maxMint(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    maxMint(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     mint(
       quantity: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    mintPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    mintPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    name(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     ownerOf(
       tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    paused(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    paused(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: string,
       to: string,
       tokenId: BigNumberish,
       _data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     setApprovalForAll(
       operator: string,
       approved: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     setBaseTokenURI(
       _uri: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     tokenURI(
       _tokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     tokensOfOwner(
       owner: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     tokensOfOwnerIn(
       owner: string,
       start: BigNumberish,
       stop: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     transferFrom(
       from: string,
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     transferOwnership(
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     unpause(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     uploadImage(
       imageHash: BytesLike,
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     uploads(
       arg0: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }
