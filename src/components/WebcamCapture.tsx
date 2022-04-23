@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { API_URL } from '../constants'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
@@ -21,6 +22,14 @@ const EmptySpace = styled.div`
   width: 30px;
 `
 
+const WaitingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 512px;
+  width: 512px;
+`
+
 const videoConstraints = {
   width: 512,
   height: 512,
@@ -30,6 +39,7 @@ const videoConstraints = {
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
+  const [waiting, setWaiting] = useState<boolean>(false)
   const [photo, setPhoto] = useState<string>('')
   const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
@@ -38,25 +48,42 @@ export const WebcamCapture = () => {
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot()
     if (imageSrc) {
+      setLanmarkedPhoto('')
+      const _hash = '0x' + sha256(imageSrc)
       setPhoto(imageSrc)
-      setHash('0x' + sha256(photo))
+      setHash(_hash)
     }
   }, [webcamRef, photo])
 
   useEffect(() => {
     ;(async function () {
       if (photo) {
-        const res = await fetch('https://api.smplverse.xyz/detect-face', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            image: photo,
-          }),
-        })
-        const json = await res.json()
-        setLanmarkedPhoto(json?.image)
+        try {
+          setWaiting(true)
+          const res = await fetch(API_URL + '/detect-face', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              image: photo.split(',')[1],
+            }),
+          })
+          const json = await res.json()
+          if (!json.error) {
+            setLanmarkedPhoto('data:image/jpeg;base64,' + json.image)
+          } else {
+            alert(json.error)
+          }
+        } catch (e) {
+          setWaiting(false)
+          if (e.message == 'Failed to fetch') {
+            alert("Couldn't connect to the server. Please try again later.")
+          } else {
+            alert(e.message)
+          }
+        }
       }
     })()
   }, [photo])
@@ -64,8 +91,6 @@ export const WebcamCapture = () => {
   async function approve() {
     if (contract) {
       setIsApproving(true)
-      const hash = '0x' + sha256(photo)
-      console.log(hash)
       const tokenIds = await contract.tokensOfOwner(
         await contract.signer.getAddress()
       )
@@ -102,28 +127,38 @@ export const WebcamCapture = () => {
         </>
       ) : (
         <>
-          <img
-            width={520}
-            height={520}
-            src={landmarkedPhoto ? landmarkedPhoto : photo}
-            alt="photo"
-          />
+          {waiting ? (
+            <WaitingContainer>
+              <Spinner />
+            </WaitingContainer>
+          ) : (
+            <img
+              width={520}
+              height={520}
+              src={landmarkedPhoto ? landmarkedPhoto : photo}
+              alt="photo"
+            />
+          )}
           {hash && <>{hash}</>}
           <MintTime />
           <CenteredRow>
             <WebcamButtonContainer onClick={() => setPhoto('')}>
               Try again
             </WebcamButtonContainer>
-            <EmptySpace />
-            <WebcamButtonContainer
-              onClick={!isApproving ? approve : () => null}
-            >
-              {isApproving ? (
-                <Spinner size={24} color={'black'} />
-              ) : (
-                <>Approve</>
-              )}
-            </WebcamButtonContainer>
+            {landmarkedPhoto && (
+              <>
+                <EmptySpace />
+                <WebcamButtonContainer
+                  onClick={!isApproving ? approve : () => null}
+                >
+                  {isApproving ? (
+                    <Spinner size={24} color={'black'} />
+                  ) : (
+                    <>Approve</>
+                  )}
+                </WebcamButtonContainer>
+              </>
+            )}
           </CenteredRow>
         </>
       )}

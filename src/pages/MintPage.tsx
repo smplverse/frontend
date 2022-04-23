@@ -26,6 +26,7 @@ const ClaimMenuButton = styled(ButtonContainer)`
 
 export const MintPage = () => {
   const balance = useTokenBalance()
+  console.log(balance)
   const [minting, setMinting] = useState(true)
   // TODO
   // pre-fetch all of the blockchain data during the intro page
