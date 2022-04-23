@@ -11,6 +11,7 @@ import { Spinner } from 'theme-ui'
 import { ButtonContainer } from './ButtonContainer'
 import { CenteredRow } from './Flex'
 import { MintTime } from './MintTime'
+import { displayErrorToast, Toast } from './Toast'
 
 const WebcamButtonContainer = styled(ButtonContainer)`
   width: 150px;
@@ -74,15 +75,18 @@ export const WebcamCapture = () => {
           if (!json.error) {
             setLanmarkedPhoto('data:image/jpeg;base64,' + json.image)
           } else {
-            alert(json.error)
+            displayErrorToast(json.error, 'dark')
           }
         } catch (e) {
-          setWaiting(false)
           if (e.message == 'Failed to fetch') {
-            alert("Couldn't connect to the server. Please try again later.")
+            displayErrorToast(
+              "Couldn't connect to the backend. Please try again later.",
+              'dark'
+            )
           } else {
-            alert(e.message)
+            displayErrorToast(e.message, 'dark')
           }
+          setWaiting(false)
         }
       }
     })()
@@ -162,6 +166,7 @@ export const WebcamCapture = () => {
           </CenteredRow>
         </>
       )}
+      <Toast />
     </>
   )
 }
