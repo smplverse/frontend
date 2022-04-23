@@ -7,14 +7,17 @@ import {
   useError,
   useIsActivating,
   useIsActive,
+  useChainId,
 } from '../connectors/metamask'
 import { ConnectButton } from './ConnectButton'
+import { CHAIN_ID } from '../constants'
 
 export const Wallet = () => {
   const error = useError()
   const isActive = useIsActive()
   const isActivating = useIsActivating()
   const accounts = useAccounts()
+  const chainId = useChainId()
 
   const sliceUp = (address: string) => {
     return address.slice(0, 4) + '...' + address.slice(address.length - 4)
@@ -22,6 +25,13 @@ export const Wallet = () => {
 
   const connect = async () => {
     await metaMask.activate()
+  }
+
+  const changeChain = async () => {
+    await metaMask?.provider?.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: `0x${CHAIN_ID}` }],
+    })
   }
 
   if (!isActive && !isActivating) {
@@ -39,6 +49,8 @@ export const Wallet = () => {
         </Flex>
       </ConnectButton>
     )
+  } else if (chainId !== CHAIN_ID) {
+    return <ConnectButton onClick={changeChain} text="SWITCH NETWORK" />
   } else if (isActive) {
     return (
       <ConnectButton onClick={() => metaMask.deactivate()}>

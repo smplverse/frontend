@@ -9,9 +9,13 @@ export const useTokenBalance = () => {
   useEffect(() => {
     ;(async () => {
       if (contract && contract.signer) {
-        const signerAddress = await contract.signer.getAddress()
-        const _balance = await contract.balanceOf(signerAddress)
-        setBalance(Number(_balance))
+        try {
+          const signerAddress = await contract.signer.getAddress()
+          const _balance = await contract.balanceOf(signerAddress)
+          setBalance(Number(_balance))
+        } catch (e) {
+          // pass
+        }
       }
     })()
   }, [contract])

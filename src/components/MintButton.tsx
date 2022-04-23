@@ -1,12 +1,13 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { Centered } from 'components/Flex'
+import { CHAIN_ID } from '../constants'
 import { MouseEventHandler } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
-import { metaMask, useIsActive } from '../connectors/metamask'
+import { metaMask, useChainId, useIsActive } from '../connectors/metamask'
 import { ButtonContainer } from './ButtonContainer'
-import { ConnectButton } from './ConnectButton'
+import { Wallet } from './Wallet'
 
 interface Props {
   ethRequired: string | undefined
@@ -46,6 +47,7 @@ export const MintButton = ({
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
   const isActive = useIsActive()
+  const chainId = useChainId()
 
   const increment = () => {
     if (quantity < 10) {
@@ -63,10 +65,10 @@ export const MintButton = ({
       <MintButtonContainer>
         <Centered>
           {isLoading ? (
-            <Spinner color="green" size={20} />
+            <Spinner color="black" size={20} />
           ) : (
             <>
-              {isActive ? (
+              {isActive && chainId === CHAIN_ID ? (
                 <>
                   <PlusMinusContainer onClick={decrement}>
                     ⊟ &nbsp;
@@ -81,10 +83,7 @@ export const MintButton = ({
                   </PlusMinusContainer>
                 </>
               ) : (
-                <ConnectButton
-                  onClick={async () => await metaMask.activate()}
-                  text="CONNECT TO MINT"
-                />
+                <Wallet />
               )}
             </>
           )}

@@ -6,10 +6,9 @@ import {
   displaySuccessToast,
   Toast,
 } from 'components/Toast'
-import { useChainId, useIsActive, useProvider } from 'connectors/metamask'
+import { useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
 
-import { CHAIN_ID } from '../constants'
 import { type SMPLverse } from '../contract'
 import { useContract } from '../hooks'
 import { MintButton } from './MintButton'
@@ -24,7 +23,6 @@ export const MintingPanel = () => {
   const [weiRequired, setWeiRequired] = useState<BigNumber>()
   const [ethRequired, setEthRequired] = useState<string>()
   const [isLoading, setIsLoading] = useState(false)
-  const chainId = useChainId()
 
   useEffect(() => {
     if (quantity) {
@@ -38,19 +36,15 @@ export const MintingPanel = () => {
 
   useEffect(() => {
     const getBalance = async () => {
-      if (isActive && provider && contract.signer && chainId === 4) {
+      if (isActive && provider && contract.signer) {
         const signerAddress = await contract.signer.getAddress()
         setBalance(await provider.getBalance(signerAddress))
       }
     }
     getBalance()
-  }, [isActive, contract, provider, chainId])
+  }, [isActive, contract, provider])
 
   const mint = async () => {
-    if (chainId && chainId !== CHAIN_ID) {
-      displayErrorToast('Invalid network!', 'dark')
-      return
-    }
     if (contract.signer && weiRequired && balance) {
       try {
         if (weiRequired.gt(balance)) {
