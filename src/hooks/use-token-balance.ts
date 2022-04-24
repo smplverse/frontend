@@ -5,8 +5,18 @@ import { SMPLverse } from '../contract'
 import { useContract } from './use-contract'
 
 export const useTokenBalance = () => {
-  const [balance, setBalance] = useState<number>(0)
+  const [balance, setBalance] = useState<number | undefined>(undefined)
   const contract = useContract() as SMPLverse
+  const [signerAddress, setSignerAddress] = useState<string>()
+
+  useEffect(() => {
+    ;(async function () {
+      if (contract) {
+        const _signerAddress = await contract.signer.getAddress()
+        setSignerAddress(_signerAddress)
+      }
+    })()
+  }, [contract])
 
   useEffect(() => {
     ;(async () => {
@@ -29,7 +39,7 @@ export const useTokenBalance = () => {
         }
       }
     })()
-  }, [contract])
+  }, [contract, signerAddress])
 
   return balance
 }

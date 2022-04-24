@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { ButtonContainer } from 'components/ButtonContainer'
 import { useState } from 'react'
-import { Box } from 'theme-ui'
+import { Box, Spinner } from 'theme-ui'
 
 import {
   Footer,
@@ -12,7 +12,7 @@ import {
   SmplImage,
   WebcamCapture,
 } from '../components'
-import { useTokenBalance } from '../hooks'
+import { useIsActive, useTokenBalance } from '../hooks'
 
 const ClaimMenuButton = styled(ButtonContainer)`
   width: 230px;
@@ -27,6 +27,7 @@ const ClaimMenuButton = styled(ButtonContainer)`
 export const MintPage = () => {
   const tokenBalance = useTokenBalance()
   const [minting, setMinting] = useState(true)
+  const isActive = useIsActive()
   return (
     <div
       sx={{
@@ -55,11 +56,26 @@ export const MintPage = () => {
         ) : (
           <WebcamCapture />
         )}
-        {tokenBalance > 0 && (
-          <ClaimMenuButton onClick={() => setMinting(!minting)}>
-            tokens available: <b>{tokenBalance}</b>
-            press here to toggle claim menu
-          </ClaimMenuButton>
+        {isActive && (
+          <>
+            {tokenBalance !== undefined ? (
+              <>
+                {tokenBalance > 0 && (
+                  <ClaimMenuButton onClick={() => setMinting(!minting)}>
+                    tokens available: <b>{tokenBalance}</b>
+                    press here to toggle claim menu
+                  </ClaimMenuButton>
+                )}
+              </>
+            ) : (
+              <>
+                <div style={{ marginTop: 25 }} />
+                <Spinner />
+                <div style={{ marginTop: 15 }} />
+                checking available tokens...
+              </>
+            )}
+          </>
         )}
         <MintPageText />
         <Footer />
