@@ -1,7 +1,7 @@
 import { toast, ToastContainer } from 'react-toastify'
 
 export const displaySuccessToast = (txHash: string, colorMode: any) =>
-  toast.success(`Success! tx hash: ${txHash}`, {
+  toast.success(`Success! tx: ${txHash}`, {
     position: 'top-center',
     autoClose: 5000,
     hideProgressBar: false,

@@ -7,7 +7,7 @@ import { MintPage } from './MintPage'
 // and use zustand or redux but cba to use redux here tbf
 export const App = () => {
   const [entered, setEntered] = useState(false)
-  if (!entered) {
+  if (entered) {
     return <LandingPage setEntered={setEntered} />
   }
   return <MintPage />

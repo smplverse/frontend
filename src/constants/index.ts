@@ -9,3 +9,6 @@ export const ETHERSCAN_LINK =
   'https://rinkeby.etherscan.io/address/' + CONTRACT_ADDRESS
 
 export const API_URL = 'http://localhost:8000'
+
+export const NULL_HASH =
+  '0x0000000000000000000000000000000000000000000000000000000000000000'

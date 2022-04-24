@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { API_URL } from '../constants'
+import { API_URL, NULL_HASH } from '../constants'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
@@ -11,7 +11,8 @@ import { Spinner } from 'theme-ui'
 import { ButtonContainer } from './ButtonContainer'
 import { CenteredRow } from './Flex'
 import { MintTime } from './MintTime'
-import { displayErrorToast, Toast } from './Toast'
+import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
+import { toast } from 'react-toastify'
 
 const WebcamButtonContainer = styled(ButtonContainer)`
   width: 150px;
@@ -44,7 +45,7 @@ export const WebcamCapture = () => {
   const [photo, setPhoto] = useState<string>('')
   const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
-  const [isApproving, setIsApproving] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot()
@@ -55,6 +56,8 @@ export const WebcamCapture = () => {
       setHash(_hash)
     }
   }, [webcamRef, photo])
+
+  // TODO on change of the account take back to mint page
 
   useEffect(() => {
     ;(async function () {
@@ -77,14 +80,13 @@ export const WebcamCapture = () => {
           } else {
             displayErrorToast(json.error, 'dark')
           }
+          setWaiting(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
               "Couldn't connect to the backend. Please try again later.",
               'dark'
             )
-          } else {
-            displayErrorToast(e.message, 'dark')
           }
           setWaiting(false)
         }
@@ -92,20 +94,41 @@ export const WebcamCapture = () => {
     })()
   }, [photo])
 
-  async function approve() {
+  async function upload() {
     if (contract) {
-      setIsApproving(true)
+      if (!photo || !hash || !landmarkedPhoto || !contract.signer) {
+        return
+      }
+      setIsUploading(false)
+      setIsUploading(true)
       const tokenIds = await contract.tokensOfOwner(
         await contract.signer.getAddress()
       )
-      // TODO check if tokenId already uploaded
-      await contract.uploadImage(hash, tokenIds[0])
-      setIsApproving(false)
+      for (const tokenId of tokenIds) {
+        if (tokenId) {
+          const uploadHash = await contract.uploads(tokenId)
+          console.log(uploadHash, tokenId)
+          if (uploadHash == NULL_HASH) {
+            try {
+              const tx = await contract.uploadImage(hash, tokenId)
+              displaySuccessToast(tx.hash, 'dark')
+              setIsUploading(false)
+              break
+            } catch (e) {
+              if (e.message.includes('cannot estimate gas')) {
+                alert(e.message)
+              } else {
+                displayErrorToast(e.message, 'dark')
+              }
+            }
+            setIsUploading(false)
+          }
+        }
+      }
+      setIsUploading(false)
     }
   }
 
-  // TODO there has to be a 'enable webcam' button in case
-  // there is not a webcam permission
   return (
     <>
       {!photo ? (
@@ -146,19 +169,24 @@ export const WebcamCapture = () => {
           {hash && <>{hash}</>}
           <MintTime />
           <CenteredRow>
-            <WebcamButtonContainer onClick={() => setPhoto('')}>
+            <WebcamButtonContainer
+              onClick={() => {
+                setPhoto('')
+                toast.dismiss()
+              }}
+            >
               Try again
             </WebcamButtonContainer>
             {landmarkedPhoto && (
               <>
                 <EmptySpace />
                 <WebcamButtonContainer
-                  onClick={!isApproving ? approve : () => null}
+                  onClick={!isUploading ? upload : () => null}
                 >
-                  {isApproving ? (
+                  {isUploading ? (
                     <Spinner size={24} color={'black'} />
                   ) : (
-                    <>Approve</>
+                    <>Upload</>
                   )}
                 </WebcamButtonContainer>
               </>
