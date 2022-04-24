@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
+import { WaitingContext } from '../contexts'
 import { useContract } from './use-contract'
 
 export const useNumberOfRemaining = () => {
   const contract = useContract() // TODO move contract to context?
   const [numberOfRemaining, setNumberOfRemaining] = useState<number>()
+  const { isWaiting } = useContext(WaitingContext)
 
   useEffect(() => {
     ;(async function () {
@@ -14,7 +16,7 @@ export const useNumberOfRemaining = () => {
         setNumberOfRemaining(collectionSize.sub(totalSupply).toNumber())
       }
     })()
-  }, [contract])
+  }, [contract, isWaiting])
 
   return numberOfRemaining
 }
