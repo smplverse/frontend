@@ -10,6 +10,7 @@ export {
 } from './metamask'
 export { useAvailableTokenId } from './use-available-token-id'
 export { useContract } from './use-contract'
+export { useEthBalance } from './use-eth-balance'
 export { useMintPrice } from './use-mint-price'
 export { useNumberOfRemaining } from './use-number-of-remaining'
 export { useTokenBalance } from './use-token-balance'

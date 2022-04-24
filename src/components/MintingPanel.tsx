@@ -6,22 +6,21 @@ import {
   displaySuccessToast,
   Toast,
 } from 'components/Toast'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
+import { WaitingContext } from '../contexts'
 import { type SMPLverse } from '../contract'
-import { useContract, useIsActive, useProvider } from '../hooks'
+import { useContract, useEthBalance } from '../hooks'
 import { MintButton } from './MintButton'
 
 export const MintingPanel = () => {
   const contract = useContract() as SMPLverse
-  const provider = useProvider()
-  const isActive = useIsActive()
+  const balance = useEthBalance()
 
   const [quantity, setQuantity] = useState<number>(1)
-  const [balance, setBalance] = useState<BigNumber>()
   const [weiRequired, setWeiRequired] = useState<BigNumber>()
   const [ethRequired, setEthRequired] = useState<string>()
-  const [isLoading, setIsLoading] = useState(false)
+  const { isWaiting, setIsWaiting } = useContext(WaitingContext)
 
   useEffect(() => {
     if (quantity) {
@@ -33,31 +32,21 @@ export const MintingPanel = () => {
     }
   }, [quantity])
 
-  useEffect(() => {
-    const getBalance = async () => {
-      if (isActive && provider && contract.signer) {
-        const signerAddress = await contract.signer.getAddress()
-        setBalance(await provider.getBalance(signerAddress))
-      }
-    }
-    getBalance()
-  }, [isActive, contract, provider])
-
   const mint = async () => {
     if (contract.signer && weiRequired && balance) {
       try {
         if (weiRequired.gt(balance)) {
           throw Error('Insufficient balance!')
         }
-        setIsLoading(true)
+        setIsWaiting(true)
         const tx = await contract.mint(quantity, {
           value: weiRequired,
         })
         await tx.wait()
-        setIsLoading(false)
+        setIsWaiting(false)
         displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
-        setIsLoading(false)
+        setIsWaiting(false)
         if (err?.message) {
           displayErrorToast(err.message, 'dark')
         } else {
@@ -72,7 +61,7 @@ export const MintingPanel = () => {
       <MintButton
         ethRequired={ethRequired}
         onClick={mint}
-        isLoading={isLoading}
+        isLoading={isWaiting}
         small={false}
         quantity={quantity}
         setQuantity={setQuantity}
