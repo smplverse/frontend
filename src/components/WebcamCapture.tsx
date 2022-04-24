@@ -53,13 +53,13 @@ export const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot()
     if (imageSrc) {
       setLanmarkedPhoto('')
-      const _hash = '0x' + sha256(imageSrc)
+      const image = imageSrc.split(',')[1]
+      const _hash = '0x' + sha256(image)
+      console.log(image)
       setPhoto(imageSrc)
       setHash(_hash)
     }
   }, [webcamRef])
-
-  // TODO on change of the account take back to mint page
 
   useEffect(() => {
     ;(async function () {
