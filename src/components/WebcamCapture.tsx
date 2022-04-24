@@ -128,6 +128,8 @@ export const WebcamCapture = () => {
       setIsUploading(false)
     }
   }
+  // TODO only show the landing page if the user has not connected yet,
+  // TODO try to connect automatically
 
   return (
     <>
@@ -166,7 +168,7 @@ export const WebcamCapture = () => {
               alt="photo"
             />
           )}
-          {hash && <>{hash}</>}
+          {hash && <p>{hash}</p>}
           <MintTime />
           <CenteredRow>
             <WebcamButtonContainer
