@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { ButtonContainer } from 'components/ButtonContainer'
-import { useTokenBalance } from 'hooks/useTokenBalance'
 import { useState } from 'react'
 import { Box } from 'theme-ui'
 
@@ -13,6 +12,7 @@ import {
   SmplImage,
   WebcamCapture,
 } from '../components'
+import { useTokenBalance } from '../hooks'
 
 const ClaimMenuButton = styled(ButtonContainer)`
   width: 230px;

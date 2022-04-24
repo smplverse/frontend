@@ -1,18 +1,18 @@
 import styled from '@emotion/styled'
-import { API_URL, NULL_HASH } from '../constants'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
 import { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
 import { Spinner } from 'theme-ui'
 
+import { API_URL, NULL_HASH } from '../constants'
 import { ButtonContainer } from './ButtonContainer'
 import { CenteredRow } from './Flex'
 import { MintTime } from './MintTime'
 import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
-import { toast } from 'react-toastify'
 
 const WebcamButtonContainer = styled(ButtonContainer)`
   width: 150px;
@@ -55,7 +55,7 @@ export const WebcamCapture = () => {
       setPhoto(imageSrc)
       setHash(_hash)
     }
-  }, [webcamRef, photo])
+  }, [webcamRef])
 
   // TODO on change of the account take back to mint page
 

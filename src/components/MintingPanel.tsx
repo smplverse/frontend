@@ -6,11 +6,10 @@ import {
   displaySuccessToast,
   Toast,
 } from 'components/Toast'
-import { useIsActive, useProvider } from 'connectors/metamask'
 import { useEffect, useState } from 'react'
 
 import { type SMPLverse } from '../contract'
-import { useContract } from '../hooks'
+import { useContract, useIsActive, useProvider } from '../hooks'
 import { MintButton } from './MintButton'
 
 export const MintingPanel = () => {

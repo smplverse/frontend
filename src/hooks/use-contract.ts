@@ -1,10 +1,10 @@
 import { Contract } from '@ethersproject/contracts'
-import { useProvider } from 'connectors/metamask'
-import { SMPLverseArtifact, SMPLverse } from '../contract'
-import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
 
 import { CONTRACT_ADDRESS } from '../constants'
+import { SMPLverse, SMPLverseArtifact } from '../contract'
+import { useProvider } from '../hooks'
 
 export const useContract = () => {
   const [contract, setContract] = useState<Contract | null>(null)

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import { useContract } from './useContract'
-import { SMPLverse } from '../contract'
+import { useEffect, useState } from 'react'
+
 import { NULL_HASH } from '../constants'
+import { SMPLverse } from '../contract'
+import { useContract } from './use-contract'
 
 export const useTokenBalance = () => {
   const [balance, setBalance] = useState<number>(0)

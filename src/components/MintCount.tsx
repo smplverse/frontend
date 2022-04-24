@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
-import { formatEther } from '@ethersproject/units'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
-import { useContract } from '../hooks'
+import { useMintPrice, useNumberOfRemaining } from '../hooks'
 
 const MintCountContainer = styled.div`
   font-size: 16px;
@@ -15,23 +14,9 @@ const MintCountContainer = styled.div`
 `
 
 export const MintCount = () => {
-  const contract = useContract()
-
   const [showPrice, setShowPrice] = useState(false)
-  const [price, setPrice] = useState<number>()
-  const [left, setLeft] = useState<number>()
-  useEffect(() => {
-    ;(async function () {
-      // this executes on every hover, TODO move to a query hook
-      if (contract) {
-        const totalSupply = await contract.totalSupply()
-        const collectionSize = await contract.collectionSize()
-        const price = await contract.mintPrice()
-        setPrice(Number(formatEther(price)))
-        setLeft(collectionSize.sub(totalSupply).toNumber())
-      }
-    })()
-  }, [contract])
+  const mintPrice = useMintPrice()
+  const numberOfRemaining = useNumberOfRemaining()
   return (
     <div className="blocktext">
       <MintCountContainer
@@ -41,7 +26,7 @@ export const MintCount = () => {
         {showPrice ? (
           <Text>
             Ξ
-            {price || (
+            {mintPrice || (
               <Spinner
                 color="white"
                 size="10"
@@ -52,7 +37,7 @@ export const MintCount = () => {
           </Text>
         ) : (
           <Text>
-            {left || (
+            {numberOfRemaining || (
               <Spinner
                 color="white"
                 size="10"

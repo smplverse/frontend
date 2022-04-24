@@ -1,16 +1,16 @@
 /** @jsxImportSource theme-ui */
 import { Flex, Spinner } from 'theme-ui'
 
+import { CHAIN_ID } from '../constants'
 import {
-  metaMask,
   useAccounts,
+  useChainId,
   useError,
   useIsActivating,
   useIsActive,
-  useChainId,
-} from '../connectors/metamask'
+  useMetamask,
+} from '../hooks'
 import { ConnectButton } from './ConnectButton'
-import { CHAIN_ID } from '../constants'
 
 export const Wallet = () => {
   const error = useError()
@@ -18,6 +18,7 @@ export const Wallet = () => {
   const isActivating = useIsActivating()
   const accounts = useAccounts()
   const chainId = useChainId()
+  const metaMask = useMetamask()
 
   const sliceUp = (address: string) => {
     return address.slice(0, 4) + '...' + address.slice(address.length - 4)

@@ -1,7 +1,7 @@
 import { initializeConnector } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 
-export const [metaMask, hooks] = initializeConnector<MetaMask>(
+const [metaMask, hooks] = initializeConnector<MetaMask>(
   (actions: any) => new MetaMask(actions)
 )
 
@@ -14,3 +14,5 @@ export const {
   useProvider,
   useENSNames,
 } = hooks
+
+export const useMetamask = () => metaMask

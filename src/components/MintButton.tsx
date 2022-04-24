@@ -1,11 +1,11 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { Centered } from 'components/Flex'
-import { CHAIN_ID } from '../constants'
 import { MouseEventHandler } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
-import { metaMask, useChainId, useIsActive } from '../connectors/metamask'
+import { CHAIN_ID } from '../constants'
+import { useChainId, useIsActive } from '../hooks'
 import { ButtonContainer } from './ButtonContainer'
 import { Wallet } from './Wallet'
 
