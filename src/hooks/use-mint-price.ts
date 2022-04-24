@@ -8,7 +8,6 @@ export const useMintPrice = () => {
   const [mintPrice, setMintPrice] = useState<number>()
   useEffect(() => {
     ;(async function () {
-      // this executes on every hover, TODO move to a query hook
       if (contract) {
         const price = await contract.mintPrice()
         setMintPrice(Number(formatEther(price)))

@@ -25,10 +25,8 @@ const ClaimMenuButton = styled(ButtonContainer)`
 `
 
 export const MintPage = () => {
-  const balance = useTokenBalance()
+  const tokenBalance = useTokenBalance()
   const [minting, setMinting] = useState(true)
-  // TODO
-  // pre-fetch all of the blockchain data during the intro page
   return (
     <div
       sx={{
@@ -48,7 +46,7 @@ export const MintPage = () => {
           flexDirection: 'column',
         }}
       >
-        {minting ? (
+        {minting || tokenBalance === 0 ? (
           <>
             <SmplImage />
             <MintTime />
@@ -57,9 +55,9 @@ export const MintPage = () => {
         ) : (
           <WebcamCapture />
         )}
-        {balance > 0 && (
+        {tokenBalance > 0 && (
           <ClaimMenuButton onClick={() => setMinting(!minting)}>
-            tokens available: <b>{balance}</b>
+            tokens available: <b>{tokenBalance}</b>
             press here to toggle claim menu
           </ClaimMenuButton>
         )}

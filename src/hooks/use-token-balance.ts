@@ -17,7 +17,9 @@ export const useTokenBalance = () => {
           const tokenIds = await contract.tokensOfOwner(signerAddress)
           for (const tokenId of tokenIds) {
             const uploadHash = await contract.uploads(tokenId)
+            console.log(uploadHash, NULL_HASH)
             if (uploadHash === NULL_HASH) {
+              console.log('sasdf')
               _balance += 1
             }
           }

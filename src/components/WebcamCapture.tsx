@@ -8,7 +8,8 @@ import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
 import { Spinner } from 'theme-ui'
 
-import { API_URL, NULL_HASH } from '../constants'
+import { API_URL } from '../constants'
+import { useAvailableTokenId } from '../hooks'
 import { ButtonContainer } from './ButtonContainer'
 import { CenteredRow } from './Flex'
 import { MintTime } from './MintTime'
@@ -46,6 +47,7 @@ export const WebcamCapture = () => {
   const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
   const [isUploading, setIsUploading] = useState(false)
+  const availableTokenId = useAvailableTokenId()
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot()
@@ -96,40 +98,30 @@ export const WebcamCapture = () => {
 
   async function upload() {
     if (contract) {
-      if (!photo || !hash || !landmarkedPhoto || !contract.signer) {
+      if (
+        !photo ||
+        !hash ||
+        !landmarkedPhoto ||
+        !contract.signer ||
+        availableTokenId === undefined
+      ) {
         return
       }
-      setIsUploading(false)
       setIsUploading(true)
-      const tokenIds = await contract.tokensOfOwner(
-        await contract.signer.getAddress()
-      )
-      for (const tokenId of tokenIds) {
-        if (tokenId) {
-          const uploadHash = await contract.uploads(tokenId)
-          console.log(uploadHash, tokenId)
-          if (uploadHash == NULL_HASH) {
-            try {
-              const tx = await contract.uploadImage(hash, tokenId)
-              displaySuccessToast(tx.hash, 'dark')
-              setIsUploading(false)
-              break
-            } catch (e) {
-              if (e.message.includes('cannot estimate gas')) {
-                alert(e.message)
-              } else {
-                displayErrorToast(e.message, 'dark')
-              }
-            }
-            setIsUploading(false)
-          }
+      try {
+        const tx = await contract.uploadImage(hash, availableTokenId)
+        displaySuccessToast(tx.hash, 'dark')
+        setIsUploading(false)
+      } catch (e) {
+        if (e.message.includes('cannot estimate gas')) {
+          alert(e.message)
+        } else {
+          displayErrorToast(e.message, 'dark')
         }
       }
       setIsUploading(false)
     }
   }
-  // TODO only show the landing page if the user has not connected yet,
-  // TODO try to connect automatically
 
   return (
     <>
