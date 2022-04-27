@@ -11,7 +11,7 @@ const Container = styled.div`
   text-align: justify;
   margin-top: 28px;
   & > span {
-    margin-top: 15px;
+    margin-top: 25px;
   }
   margin-bottom: 20px;
 `
@@ -19,41 +19,61 @@ const Container = styled.div`
 export const MintPageText = () => (
   <Container>
     <Text>
-      The smplverse is an nft collection of synthetic facial training data from
-      the computational infrastructure of the metaverse.
+      SMPLverse is an NFT collection of synthetic face data from the computational 
+      infrastructure of the metaverse, assigned to minters using facial recognition.
     </Text>
     <Text>
-      These pfps were procedurally-generated using smpl—a body mesh used to
-      animate avatars in mixed reality from sparse inputs—as the basis for new
-      algorithms that will improve face and gesture tracking in virtual
-      environments.
+      After minting, you receive a token with which you can submit an image through 
+      our webcam interface. Your submitted image is stored in the token as a hash.
     </Text>
     <Text>
-      As a minter, you submit a face image with your webcam or via upload,
-      which a face recognition model uses to find the closest matching image in
-      the smplverse collection.
+      Our facial recognition model then matches your image to a smpl. When the image 
+      is matched, it receives one attribute: confidence.
     </Text>
     <Text>
-      After approving the mint transaction, both images are hashed and written
-      to the [token ?].
+      Confidence assesses the likelihood that your image matches the smpl you receive.
     </Text>
     <Text>
-      When the image is submitted, it receives one attribute from the model:
-      confidence.
+      Confidence is a declining measure: as more smpls are minted, your likelihood of 
+      receiving a high confidence match decreases.
     </Text>
     <Text>
-      Confidence is a declining measure: as more images are minted, your
-      likelihood of receiving a high confidence match decreases.
+      Conversely, your likelihood of receiving a smpl with rarer visual attributes increases.
     </Text>
     <Text>
-      Conversely, your likelihood of receiving an image with rarer visual
-      attributes increases.
+      11 smpls, clustered by head pose, will share 55% of secondary revenue, paid out 
+      in ETH to owners.
     </Text>
-    <Text>Note on data collection:</Text>
     <Text>
-      We calculate a 128-dimensional vector from your image and use this
-      encoding to compare against the smplverse. no personal data is stored on
-      our server.
+      ***
+    </Text>
+    <Text>
+      The training images featured in the SMPLverse were built with SMPL—a body mesh 
+      used to animate avatars in virtual environments—to improve face tracking in 
+      Microsoft's mixed reality headsets.
+    </Text>
+    <Text>
+      Like many PFP projects, the images are procedurally generated, combining a 
+      parametric face model with a library of artist-authored assets, including hair, 
+      clothing, and environments.
+    </Text>
+    <Text>
+      The outputs bear a striking resemblance to the avatars whose naturalism they are 
+      meant to enhance.
+    </Text>
+    <Text>
+      By foregrounding the dependence on hardware and software developed by major tech 
+      platforms, SMPLverse gives form to the "centralization-in-the-loop” character of 
+      the metaverse: each NFT is a tool to access the infrastructure that underlies 
+      your virtual identity.
+    </Text>
+    <Text>
+      ***
+    </Text>
+    <Text>
+      After the mint, we'll be launching 3D assets and mixed reality experiences to bring 
+      your smpls into the physical world. We'll also be developing collaborations with 
+      other collections and protocols to build new concepts for the future of the metaverse.
     </Text>
   </Container>
 )
