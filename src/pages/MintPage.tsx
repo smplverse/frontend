@@ -63,7 +63,7 @@ export const MintPage = () => {
                 {tokenBalance > 0 && (
                   <ClaimMenuButton onClick={() => setMinting(!minting)}>
                     tokens available: <b>{tokenBalance}</b>
-                    press here to toggle claim menu
+                    press here to toggle webcam view
                   </ClaimMenuButton>
                 )}
               </>

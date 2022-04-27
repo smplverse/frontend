@@ -143,7 +143,7 @@ export const WebcamCapture = () => {
           />
           <MintTime />
           <WebcamButtonContainer onClick={capture}>
-            Capture photo
+            CAPTURE PHOTO
           </WebcamButtonContainer>
         </>
       ) : (
