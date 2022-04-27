@@ -41,7 +41,7 @@ export const MintPageText = () => (
       Conversely, your likelihood of receiving a smpl with rarer visual attributes increases.
     </Text>
     <Text>
-      11 smpls, clustered by head pose, will share 55% of secondary revenue, paid out 
+      11 smpls, clustered by head pose, will split 55% of secondary revenue, paid out 
       in ETH to owners.
     </Text>
     <Text>
