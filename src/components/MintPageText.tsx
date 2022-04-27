@@ -24,7 +24,7 @@ export const MintPageText = () => (
     </Text>
     <Text>
       After minting, you receive a token with which you can submit an image through 
-      our webcam interface. Your submitted image is stored in the token as a hash.
+      the webcam interface above. Your submitted image is stored in the token as a hash.
     </Text>
     <Text>
       Our facial recognition model then matches your image to a smpl. When the image 
