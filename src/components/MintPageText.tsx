@@ -13,7 +13,7 @@ const Container = styled.div`
   & > span {
     margin-top: 25px;
   }
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 `
 
 export const MintPageText = () => (
@@ -55,11 +55,8 @@ export const MintPageText = () => (
     <Text>
       Like many PFP projects, the images are procedurally generated, combining a 
       parametric face model with a library of artist-authored assets, including hair, 
-      clothing, and environments.
-    </Text>
-    <Text>
-      The outputs bear a striking resemblance to the avatars whose naturalism they are 
-      meant to enhance.
+      clothing, and environments. The outputs bear a striking resemblance to the avatars 
+      whose naturalism they are meant to enhance.
     </Text>
     <Text>
       By foregrounding the dependence on hardware and software developed by major tech 
