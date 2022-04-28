@@ -16,7 +16,7 @@ const LargeButtonContainer = styled.div`
   justify-content: center;
   width: 150px;
   &:hover {
-    filter: invert(1);
+    color: white;
   }
 `
 
