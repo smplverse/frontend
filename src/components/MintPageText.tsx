@@ -9,7 +9,7 @@ const Container = styled.div`
   text-justify: center;
   width: 512px;
   text-align: justify;
-  margin-top: 28px;
+  margin-top: 10px;
   & > span {
     margin-top: 25px;
   }

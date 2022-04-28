@@ -168,7 +168,6 @@ export const WebcamCapture = () => {
             />
           )}
           {hash && <p>{hash}</p>}
-          <MintTime />
           <CenteredRow>
             <WebcamButtonContainer
               onClick={() => {

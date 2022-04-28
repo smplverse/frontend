@@ -17,8 +17,8 @@ export const theme: Theme = {
     useColorSchemeMediaQuery: true,
   },
   fonts: {
-    body: '"Lucida Console", Monaco, monospace',
-    monospace: '"Lucida Console", Monaco, monospace',
+    body: '"IBM Plex Mono", monospace',
+    monospace: '"IBM Plex Mono", monospace',
     heading: 'inherit',
   },
   colors: {
