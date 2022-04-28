@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
 import { Spinner } from 'theme-ui'
+import { Text } from 'theme-ui'
 
 import { API_URL } from '../constants'
 import { useAvailableTokenId } from '../hooks'
@@ -167,7 +168,7 @@ export const WebcamCapture = () => {
               alt="photo"
             />
           )}
-          {hash && <p>{hash}</p>}
+          {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
             <WebcamButtonContainer
               onClick={() => {
