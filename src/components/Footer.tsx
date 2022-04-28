@@ -18,7 +18,6 @@ const Link = styled.div`
   width: 512px;
   margin-top: 5px;
   text-transform: uppercase;
-  border: 1px solid #008f11;
   &:hover {
     background-color: #000000;
     color: #008f11;

@@ -16,6 +16,12 @@ const Container = styled.div`
   margin-bottom: 50px;
 `
 
+const CenterContainer = styled(Container)`
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`
+
 export const MintPageText = () => (
   <Container>
     <Text>
@@ -44,9 +50,11 @@ export const MintPageText = () => (
       11 smpls, clustered by head pose, will split 55% of secondary revenue, paid out 
       in ETH to owners.
     </Text>
-    <Text>
-      ***
-    </Text>
+    <CenterContainer>
+      <Text>
+        ***
+      </Text>
+    </CenterContainer>
     <Text>
       SMPLverse comprises 7,667 training images built with SMPL—a body mesh 
       used to animate avatars in virtual environments—to improve face tracking in 
@@ -63,9 +71,11 @@ export const MintPageText = () => (
       the metaverse: each NFT is a tool to access the infrastructure that underlies 
       your virtual identity.
     </Text>
-    <Text>
-      ***
-    </Text>
+    <CenterContainer>
+      <Text>
+        ***
+      </Text>
+    </CenterContainer>
     <Text>
       After the mint, we'll be launching 3D assets and mixed reality experiences to bring 
       your smpls into the physical world. We'll also be collaborating with other collections 

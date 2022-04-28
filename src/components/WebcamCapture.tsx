@@ -20,6 +20,11 @@ const WebcamButtonContainer = styled(ButtonContainer)`
   display: flex;
   justify-content: center;
 `
+const InvertOnHover = styled.div`
+  &:hover {
+    filter: invert(1);
+  }
+`
 
 const EmptySpace = styled.div`
   width: 30px;
@@ -143,7 +148,9 @@ export const WebcamCapture = () => {
           />
           <MintTime />
           <WebcamButtonContainer onClick={capture}>
-            CAPTURE PHOTO
+            <InvertOnHover>
+              CAPTURE PHOTO
+            </InvertOnHover>
           </WebcamButtonContainer>
         </>
       ) : (
@@ -169,7 +176,9 @@ export const WebcamCapture = () => {
                 toast.dismiss()
               }}
             >
-              Try again
+              <InvertOnHover>
+                TRY AGAIN
+              </InvertOnHover>
             </WebcamButtonContainer>
             {landmarkedPhoto && (
               <>
