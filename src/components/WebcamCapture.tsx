@@ -34,13 +34,13 @@ const WaitingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 512px;
-  width: 512px;
+  height: 513px;
+  width: 513px;
 `
 
 const videoConstraints = {
-  width: 512,
-  height: 512,
+  width: 513,
+  height: 513,
   facingMode: 'user',
 }
 
@@ -142,8 +142,8 @@ export const WebcamCapture = () => {
             imageSmoothing={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={520}
-            height={520}
+            width={513}
+            height={513}
             videoConstraints={videoConstraints}
           />
           <MintTime />
@@ -161,8 +161,8 @@ export const WebcamCapture = () => {
             </WaitingContainer>
           ) : (
             <img
-              width={520}
-              height={520}
+              width={513}
+              height={513}
               src={landmarkedPhoto ? landmarkedPhoto : photo}
               alt="photo"
             />
