@@ -69,7 +69,7 @@ export const MintPageText = () => (
     <Text>
       After the mint, we'll be launching 3D assets and mixed reality experiences to bring 
       your smpls into the physical world. We'll also be collaborating with other collections 
-      and protocols to build new types of shared virtual experiences.
+      and protocols that share our vision of building new concepts for virtual experiences.
     </Text>
   </Container>
 )
