@@ -23,7 +23,7 @@ export const MintPageText = () => (
       infrastructure of the metaverse, assigned to minters using facial recognition.
     </Text>
     <Text>
-      After minting, you receive a token with which you can submit an image through 
+      After minting, you receive a token that allows you to submit an image through 
       the webcam interface above. Your submitted image is stored on-chain as a hash.
     </Text>
     <Text>
@@ -48,15 +48,14 @@ export const MintPageText = () => (
       ***
     </Text>
     <Text>
-      The training images featured in the SMPLverse were built with SMPL—a body mesh 
+      SMPLverse comprises 7,667 training images built with SMPL—a body mesh 
       used to animate avatars in virtual environments—to improve face tracking in 
       Microsoft's mixed reality headsets.
     </Text>
     <Text>
-      Like many PFP projects, the images are procedurally generated, combining a 
-      parametric face model with a library of artist-authored assets, including hair, 
-      clothing, and environments. The outputs bear a striking resemblance to the avatars 
-      whose naturalism they are meant to enhance.
+      Like many PFP projects, the images are procedurally generated, combining 
+      a parametric face model with a library of artist-authored assets. The 
+      outputs bear a striking resemblance to the avatars whose naturalism they are meant to enhance.
     </Text>
     <Text>
       By foregrounding the dependence on hardware and software developed by major tech 
@@ -69,8 +68,8 @@ export const MintPageText = () => (
     </Text>
     <Text>
       After the mint, we'll be launching 3D assets and mixed reality experiences to bring 
-      your smpls into the physical world. We'll also be developing collaborations with 
-      other collections and protocols to build new concepts for the future of the metaverse.
+      your smpls into the physical world. We'll also be collaborating with other collections 
+      and protocols to build new types of shared virtual experiences.
     </Text>
   </Container>
 )
