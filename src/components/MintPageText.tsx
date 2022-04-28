@@ -25,8 +25,12 @@ const CenterContainer = styled(Container)`
 export const MintPageText = () => (
   <Container>
     <Text>
-      SMPLverse is an NFT collection of synthetic face data from the computational 
-      infrastructure of the metaverse, assigned to minters using facial recognition.
+      SMPLverse is an NFT collection from the computational infrastructure of the metaverse, 
+      assigned to minters using facial recognition.
+    </Text>
+    <Text>
+      The collection comprises 7,667 synthetic face images generated to improve face tracking 
+      in Microsoft's mixed reality headsets. 
     </Text>
     <Text>
       After minting, you receive a token that allows you to submit an image through 
@@ -47,8 +51,12 @@ export const MintPageText = () => (
       Conversely, your likelihood of receiving a smpl with rarer visual attributes increases.
     </Text>
     <Text>
-      11 smpls, clustered by head pose, will split 55% of secondary revenue, paid out 
-      in ETH to owners.
+      11 smpls will split 55% of secondary revenue. These rare smpls are clustered by head pose.
+    </Text>
+    <Text>
+      After the mint, we'll be launching mixed reality experiences to bring your smpls into 
+      the physical world.  We'll also be collaborating with other collections and protocols 
+      that share our vision of building new concepts for virtual experiences.
     </Text>
     <CenterContainer>
       <Text>
@@ -56,30 +64,17 @@ export const MintPageText = () => (
       </Text>
     </CenterContainer>
     <Text>
-      SMPLverse comprises 7,667 training images built with SMPL—a body mesh 
-      used to animate avatars in virtual environments—to improve face tracking in 
-      Microsoft's mixed reality headsets.
-    </Text>
-    <Text>
-      Like many PFP projects, the images are procedurally generated, combining 
-      a parametric face model with a library of artist-authored assets. The 
-      outputs bear a striking resemblance to the avatars whose naturalism they are meant to enhance.
+      Like many PFP projects, SMPLverse was procedurally generated. The synthetic 
+      dataset it originates from combines SMPL, a body mesh used to animate avatars 
+      in virtual environments, with a generative 3D face model and a library of 
+      artist-authored assets. The outputs bear a striking resemblance to the metaverse 
+      avatars whose naturalism they are meant to enhance.
     </Text>
     <Text>
       By foregrounding the dependence on hardware and software developed by major tech 
       platforms, SMPLverse gives form to the "centralization-in-the-loop” character of 
       the metaverse: each NFT is a tool to access the infrastructure that underlies 
       your virtual identity.
-    </Text>
-    <CenterContainer>
-      <Text>
-        ***
-      </Text>
-    </CenterContainer>
-    <Text>
-      After the mint, we'll be launching 3D assets and mixed reality experiences to bring 
-      your smpls into the physical world. We'll also be collaborating with other collections 
-      and protocols that share our vision of building new concepts for virtual experiences.
     </Text>
   </Container>
 )
