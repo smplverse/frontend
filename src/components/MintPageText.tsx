@@ -54,9 +54,8 @@ export const MintPageText = () => (
       11 smpls will split 55% of secondary revenue. These rare smpls are clustered by head pose.
     </Text>
     <Text>
-      After the mint, we'll be launching mixed reality experiences to bring your smpls into 
-      the physical world.  We'll also be collaborating with other collections and protocols 
-      that share our vision of building new concepts for virtual experiences.
+      After the mint, we'll be delivering mixed reality experiences to bring your smpl 
+      into the physical world.
     </Text>
     <CenterContainer>
       <Text>
