@@ -36,7 +36,7 @@ export const MintingPanel = () => {
     if (contract.signer && weiRequired && balance) {
       try {
         if (weiRequired.gt(balance)) {
-          throw Error('Insufficient balance!')
+          throw Error('insufficient balance!')
         }
         setIsWaiting(true)
         const tx = await contract.mint(quantity, {
