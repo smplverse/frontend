@@ -1,14 +1,18 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { Text } from 'theme-ui'
-
 import { MintCount } from './MintCount'
 import { Wallet } from './Wallet'
+import { MintPage } from '../pages/MintPage'
+import { SmplverseButton } from './SmplverseButton'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
   font-family: 'IBM Plex Mono', monospace;
 `
+
+const MintPageRefresh = () => {
+  return <MintPage />
+}
 
 export const Header = () => {
   return (
@@ -21,7 +25,7 @@ export const Header = () => {
       }}
     >
       <MintCount />
-      <Text>SMPLVERSE</Text>
+      <SmplverseButton onClick={MintPageRefresh} text="SMPLVERSE" />
       <Wallet />
     </HeaderContainer>
   )
