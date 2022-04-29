@@ -55,7 +55,7 @@ export const Wallet = () => {
   } else if (isActive) {
     return (
       <ConnectButton onClick={() => metaMask.deactivate()}>
-        {accounts?.length ? sliceUp(accounts[0]) : 'Disconnect'}
+        {accounts?.length ? sliceUp(accounts[0]) : 'DISCONNECT'}
       </ConnectButton>
     )
   } else if (error) {

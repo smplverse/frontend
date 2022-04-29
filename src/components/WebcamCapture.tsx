@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
 import { Spinner } from 'theme-ui'
+import { Text } from 'theme-ui'
 
 import { API_URL } from '../constants'
 import { useAvailableTokenId } from '../hooks'
@@ -20,6 +21,11 @@ const WebcamButtonContainer = styled(ButtonContainer)`
   display: flex;
   justify-content: center;
 `
+const InvertOnHover = styled.div`
+  &:hover {
+    filter: invert(1);
+  }
+`
 
 const EmptySpace = styled.div`
   width: 30px;
@@ -29,13 +35,13 @@ const WaitingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 512px;
-  width: 512px;
+  height: 513px;
+  width: 513px;
 `
 
 const videoConstraints = {
-  width: 512,
-  height: 512,
+  width: 513,
+  height: 513,
   facingMode: 'user',
 }
 
@@ -137,13 +143,13 @@ export const WebcamCapture = () => {
             imageSmoothing={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={520}
-            height={520}
+            width={513}
+            height={513}
             videoConstraints={videoConstraints}
           />
           <MintTime />
           <WebcamButtonContainer onClick={capture}>
-            Capture photo
+            <InvertOnHover>CAPTURE PHOTO</InvertOnHover>
           </WebcamButtonContainer>
         </>
       ) : (
@@ -154,14 +160,13 @@ export const WebcamCapture = () => {
             </WaitingContainer>
           ) : (
             <img
-              width={520}
-              height={520}
+              width={513}
+              height={513}
               src={landmarkedPhoto ? landmarkedPhoto : photo}
               alt="photo"
             />
           )}
-          {hash && <p>{hash}</p>}
-          <MintTime />
+          {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
             <WebcamButtonContainer
               onClick={() => {
@@ -169,7 +174,7 @@ export const WebcamCapture = () => {
                 toast.dismiss()
               }}
             >
-              Try again
+              <InvertOnHover>TRY AGAIN</InvertOnHover>
             </WebcamButtonContainer>
             {landmarkedPhoto && (
               <>

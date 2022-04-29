@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "short_name": "SMPLverse",
-  "name": "SMPLverse - AI meets NFTs",
+  "name": "SMPLverse - pfps from the computational infrastructure of the metaverse",
   "icons": [
     {
       "src": "favicon.png",

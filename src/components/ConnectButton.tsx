@@ -15,6 +15,9 @@ const LargeButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 150px;
+  &:hover {
+    color: white;
+  }
 `
 
 const SmallButtonContainer = styled(LargeButtonContainer)``

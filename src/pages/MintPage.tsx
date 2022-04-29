@@ -22,6 +22,12 @@ const ClaimMenuButton = styled(ButtonContainer)`
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 4rem 0;
+`
+const InvertOnHover = styled.div`
+  &:hover {
+    filter: invert(1);
+  }
 `
 
 export const MintPage = () => {
@@ -61,10 +67,12 @@ export const MintPage = () => {
             {tokenBalance !== undefined ? (
               <>
                 {tokenBalance > 0 && (
-                  <ClaimMenuButton onClick={() => setMinting(!minting)}>
-                    tokens available: <b>{tokenBalance}</b>
-                    press here to toggle claim menu
-                  </ClaimMenuButton>
+                  <InvertOnHover>
+                    <ClaimMenuButton onClick={() => setMinting(!minting)}>
+                      TOKENS AVAILABLE: <b>{tokenBalance}</b>
+                      CLICK HERE TO TOGGLE WEBCAM VIEW
+                    </ClaimMenuButton>
+                  </InvertOnHover>
                 )}
               </>
             ) : (
