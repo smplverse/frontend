@@ -1,9 +1,10 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { MintCount } from './MintCount'
-import { Wallet } from './Wallet'
+
 import { MintPage } from '../pages/MintPage'
+import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
+import { Wallet } from './Wallet'
 
 const HeaderContainer = styled.header`
   color: #ffffff;

@@ -149,9 +149,7 @@ export const WebcamCapture = () => {
           />
           <MintTime />
           <WebcamButtonContainer onClick={capture}>
-            <InvertOnHover>
-              CAPTURE PHOTO
-            </InvertOnHover>
+            <InvertOnHover>CAPTURE PHOTO</InvertOnHover>
           </WebcamButtonContainer>
         </>
       ) : (
@@ -176,9 +174,7 @@ export const WebcamCapture = () => {
                 toast.dismiss()
               }}
             >
-              <InvertOnHover>
-                TRY AGAIN
-              </InvertOnHover>
+              <InvertOnHover>TRY AGAIN</InvertOnHover>
             </WebcamButtonContainer>
             {landmarkedPhoto && (
               <>
