@@ -29,8 +29,8 @@ export const MintPageText = () => (
       assigned to minters using facial recognition.
     </Text>
     <Text>
-      The collection comprises 7,667 synthetic face images generated to improve face tracking 
-      in Microsoft's mixed reality headsets. 
+      The collection comprises 7,667 synthetic face images generated to train face tracking 
+      algorithms for Microsoft's mixed reality headsets.
     </Text>
     <Text>
       After minting, you receive a token that allows you to submit an image through 
