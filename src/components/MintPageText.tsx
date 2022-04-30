@@ -75,8 +75,8 @@ export const MintPageText = () => (
     <Text>
       By foregrounding the dependence on hardware and software developed by
       major tech platforms, SMPLverse gives form to the
-      "centralization-in-the-loop” character of the metaverse: each NFT is a
-      tool to access the infrastructure that underlies your virtual identity.
+      "centralization-in-the-loop” character of the metaverse, allowing you to
+      access the infrastructure that underlies your virtual identity.
     </Text>
   </Container>
 )
