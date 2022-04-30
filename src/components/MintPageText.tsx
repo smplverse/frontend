@@ -29,7 +29,7 @@ export const MintPageText = () => (
       assigned to minters using facial recognition.
     </Text>
     <Text>
-      The collection comprises 7,667 synthetic face images used to develop face tracking 
+      The collection comprises 7,667 synthetic face images generated to develop face tracking 
       algorithms for Microsoft's mixed reality headsets.
     </Text>
     <Text>
@@ -63,7 +63,7 @@ export const MintPageText = () => (
       </Text>
     </CenterContainer>
     <Text>
-      Like many PFP projects, SMPLverse was procedurally generated. The synthetic 
+      Like many PFP projects, SMPLverse was procedurally generated. The synthetic training 
       dataset it originates from combines SMPL, a body mesh used to animate avatars 
       in virtual environments, with a generative 3D face model and a library of 
       artist-authored assets. The outputs bear a striking resemblance to the metaverse 
