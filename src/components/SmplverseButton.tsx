@@ -15,5 +15,9 @@ const SmplverseButtonContainer = styled.div`
 `
 
 export const SmplverseButton = ({ onClick, text }: Props) => {
-    return <SmplverseButtonContainer onClick={onClick}>{text}</SmplverseButtonContainer>
+  return (
+    <SmplverseButtonContainer onClick={onClick}>
+      {text}
+    </SmplverseButtonContainer>
+  )
 }
