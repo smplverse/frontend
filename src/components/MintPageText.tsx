@@ -68,7 +68,7 @@ export const MintPageText = () => (
       Like many PFP projects, SMPLverse was procedurally generated. The
       training dataset it derives from combines SMPL, a body mesh used to
       animate avatars in virtual environments, with a generative 3D face model
-      and a library of artist-authored assets. These synthetics bear a striking
+      and a library of artist-authored assets. These facial synthetics bear a striking
       resemblance to the metaverse avatars whose naturalism they are meant to
       enhance.
     </Text>
