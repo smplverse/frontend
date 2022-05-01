@@ -22,20 +22,23 @@ export const useTokenBalance = () => {
 
   useEffect(() => {
     ;(async () => {
-      if (contract && contract.signer) {
+      if (contract && contract.signer && !isWaiting) {
         try {
           let _balance = 0
           const signerAddress = await contract.signer.getAddress()
           const tokenIds = await contract.tokensOfOwner(signerAddress)
+          // TODO add a method that returns only unowned tokens to the contract
+          console.log(tokenIds)
           for (const tokenId of tokenIds) {
             const uploadHash = await contract.uploads(tokenId)
-            console.log(uploadHash, NULL_HASH)
+            console.log(tokenId.toNumber(), uploadHash)
             if (uploadHash === NULL_HASH) {
               _balance += 1
             }
           }
           setBalance(Number(_balance))
         } catch (e) {
+          console.log(e)
           // pass
         }
       }

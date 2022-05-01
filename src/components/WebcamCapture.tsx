@@ -49,12 +49,17 @@ const videoConstraints = {
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
+
   const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
-  const [photo, setPhoto] = useState<string>('')
+
   const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
-  const [hash, setHash] = useState<string>('')
+  const [smpl, setSmpl] = useState<string>('')
+
+  const [photo, setPhoto] = useState<string>('')
   const [imgSrc, setImgSrc] = useState<string>('')
+
+  const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
 
   const capture = useCallback(() => {
@@ -121,7 +126,12 @@ export const WebcamCapture = () => {
       }
       setIsWaiting(true)
       try {
+        console.log(availableTokenId.toNumber())
         const tx = await contract.uploadImage(hash, availableTokenId)
+        // TODO okay there is an issue with indexing, or ownership
+        // I think we are using 1-7667 for uploads and _ownerships uses 0-7667
+        // TODO another issue is that for some reason the multiple mint gives faulty tokens
+        // first one minted is ok, then it throws
         await tx.wait()
         displaySuccessToast(
           `upload successful:${tx.hash}, claiming SMPL...`,
@@ -143,7 +153,7 @@ export const WebcamCapture = () => {
             body: JSON.stringify(body),
           })
           //
-          // add something went wrong here?
+          // add something went wrong, please contact ... here?
           // in case the base64 image is lost the user would not be able to
           // re-upload as the hash would always be different
           //
@@ -154,14 +164,10 @@ export const WebcamCapture = () => {
             displayErrorToast(`Error: ${text}`, 'dark')
             console.log(text)
           }
-          const json = JSON.parse(text)
-          if (!json.error) {
-            // TODO setSmpl to show the smpl obtained
-            // setSmpl('data:image/jpeg;base64,' + json.image)
-            displaySuccessToast(`SMPL #${2}`, 'dark')
-          } else {
-            displayErrorToast(json.error, 'dark')
-          }
+          const metadata = JSON.parse(text)
+          console.log(metadata)
+          displaySuccessToast(metadata.name, 'dark')
+          setSmpl(metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'))
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
@@ -215,7 +221,7 @@ export const WebcamCapture = () => {
             <img
               width={512}
               height={512}
-              src={imgSrc}
+              src={smpl || imgSrc}
               alt="photo"
               onMouseEnter={() => setImgSrc(photo)}
               onMouseLeave={() => {
