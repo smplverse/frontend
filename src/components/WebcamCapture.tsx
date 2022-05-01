@@ -60,9 +60,8 @@ export const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot()
     if (imageSrc) {
       setLandmarkedPhoto('')
-      const image = imageSrc.split(',')[1]
-      const _hash = '0x' + sha256(image)
-      console.log(image)
+      // hash everything (including data:image/jpeg;base64,)
+      const _hash = '0x' + sha256(imageSrc)
       setPhoto(imageSrc)
       setImgSrc(imageSrc)
       setHash(_hash)
@@ -121,9 +120,57 @@ export const WebcamCapture = () => {
         return
       }
       setIsUploading(true)
+      // replace setIsUploading with setIsWaiting to refresh
+      // use await tx.wait() in minting if not already used
       try {
         const tx = await contract.uploadImage(hash, availableTokenId)
-        displaySuccessToast(tx.hash, 'dark')
+        displaySuccessToast(
+          `upload successful:${tx.hash}, claiming SMPL...`,
+          'dark'
+        )
+        try {
+          const body = {
+            image: photo,
+            address: await contract.signer.getAddress(),
+            tokenId: availableTokenId.toNumber(),
+          }
+          console.log(body)
+          const res = await fetch(API_URL + '/get-smpl', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(body),
+          })
+          //
+          // add something went wrong here?
+          // in case the base64 image is lost the user would not be able to
+          // re-upload as the hash would always be different
+          //
+          // technically this should pass every time but shall assume it might fail
+          // due to network issues or sth
+          const text = await res.text()
+          if (res.status !== 200) {
+            displayErrorToast(`Error: ${text}`, 'dark')
+            console.log(text)
+          }
+          const json = JSON.parse(text)
+          if (!json.error) {
+            // TODO setSmpl to show the smpl obtained
+            // setSmpl('data:image/jpeg;base64,' + json.image)
+            displaySuccessToast(`SMPL #${2}`, 'dark')
+          } else {
+            displayErrorToast(json.error, 'dark')
+          }
+        } catch (e) {
+          if (e.message == 'Failed to fetch') {
+            displayErrorToast(
+              "Couldn't connect to the backend. Please try again later.",
+              'dark'
+            )
+          }
+        }
         setIsUploading(false)
       } catch (e) {
         if (e.message.includes('cannot estimate gas')) {
@@ -161,24 +208,26 @@ export const WebcamCapture = () => {
         </>
       ) : (
         <>
-          {waiting ? (
-            <WaitingContainer>
-              <Spinner />
-            </WaitingContainer>
-          ) : (
-            <img
-              width={512}
-              height={512}
-              src={imgSrc}
-              alt="photo"
-              onMouseEnter={() => setImgSrc(photo)}
-              onMouseLeave={() => {
-                if (landmarkedPhoto) {
-                  setImgSrc(landmarkedPhoto)
-                }
-              }}
-            />
-          )}
+          {
+            /*TODO distinguish between waiting for tx and waiting for backend reply, tx use context, backend nope */ waiting ? (
+              <WaitingContainer>
+                <Spinner />
+              </WaitingContainer>
+            ) : (
+              <img
+                width={512}
+                height={512}
+                src={imgSrc}
+                alt="photo"
+                onMouseEnter={() => setImgSrc(photo)}
+                onMouseLeave={() => {
+                  if (landmarkedPhoto) {
+                    setImgSrc(landmarkedPhoto)
+                  }
+                }}
+              />
+            )
+          }
           {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
             <WebcamButtonContainer
