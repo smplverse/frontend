@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
+import { WaitingContext } from '../contexts'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
@@ -48,22 +49,22 @@ const videoConstraints = {
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
-  const [waiting, setWaiting] = useState<boolean>(false)
+  const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
+  const { isWaiting, setIsWaiting } = useContext(WaitingContext)
   const [photo, setPhoto] = useState<string>('')
   const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
-  const [isUploading, setIsUploading] = useState(false)
   const [imgSrc, setImgSrc] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
 
   const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot()
-    if (imageSrc) {
+    const screenshot = webcamRef.current.getScreenshot()
+    if (screenshot) {
       setLandmarkedPhoto('')
       // hash everything (including data:image/jpeg;base64,)
-      const _hash = '0x' + sha256(imageSrc)
-      setPhoto(imageSrc)
-      setImgSrc(imageSrc)
+      const _hash = '0x' + sha256(screenshot)
+      setPhoto(screenshot)
+      setImgSrc(screenshot)
       setHash(_hash)
     }
   }, [webcamRef])
@@ -72,7 +73,7 @@ export const WebcamCapture = () => {
     ;(async function () {
       if (photo) {
         try {
-          setWaiting(true)
+          setWaitingForLandmarks(true)
           const res = await fetch(API_URL + '/detect-face', {
             method: 'POST',
             headers: {
@@ -80,7 +81,7 @@ export const WebcamCapture = () => {
               Accept: 'application/json',
             },
             body: JSON.stringify({
-              image: photo.split(',')[1],
+              image: photo,
             }),
           })
           const json = await res.json()
@@ -94,7 +95,6 @@ export const WebcamCapture = () => {
           } else {
             displayErrorToast(json.error, 'dark')
           }
-          setWaiting(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
@@ -102,8 +102,8 @@ export const WebcamCapture = () => {
               'dark'
             )
           }
-          setWaiting(false)
         }
+        setWaitingForLandmarks(false)
       }
     })()
   }, [photo])
@@ -119,11 +119,10 @@ export const WebcamCapture = () => {
       ) {
         return
       }
-      setIsUploading(true)
-      // replace setIsUploading with setIsWaiting to refresh
-      // use await tx.wait() in minting if not already used
+      setIsWaiting(true)
       try {
         const tx = await contract.uploadImage(hash, availableTokenId)
+        await tx.wait()
         displaySuccessToast(
           `upload successful:${tx.hash}, claiming SMPL...`,
           'dark'
@@ -171,7 +170,7 @@ export const WebcamCapture = () => {
             )
           }
         }
-        setIsUploading(false)
+        setIsWaiting(false)
       } catch (e) {
         if (e.message.includes('cannot estimate gas')) {
           alert(e.message)
@@ -179,7 +178,7 @@ export const WebcamCapture = () => {
           displayErrorToast(e.message, 'dark')
         }
       }
-      setIsUploading(false)
+      setIsWaiting(false)
     }
   }
 
@@ -208,26 +207,24 @@ export const WebcamCapture = () => {
         </>
       ) : (
         <>
-          {
-            /*TODO distinguish between waiting for tx and waiting for backend reply, tx use context, backend nope */ waiting ? (
-              <WaitingContainer>
-                <Spinner />
-              </WaitingContainer>
-            ) : (
-              <img
-                width={512}
-                height={512}
-                src={imgSrc}
-                alt="photo"
-                onMouseEnter={() => setImgSrc(photo)}
-                onMouseLeave={() => {
-                  if (landmarkedPhoto) {
-                    setImgSrc(landmarkedPhoto)
-                  }
-                }}
-              />
-            )
-          }
+          {waitingForLandmarks ? (
+            <WaitingContainer>
+              <Spinner />
+            </WaitingContainer>
+          ) : (
+            <img
+              width={512}
+              height={512}
+              src={imgSrc}
+              alt="photo"
+              onMouseEnter={() => setImgSrc(photo)}
+              onMouseLeave={() => {
+                if (landmarkedPhoto) {
+                  setImgSrc(landmarkedPhoto)
+                }
+              }}
+            />
+          )}
           {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
             <WebcamButtonContainer
@@ -242,9 +239,9 @@ export const WebcamCapture = () => {
               <>
                 <EmptySpace />
                 <WebcamButtonContainer
-                  onClick={!isUploading ? upload : () => null}
+                  onClick={!isWaiting ? upload : () => null}
                 >
-                  {isUploading ? (
+                  {isWaiting ? (
                     <Spinner size={24} color={'black'} />
                   ) : (
                     <>Upload</>
