@@ -40,8 +40,8 @@ const WaitingContainer = styled.div`
 `
 
 const videoConstraints = {
-  width: 513,
-  height: 513,
+  width: 512,
+  height: 512,
   facingMode: 'user',
 }
 
@@ -50,19 +50,21 @@ export const WebcamCapture = () => {
   const contract = useContract() as SMPLverse
   const [waiting, setWaiting] = useState<boolean>(false)
   const [photo, setPhoto] = useState<string>('')
-  const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
+  const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
   const [hash, setHash] = useState<string>('')
   const [isUploading, setIsUploading] = useState(false)
+  const [imgSrc, setImgSrc] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot()
     if (imageSrc) {
-      setLanmarkedPhoto('')
+      setLandmarkedPhoto('')
       const image = imageSrc.split(',')[1]
       const _hash = '0x' + sha256(image)
       console.log(image)
       setPhoto(imageSrc)
+      setImgSrc(imageSrc)
       setHash(_hash)
     }
   }, [webcamRef])
@@ -84,7 +86,7 @@ export const WebcamCapture = () => {
           })
           const json = await res.json()
           if (!json.error) {
-            setLanmarkedPhoto('data:image/jpeg;base64,' + json.image)
+            setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
           } else {
             displayErrorToast(json.error, 'dark')
           }
@@ -160,10 +162,16 @@ export const WebcamCapture = () => {
             </WaitingContainer>
           ) : (
             <img
-              width={513}
-              height={513}
-              src={landmarkedPhoto ? landmarkedPhoto : photo}
+              width={512}
+              height={512}
+              src={imgSrc}
               alt="photo"
+              onMouseEnter={() => setImgSrc(photo)}
+              onMouseLeave={() => {
+                if (landmarkedPhoto) {
+                  setImgSrc(landmarkedPhoto)
+                }
+              }}
             />
           )}
           {hash && <Text mt={4}>{hash}</Text>}
