@@ -133,10 +133,7 @@ export const WebcamCapture = () => {
         // TODO another issue is that for some reason the multiple mint gives faulty tokens
         // first one minted is ok, then it throws
         await tx.wait()
-        displaySuccessToast(
-          `upload successful:${tx.hash}, claiming SMPL...`,
-          'dark'
-        )
+        displaySuccessToast(`upload successful, claiming SMPL...`, 'dark')
         try {
           const body = {
             image: photo,
