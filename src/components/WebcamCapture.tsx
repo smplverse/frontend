@@ -87,6 +87,11 @@ export const WebcamCapture = () => {
           const json = await res.json()
           if (!json.error) {
             setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
+            setImgSrc('data:image/jpeg;base64,' + json.image)
+            displaySuccessToast(
+              'face detected, hover to see original image',
+              'dark'
+            )
           } else {
             displayErrorToast(json.error, 'dark')
           }
