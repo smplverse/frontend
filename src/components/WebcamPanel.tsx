@@ -31,53 +31,51 @@ export const WebcamPanel = () => {
 
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
   const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
+  const [imageLoading, setImageLoading] = useState<boolean>(false)
+
   const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
   const [smpl, setSmpl] = useState<string>('')
   const [imgSrc, setImgSrc] = useState<string>('')
   const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
-  const [imageLoading, setImageLoading] = useState<boolean>(false)
   const [confidence, setConfidence] = useState<number>()
   const [screenshot, setScreenshot] = useState<string>('')
 
-  useEffect(() => {
-    ;(async function () {
-      if (screenshot) {
-        try {
-          setWaitingForLandmarks(true)
-          const res = await fetch(API_URL + '/detect-face', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-            body: JSON.stringify({
-              image: screenshot,
-            }),
-          })
-          const json = await res.json()
-          if (!json.error) {
-            setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
-            setImgSrc('data:image/jpeg;base64,' + json.image)
-            displaySuccessToast(
-              'face detected, hover to see original image',
-              'dark'
-            )
-          } else {
-            displayErrorToast(json.error, 'dark')
-          }
-        } catch (e) {
-          if (e.message == 'Failed to fetch') {
-            displayErrorToast(
-              "Couldn't connect to the backend. Please try again later.",
-              'dark'
-            )
-          }
-        }
-        setWaitingForLandmarks(false)
+  async function detectFace() {
+    console.log(API_URL)
+    try {
+      setWaitingForLandmarks(true)
+      const res = await fetch(API_URL + '/detect-face', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          image: screenshot,
+        }),
+      })
+      const json = await res.json()
+      if (!json.error) {
+        setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
+        setImgSrc('data:image/jpeg;base64,' + json.image)
+        displaySuccessToast(
+          'face detected, hover to see original image',
+          'dark'
+        )
+      } else {
+        displayErrorToast(json.error, 'dark')
       }
-    })()
-  }, [screenshot])
+    } catch (e) {
+      if (e.message == 'Failed to fetch') {
+        displayErrorToast(
+          "Couldn't connect to the backend. Please try again later.",
+          'dark'
+        )
+      }
+    }
+    setWaitingForLandmarks(false)
+  }
 
   async function upload() {
     if (contract) {
@@ -102,7 +100,7 @@ export const WebcamPanel = () => {
             address: await contract.signer.getAddress(),
             tokenId: availableTokenId.toNumber(),
           }
-          console.log(body)
+          setImageLoading(true)
           const res = await fetch(API_URL + '/get-smpl', {
             method: 'POST',
             headers: {
@@ -121,7 +119,6 @@ export const WebcamPanel = () => {
           const text = await res.text()
           if (res.status !== 200) {
             displayErrorToast(`Error: ${text}`, 'dark')
-            console.log(text)
           }
           const metadata = JSON.parse(text)
           console.log(metadata)
@@ -149,12 +146,16 @@ export const WebcamPanel = () => {
   }
 
   useEffect(() => {
-    setLandmarkedPhoto('')
-    setSmpl('')
-    const _hash = '0x' + sha256(screenshot)
-    setScreenshot(screenshot)
-    setImgSrc(screenshot)
-    setHash(_hash)
+    ;(async function () {
+      if (screenshot) {
+        setLandmarkedPhoto('')
+        setSmpl('')
+        const _hash = '0x' + sha256(screenshot)
+        setImgSrc(screenshot)
+        setHash(_hash)
+        await detectFace()
+      }
+    })()
   }, [screenshot])
 
   return (
@@ -181,7 +182,6 @@ export const WebcamPanel = () => {
                       setImgSrc(landmarkedPhoto)
                     }
                   }}
-                  onLoadStart={() => setImageLoading(true)}
                   onLoad={() => setImageLoading(false)}
                 />
               ) : (

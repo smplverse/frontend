@@ -10,7 +10,7 @@ import {
   MintPageText,
   MintTime,
   SmplImage,
-  WebcamCapture,
+  WebcamPanel,
 } from '../components'
 import { useIsActive, useTokenBalance } from '../hooks'
 
@@ -64,13 +64,13 @@ export const MintPage = () => {
           flexDirection: 'column',
         }}
       >
-        {minting || tokenBalance === 0 ? (
+        {minting ? (
           <>
             <SmplImage />
             <MintTime />
           </>
         ) : (
-          <WebcamCapture />
+          <WebcamPanel />
         )}
         {isActive && (
           <>
@@ -78,23 +78,15 @@ export const MintPage = () => {
               <>
                 {tokenBalance > 0 && (
                   <>
-                    {minting ? (
-                      <>
-                        <ClaimMenuButton onClick={() => setMinting(!minting)}>
-                          <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
-                        </ClaimMenuButton>
-
-                        <Container>
-                          <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
-                          <b>{tokenBalance}</b>
-                        </Container>
-                      </>
-                    ) : (
-                      <Container>
-                        <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
-                        <b>{tokenBalance}</b>
-                      </Container>
+                    {minting && (
+                      <ClaimMenuButton onClick={() => setMinting(!minting)}>
+                        <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
+                      </ClaimMenuButton>
                     )}
+                    <Container>
+                      <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
+                      <b>{tokenBalance}</b>
+                    </Container>
                   </>
                 )}
               </>
