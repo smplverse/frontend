@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
-import { Flex, Spinner } from 'theme-ui'
 import styled from '@emotion/styled'
-import { useState, MouseEventHandler } from 'react'
+import { MouseEventHandler, useState } from 'react'
+import { Flex, Spinner } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import {

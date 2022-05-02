@@ -86,7 +86,7 @@ export const MintButton = ({
                   </PlusMinusContainer>
                 </>
               ) : (
-                <Wallet />
+                <Wallet onClick={() => null} />
               )}
             </>
           )}
