@@ -2,19 +2,19 @@
 import styled from '@emotion/styled'
 import { MintCount } from './MintCount'
 import { Wallet } from './Wallet'
-import { MintPage } from '../pages/MintPage'
 import { SmplverseButton } from './SmplverseButton'
+import { MouseEventHandler } from 'react'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
   font-family: 'IBM Plex Mono', monospace;
 `
 
-const MintPageRefresh = () => {
-  return <MintPage />
+interface Props {
+  onClick: MouseEventHandler<HTMLDivElement>
 }
 
-export const Header = () => {
+export const Header = ({ onClick }: Props) => {
   return (
     <HeaderContainer
       sx={{
@@ -25,8 +25,8 @@ export const Header = () => {
       }}
     >
       <MintCount />
-      <SmplverseButton onClick={MintPageRefresh} text="SMPLVERSE" />
-      <Wallet />
+      <SmplverseButton onClick={onClick} text="SMPLVERSE" />
+      <Wallet onClick={onClick} />
     </HeaderContainer>
   )
 }

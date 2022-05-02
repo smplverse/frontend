@@ -15,12 +15,10 @@ interface Props {
   isLoading: boolean
   small: boolean
   quantity: number
+  additional: string
+  containerSize: number
   setQuantity: (quantity: number) => void
 }
-
-const MintButtonContainer = styled(ButtonContainer)`
-  width: 256px;
-`
 
 const PlusMinusContainer = styled.div`
   &:hover {
@@ -42,6 +40,8 @@ export const MintButton = ({
   onClick,
   isLoading,
   quantity,
+  additional,
+  containerSize,
   setQuantity,
 }: Props) => {
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
@@ -49,6 +49,9 @@ export const MintButton = ({
   const isActive = useIsActive()
   const chainId = useChainId()
 
+  const MintButtonContainer = styled(ButtonContainer)`
+    width: ${containerSize}px;
+  `
   const increment = () => {
     if (quantity < 10) {
       setQuantity(quantity + 1)
@@ -75,7 +78,7 @@ export const MintButton = ({
                   </PlusMinusContainer>
                   <InvertOnHover>
                     <Text onClick={onClick}>
-                      MINT {quantity} FOR Ξ{ethRequired}
+                      MINT {quantity} {additional} FOR Ξ{ethRequired}
                     </Text>
                   </InvertOnHover>
                   <PlusMinusContainer onClick={increment}>

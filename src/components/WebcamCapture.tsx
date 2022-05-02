@@ -17,7 +17,7 @@ import { MintTime } from './MintTime'
 import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
 
 const WebcamButtonContainer = styled(ButtonContainer)`
-  width: 150px;
+  width: 230px;
   display: flex;
   justify-content: center;
 `
@@ -185,7 +185,7 @@ export const WebcamCapture = () => {
                   {isUploading ? (
                     <Spinner size={24} color={'black'} />
                   ) : (
-                    <>Upload</>
+                    <>UPLOAD</>
                   )}
                 </WebcamButtonContainer>
               </>
