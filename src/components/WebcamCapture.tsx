@@ -21,6 +21,7 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
       setScreenshot(screenshot)
     }
   }, [webcamRef])
+
   return (
     <>
       <Webcam

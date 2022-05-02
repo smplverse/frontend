@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Spinner } from 'theme-ui'
+import { Box, Spinner, Link } from 'theme-ui'
 import { Text } from 'theme-ui'
 import { useState, useContext, useEffect } from 'react'
 import { toast } from 'react-toastify'
@@ -131,7 +131,7 @@ export const WebcamPanel = () => {
           console.log(metadata)
           displaySuccessToast(metadata.name, 'dark')
           setMetadata(metadata)
-          setScreenshot('')
+          setImgSrc(metadata.smpl_image)
           setImageLoading(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
@@ -181,19 +181,33 @@ export const WebcamPanel = () => {
           ) : (
             <>
               {!imageLoading ? (
-                <img
-                  width={512}
-                  height={512}
-                  src={metadata?.smpl_image || imgSrc}
-                  alt="photo"
-                  onMouseEnter={() => setImgSrc(screenshot)}
-                  onMouseLeave={() => {
-                    if (landmarkedPhoto) {
-                      setImgSrc(landmarkedPhoto)
-                    }
-                  }}
-                  onLoad={() => setImageLoading(false)}
-                />
+                metadata?.smpl_image ? (
+                  <img
+                    width={512}
+                    height={512}
+                    src={imgSrc}
+                    alt="photo"
+                    onMouseEnter={() => setImgSrc(screenshot)}
+                    onMouseLeave={() => {
+                      if (metadata?.smpl_image) {
+                        setImgSrc(metadata.smpl_image)
+                      }
+                    }}
+                  />
+                ) : (
+                  <img
+                    width={512}
+                    height={512}
+                    src={imgSrc}
+                    alt="photo"
+                    onMouseEnter={() => setImgSrc(screenshot)}
+                    onMouseLeave={() => {
+                      if (landmarkedPhoto) {
+                        setImgSrc(landmarkedPhoto)
+                      }
+                    }}
+                  />
+                )
               ) : (
                 <WaitingContainer>
                   <Spinner />
@@ -202,24 +216,44 @@ export const WebcamPanel = () => {
             </>
           )}
           {metadata ? (
-            <Text mt={4}>
-              <Text>confidence: {metadata?.attributes[0]?.value} </Text>
-              <Text>{metadata.image}</Text>
-            </Text>
+            <>
+              <Link
+                sx={{ mt: 3 }}
+                href={metadata.image.replace(
+                  'ipfs://',
+                  'https://ipfs.io/ipfs/'
+                )}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                {metadata.image}
+              </Link>
+              <Box
+                sx={{
+                  mt: 3,
+                  flexDirection: 'column',
+                  display: 'flex',
+                }}
+              >
+                <Text>{metadata.name}</Text>
+                <Text>confidence: {metadata?.attributes[0]?.value} </Text>
+              </Box>
+            </>
           ) : (
             <>{hash && <Text mt={4}>{hash}</Text>}</>
           )}
           <CenteredRow>
-            <WebcamButton
-              onClick={() => {
-                setScreenshot('')
-                setMetadata(undefined)
-                toast.dismiss()
-              }}
-            >
-              {metadata ? 'claim another one' : 'try again'}
-            </WebcamButton>
-            {landmarkedPhoto && (
+            {!isWaiting && (
+              <WebcamButton
+                onClick={() => {
+                  setScreenshot('')
+                  setMetadata(undefined)
+                  toast.dismiss()
+                }}
+              >
+                {metadata ? 'claim another one' : 'try again'}
+              </WebcamButton>
+            )}
+            {landmarkedPhoto && !metadata && (
               <>
                 <EmptySpace />
                 <WebcamButton onClick={!isWaiting ? upload : () => null}>
