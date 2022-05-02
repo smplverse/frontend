@@ -13,6 +13,14 @@ import { CenteredRow } from './Flex'
 import { WebcamButton } from './WebcamButton'
 import { WebcamCapture } from './WebcamCapture'
 
+interface Metadata {
+  name: string
+  description: string
+  image: string
+  smpl_image: string
+  attributes: Array<{ [key: string]: string }>
+}
+
 const EmptySpace = styled.div`
   width: 30px;
 `
@@ -33,16 +41,15 @@ export const WebcamPanel = () => {
   const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
   const [imageLoading, setImageLoading] = useState<boolean>(false)
 
+  const [metadata, setMetadata] = useState<Metadata>()
+
   const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
-  const [smpl, setSmpl] = useState<string>('')
   const [imgSrc, setImgSrc] = useState<string>('')
   const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
-  const [confidence, setConfidence] = useState<number>()
   const [screenshot, setScreenshot] = useState<string>('')
 
   async function detectFace() {
-    console.log(API_URL)
     try {
       setWaitingForLandmarks(true)
       const res = await fetch(API_URL + '/detect-face', {
@@ -123,8 +130,9 @@ export const WebcamPanel = () => {
           const metadata = JSON.parse(text)
           console.log(metadata)
           displaySuccessToast(metadata.name, 'dark')
-          setSmpl(metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'))
-          setConfidence(metadata.attributes[0]?.value ?? 0)
+          setMetadata(metadata)
+          setScreenshot('')
+          setImageLoading(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
@@ -149,7 +157,6 @@ export const WebcamPanel = () => {
     ;(async function () {
       if (screenshot) {
         setLandmarkedPhoto('')
-        setSmpl('')
         const _hash = '0x' + sha256(screenshot)
         setImgSrc(screenshot)
         setHash(_hash)
@@ -157,6 +164,9 @@ export const WebcamPanel = () => {
       }
     })()
   }, [screenshot])
+
+  // TODO take the user back if they hav
+  // TODO add hover over to see original image when smpl is up
 
   return (
     <>
@@ -174,7 +184,7 @@ export const WebcamPanel = () => {
                 <img
                   width={512}
                   height={512}
-                  src={smpl || imgSrc}
+                  src={metadata?.smpl_image || imgSrc}
                   alt="photo"
                   onMouseEnter={() => setImgSrc(screenshot)}
                   onMouseLeave={() => {
@@ -191,15 +201,23 @@ export const WebcamPanel = () => {
               )}
             </>
           )}
-          {(hash || confidence) && <Text mt={4}>{confidence || hash}</Text>}
+          {metadata ? (
+            <Text mt={4}>
+              <Text>confidence: {metadata?.attributes[0]?.value} </Text>
+              <Text>{metadata.image}</Text>
+            </Text>
+          ) : (
+            <>{hash && <Text mt={4}>{hash}</Text>}</>
+          )}
           <CenteredRow>
             <WebcamButton
               onClick={() => {
                 setScreenshot('')
+                setMetadata(undefined)
                 toast.dismiss()
               }}
             >
-              try again
+              {metadata ? 'claim another one' : 'try again'}
             </WebcamButton>
             {landmarkedPhoto && (
               <>

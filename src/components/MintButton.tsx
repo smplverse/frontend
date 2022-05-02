@@ -78,8 +78,8 @@ export const MintButton = ({
                   </PlusMinusContainer>
                   <InvertOnHover>
                     <Text onClick={onClick}>
-                      MINT {quantity} {displayAdditional && 'ADDITIONAL'} FOR Ξ
-                      {ethRequired}
+                      MINT {quantity} {displayAdditional ? 'ADDITIONAL' : ''}{' '}
+                      FOR Ξ{ethRequired}
                     </Text>
                   </InvertOnHover>
                   <PlusMinusContainer onClick={increment}>
