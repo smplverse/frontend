@@ -64,3 +64,10 @@ p {
 .Toastify__toast-theme--colored.Toastify__toast--error {
   --toastify-color-error: #ff0000;
 }
+
+@media screen and (max-width: 800px) {
+  html {
+    min-width: 800px;
+    font-size: 18px;
+  }
+}
