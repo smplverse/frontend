@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { sha256 } from 'js-sha256'
 
 import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
-import { useAvailableTokenId, useContract } from '../hooks'
+import { useAvailableTokenId, useContract, useTokenBalance } from '../hooks'
 import { API_URL } from '../constants'
 import { WaitingContext } from '../contexts'
 import { CenteredRow } from './Flex'
@@ -36,6 +36,7 @@ const WaitingContainer = styled.div`
 
 export const WebcamPanel = () => {
   const contract = useContract()
+  const tokenBalance = useTokenBalance()
 
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
   const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
@@ -165,9 +166,6 @@ export const WebcamPanel = () => {
     })()
   }, [screenshot])
 
-  // TODO take the user back if they hav
-  // TODO add hover over to see original image when smpl is up
-
   return (
     <>
       {!screenshot ? (
@@ -232,32 +230,39 @@ export const WebcamPanel = () => {
                   mt: 3,
                   flexDirection: 'column',
                   display: 'flex',
+                  alignItems: 'flex-start',
                 }}
               >
                 <Text>{metadata.name}</Text>
                 <Text>confidence: {metadata?.attributes[0]?.value} </Text>
+                <Text>
+                  clustered:{' '}
+                  {String(metadata.attributes.length === 3).toLowerCase()}
+                </Text>
               </Box>
             </>
           ) : (
             <>{hash && <Text mt={4}>{hash}</Text>}</>
           )}
           <CenteredRow>
-            {!isWaiting && (
-              <WebcamButton
-                onClick={() => {
-                  setScreenshot('')
-                  setMetadata(undefined)
-                  toast.dismiss()
-                }}
-              >
-                {metadata ? 'claim another one' : 'try again'}
-              </WebcamButton>
+            {!isWaiting && Boolean(tokenBalance) && (
+              <>
+                <WebcamButton
+                  onClick={() => {
+                    setScreenshot('')
+                    setMetadata(undefined)
+                    toast.dismiss()
+                  }}
+                >
+                  {metadata ? 'claim another one' : 'try again'}
+                </WebcamButton>
+              </>
             )}
+            {!isWaiting && !metadata && landmarkedPhoto && <EmptySpace />}
             {landmarkedPhoto && !metadata && (
               <>
-                <EmptySpace />
                 <WebcamButton onClick={!isWaiting ? upload : () => null}>
-                  {isWaiting ? (
+                  {isWaiting && Boolean(tokenBalance) ? (
                     <Spinner size={24} color={'black'} />
                   ) : (
                     <>upload</>

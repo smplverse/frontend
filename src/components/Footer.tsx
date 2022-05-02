@@ -19,8 +19,7 @@ const Link = styled.div`
   margin-top: 5px;
   text-transform: uppercase;
   &:hover {
-    background-color: #000000;
-    color: #008f11;
+    color: #ffffff;
   }
 `
 

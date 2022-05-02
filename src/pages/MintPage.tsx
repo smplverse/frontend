@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { ButtonContainer } from 'components/ButtonContainer'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Spinner, Text } from 'theme-ui'
 
 import {
@@ -41,10 +41,27 @@ const Container = styled.div`
   }
 `
 
+const WaitingIndicator = () => (
+  <>
+    <Box
+      sx={{
+        mt: 3,
+        mb: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Spinner />
+      <Text sx={{ mt: 3 }}>checking available tokens...</Text>
+    </Box>
+  </>
+)
 export const MintPage = () => {
   const tokenBalance = useTokenBalance()
   const [minting, setMinting] = useState(true)
   const isActive = useIsActive()
+
   return (
     <div
       sx={{
@@ -74,28 +91,24 @@ export const MintPage = () => {
         )}
         {isActive && (
           <>
-            {tokenBalance !== undefined ? (
+            {tokenBalance === undefined ? (
+              <WaitingIndicator />
+            ) : (
               <>
-                {tokenBalance > 0 && (
+                {Boolean(tokenBalance) && (
                   <>
                     {minting && (
                       <ClaimMenuButton onClick={() => setMinting(!minting)}>
                         <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
                       </ClaimMenuButton>
                     )}
+
                     <Container>
                       <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
                       <b>{tokenBalance}</b>
                     </Container>
                   </>
                 )}
-              </>
-            ) : (
-              <>
-                <div style={{ marginTop: 25 }} />
-                <Spinner />
-                <div style={{ marginTop: 15 }} />
-                checking available tokens...
               </>
             )}
           </>
