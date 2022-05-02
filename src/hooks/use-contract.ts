@@ -7,7 +7,7 @@ import { SMPLverse, SMPLverseArtifact } from '../contract'
 import { useProvider } from '../hooks'
 
 export const useContract = () => {
-  const [contract, setContract] = useState<Contract | null>(null)
+  const [contract, setContract] = useState<SMPLverse>()
   const provider = useProvider()
 
   useEffect(() => {
