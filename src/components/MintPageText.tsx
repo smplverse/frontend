@@ -29,7 +29,7 @@ export const MintPageText = () => (
       the metaverse, assigned to minters using facial recognition.
     </Text>
     <Text>
-      The collection comprises 7,667 synthetic face images used to develop face
+      The collection comprises 1,022 synthetic face images used to develop face
       tracking algorithms for Microsoft's mixed reality headsets.
     </Text>
     <Text>
@@ -54,7 +54,7 @@ export const MintPageText = () => (
       attributes increases.
     </Text>
     <Text>
-      11 smpls will split 55% of secondary revenue. These rare smpls are
+      11 smpls will each receive 5% of secondary revenue. These rare smpls are
       clustered by head pose.
     </Text>
     <Text>
@@ -65,18 +65,18 @@ export const MintPageText = () => (
       <Text>***</Text>
     </CenterContainer>
     <Text>
-      Like many PFP projects, SMPLverse was procedurally generated. The
-      synthetic dataset it originates from combines SMPL, a body mesh used to
-      animate avatars in virtual environments, with a generative 3D face model
-      and a library of artist-authored assets. The outputs bear a striking
-      resemblance to the metaverse avatars whose naturalism they are meant to
-      enhance.
+      Like many PFP projects, the training dataset that SMPLverse derives from
+      was procedurally generated. Its images were synthesized by combining a
+      generative 3D face model with a library of artist assets authored on
+      SMPL, a body mesh used to animate avatars in virtual environments. The
+      synthetic data bears a striking resemblance to the metaverse characters
+      whose naturalism it is meant to enhance.
     </Text>
     <Text>
       By foregrounding the dependence on hardware and software developed by
       major tech platforms, SMPLverse gives form to the
-      "centralization-in-the-loop” character of the metaverse: each NFT is a
-      tool to access the infrastructure that underlies your virtual identity.
+      "centralization-in-the-loop” character of the metaverse, allowing you to
+      access the infrastructure that underlies your virtual identity.
     </Text>
   </Container>
 )

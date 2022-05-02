@@ -1,4 +1,6 @@
 /** @jsxImportSource theme-ui */
+import styled from '@emotion/styled'
+import { MouseEventHandler, useState } from 'react'
 import { Flex, Spinner } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
@@ -12,13 +14,28 @@ import {
 } from '../hooks'
 import { ConnectButton } from './ConnectButton'
 
-export const Wallet = () => {
+const DisconnectContainer = styled.div`
+  font-size: 16px;
+  display: flex;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+`
+
+interface Props {
+  onClick: MouseEventHandler<HTMLDivElement>
+}
+
+export const Wallet = ({ onClick }: Props) => {
   const error = useError()
   const isActive = useIsActive()
   const isActivating = useIsActivating()
   const accounts = useAccounts()
   const chainId = useChainId()
   const metaMask = useMetamask()
+  const [showDisconnect, setShowDisconnect] = useState(false)
+  const disconnector = () => metaMask.deactivate()
 
   const sliceUp = (address: string) => {
     return address.slice(0, 4) + '...' + address.slice(address.length - 4)
@@ -54,9 +71,25 @@ export const Wallet = () => {
     return <ConnectButton onClick={changeChain} text="SWITCH NETWORK" />
   } else if (isActive) {
     return (
-      <ConnectButton onClick={() => metaMask.deactivate()}>
-        {accounts?.length ? sliceUp(accounts[0]) : 'DISCONNECT'}
-      </ConnectButton>
+      <DisconnectContainer
+        onMouseEnter={() => setShowDisconnect(true)}
+        onMouseLeave={() => setShowDisconnect(false)}
+      >
+        {showDisconnect ? (
+          <ConnectButton
+            onClick={(e) => {
+              disconnector()
+              onClick(e)
+            }}
+          >
+            DISCONNECT
+          </ConnectButton>
+        ) : (
+          <ConnectButton>
+            {accounts?.length ? sliceUp(accounts[0]) : 'DISCONNECT'}
+          </ConnectButton>
+        )}
+      </DisconnectContainer>
     )
   } else if (error) {
     alert(error)

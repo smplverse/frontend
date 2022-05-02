@@ -13,7 +13,12 @@ import { type SMPLverse } from '../contract'
 import { useContract, useEthBalance } from '../hooks'
 import { MintButton } from './MintButton'
 
-export const MintingPanel = () => {
+interface Props {
+  additional: string
+  containerSize: number
+}
+
+export const MintingPanel = ({ additional, containerSize }: Props) => {
   const contract = useContract() as SMPLverse
   const balance = useEthBalance()
 
@@ -63,6 +68,8 @@ export const MintingPanel = () => {
         onClick={mint}
         isLoading={isWaiting}
         small={false}
+        additional={additional}
+        containerSize={containerSize}
         quantity={quantity}
         setQuantity={setQuantity}
       />

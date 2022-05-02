@@ -8,7 +8,7 @@ export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_RINKEBY
 export const ETHERSCAN_LINK =
   'https://rinkeby.etherscan.io/address/' + CONTRACT_ADDRESS
 
-export const API_URL = 'http://localhost:8000'
+export const API_URL = 'https://api.smplverse.xyz'
 
 export const NULL_HASH =
   '0x0000000000000000000000000000000000000000000000000000000000000000'

@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react'
 
 interface Props {
   text?: string
-  onClick?: MouseEventHandler<HTMLDivElement>
+  onClick: MouseEventHandler<HTMLDivElement>
 }
 
 const SmplverseButtonContainer = styled.div`
@@ -13,6 +13,11 @@ const SmplverseButtonContainer = styled.div`
   justify-content: center;
   width: 150px;
 `
-export const SmplverseButton = ({ onClick, text }: Props) => (
-  <SmplverseButtonContainer onClick={onClick}>{text}</SmplverseButtonContainer>
-)
+
+export const SmplverseButton = ({ onClick, text }: Props) => {
+  return (
+    <SmplverseButtonContainer onClick={onClick}>
+      {text}
+    </SmplverseButtonContainer>
+  )
+}
