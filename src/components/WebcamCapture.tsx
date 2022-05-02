@@ -65,10 +65,13 @@ export const WebcamCapture = () => {
 
   const [imageLoading, setImageLoading] = useState<boolean>(false)
 
+  const [confidence, setConfidence] = useState<number>()
+
   const capture = useCallback(() => {
     const screenshot = webcamRef.current.getScreenshot()
     if (screenshot) {
       setLandmarkedPhoto('')
+      setSmpl('')
       // hash everything (including data:image/jpeg;base64,)
       const _hash = '0x' + sha256(screenshot)
       setPhoto(screenshot)
@@ -168,6 +171,7 @@ export const WebcamCapture = () => {
           console.log(metadata)
           displaySuccessToast(metadata.name, 'dark')
           setSmpl(metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'))
+          setConfidence(metadata.attributes[0]?.value ?? 0)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
@@ -187,6 +191,8 @@ export const WebcamCapture = () => {
       setIsWaiting(false)
     }
   }
+
+  console.log(confidence)
 
   return (
     <>
@@ -241,7 +247,7 @@ export const WebcamCapture = () => {
               )}
             </>
           )}
-          {hash && <Text mt={4}>{hash}</Text>}
+          {(hash || confidence) && <Text mt={4}>{confidence || hash}</Text>}
           <CenteredRow>
             <WebcamButtonContainer
               onClick={() => {

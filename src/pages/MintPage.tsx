@@ -108,12 +108,7 @@ export const MintPage = () => {
             )}
           </>
         )}
-        {tokenBalance !== undefined && tokenBalance !== 0 ? (
-          <MintingPanel additional="ADDITIONAL" containerSize={356} />
-        ) : (
-          <MintingPanel additional="" containerSize={256} />
-        )}
-
+        <MintingPanel />
         <MintPageText />
         <Footer />
       </Box>

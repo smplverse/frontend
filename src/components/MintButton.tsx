@@ -5,7 +5,7 @@ import { MouseEventHandler } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
-import { useChainId, useIsActive } from '../hooks'
+import { useChainId, useIsActive, useTokenBalance } from '../hooks'
 import { ButtonContainer } from './ButtonContainer'
 import { Wallet } from './Wallet'
 
@@ -15,8 +15,6 @@ interface Props {
   isLoading: boolean
   small: boolean
   quantity: number
-  additional: string
-  containerSize: number
   setQuantity: (quantity: number) => void
 }
 
@@ -40,17 +38,18 @@ export const MintButton = ({
   onClick,
   isLoading,
   quantity,
-  additional,
-  containerSize,
   setQuantity,
 }: Props) => {
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
+  const tokenBalance = useTokenBalance()
   const isActive = useIsActive()
+  const displayAdditional = isActive && tokenBalance && tokenBalance > 0
+
   const chainId = useChainId()
 
   const MintButtonContainer = styled(ButtonContainer)`
-    width: ${containerSize}px;
+    width: ${displayAdditional ? 356 : 256}px;
   `
   const increment = () => {
     if (quantity < 10) {
@@ -63,6 +62,7 @@ export const MintButton = ({
       setQuantity(quantity - 1)
     }
   }
+
   return (
     <>
       <MintButtonContainer>
@@ -78,7 +78,8 @@ export const MintButton = ({
                   </PlusMinusContainer>
                   <InvertOnHover>
                     <Text onClick={onClick}>
-                      MINT {quantity} {additional} FOR Ξ{ethRequired}
+                      MINT {quantity} {displayAdditional && 'ADDITIONAL'} FOR Ξ
+                      {ethRequired}
                     </Text>
                   </InvertOnHover>
                   <PlusMinusContainer onClick={increment}>

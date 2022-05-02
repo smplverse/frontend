@@ -2,12 +2,14 @@ import { WaitingContext } from '../contexts'
 import { useContext, useEffect, useState } from 'react'
 import { SMPLverse } from '../contract'
 import { useContract } from './use-contract'
+import { useIsActive } from './metamask'
 
 export const useTokenBalance = () => {
   const [balance, setBalance] = useState<number | undefined>(undefined)
   const contract = useContract() as SMPLverse
   const [signerAddress, setSignerAddress] = useState<string>()
   const { isWaiting } = useContext(WaitingContext)
+  const isActive = useIsActive()
 
   useEffect(() => {
     ;(async function () {
@@ -26,7 +28,7 @@ export const useTokenBalance = () => {
         setBalance(_balance.toNumber())
       }
     })()
-  }, [contract, signerAddress, isWaiting])
+  }, [contract, signerAddress, isWaiting, isActive])
 
   return balance
 }
