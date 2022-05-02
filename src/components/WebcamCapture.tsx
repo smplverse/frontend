@@ -38,6 +38,7 @@ const WaitingContainer = styled.div`
   justify-content: center;
   height: 513px;
   width: 513px;
+  border: 1px solid green;
 `
 
 const videoConstraints = {
@@ -61,6 +62,8 @@ export const WebcamCapture = () => {
 
   const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
+
+  const [imageLoading, setImageLoading] = useState<boolean>(false)
 
   const capture = useCallback(() => {
     const screenshot = webcamRef.current.getScreenshot()
@@ -215,18 +218,28 @@ export const WebcamCapture = () => {
               <Spinner />
             </WaitingContainer>
           ) : (
-            <img
-              width={512}
-              height={512}
-              src={smpl || imgSrc}
-              alt="photo"
-              onMouseEnter={() => setImgSrc(photo)}
-              onMouseLeave={() => {
-                if (landmarkedPhoto) {
-                  setImgSrc(landmarkedPhoto)
-                }
-              }}
-            />
+            <>
+              {!imageLoading ? (
+                <img
+                  width={512}
+                  height={512}
+                  src={smpl || imgSrc}
+                  alt="photo"
+                  onMouseEnter={() => setImgSrc(photo)}
+                  onMouseLeave={() => {
+                    if (landmarkedPhoto) {
+                      setImgSrc(landmarkedPhoto)
+                    }
+                  }}
+                  onLoadStart={() => setImageLoading(true)}
+                  onLoad={() => setImageLoading(false)}
+                />
+              ) : (
+                <WaitingContainer>
+                  <Spinner />
+                </WaitingContainer>
+              )}
+            </>
           )}
           {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
