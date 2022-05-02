@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
+import { WaitingContext } from '../contexts'
 import { SMPLverse } from 'contract'
 import { useContract } from 'hooks'
 import { sha256 } from 'js-sha256'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Webcam from 'react-webcam'
@@ -37,32 +38,41 @@ const WaitingContainer = styled.div`
   justify-content: center;
   height: 513px;
   width: 513px;
+  border: 1px solid green;
 `
 
 const videoConstraints = {
-  width: 513,
-  height: 513,
+  width: 512,
+  height: 512,
   facingMode: 'user',
 }
 
 export const WebcamCapture = () => {
   const webcamRef = useRef(null) as any
   const contract = useContract() as SMPLverse
-  const [waiting, setWaiting] = useState<boolean>(false)
+
+  const [waitingForLandmarks, setWaitingForLandmarks] = useState<boolean>()
+  const { isWaiting, setIsWaiting } = useContext(WaitingContext)
+
+  const [landmarkedPhoto, setLandmarkedPhoto] = useState<string>('')
+  const [smpl, setSmpl] = useState<string>('')
+
   const [photo, setPhoto] = useState<string>('')
-  const [landmarkedPhoto, setLanmarkedPhoto] = useState<string>('')
+  const [imgSrc, setImgSrc] = useState<string>('')
+
   const [hash, setHash] = useState<string>('')
-  const [isUploading, setIsUploading] = useState(false)
   const availableTokenId = useAvailableTokenId()
 
+  const [imageLoading, setImageLoading] = useState<boolean>(false)
+
   const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot()
-    if (imageSrc) {
-      setLanmarkedPhoto('')
-      const image = imageSrc.split(',')[1]
-      const _hash = '0x' + sha256(image)
-      console.log(image)
-      setPhoto(imageSrc)
+    const screenshot = webcamRef.current.getScreenshot()
+    if (screenshot) {
+      setLandmarkedPhoto('')
+      // hash everything (including data:image/jpeg;base64,)
+      const _hash = '0x' + sha256(screenshot)
+      setPhoto(screenshot)
+      setImgSrc(screenshot)
       setHash(_hash)
     }
   }, [webcamRef])
@@ -71,7 +81,7 @@ export const WebcamCapture = () => {
     ;(async function () {
       if (photo) {
         try {
-          setWaiting(true)
+          setWaitingForLandmarks(true)
           const res = await fetch(API_URL + '/detect-face', {
             method: 'POST',
             headers: {
@@ -79,16 +89,20 @@ export const WebcamCapture = () => {
               Accept: 'application/json',
             },
             body: JSON.stringify({
-              image: photo.split(',')[1],
+              image: photo,
             }),
           })
           const json = await res.json()
           if (!json.error) {
-            setLanmarkedPhoto('data:image/jpeg;base64,' + json.image)
+            setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
+            setImgSrc('data:image/jpeg;base64,' + json.image)
+            displaySuccessToast(
+              'face detected, hover to see original image',
+              'dark'
+            )
           } else {
             displayErrorToast(json.error, 'dark')
           }
-          setWaiting(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
             displayErrorToast(
@@ -96,8 +110,8 @@ export const WebcamCapture = () => {
               'dark'
             )
           }
-          setWaiting(false)
         }
+        setWaitingForLandmarks(false)
       }
     })()
   }, [photo])
@@ -113,11 +127,56 @@ export const WebcamCapture = () => {
       ) {
         return
       }
-      setIsUploading(true)
+      setIsWaiting(true)
       try {
+        console.log(availableTokenId.toNumber())
         const tx = await contract.uploadImage(hash, availableTokenId)
-        displaySuccessToast(tx.hash, 'dark')
-        setIsUploading(false)
+        // TODO okay there is an issue with indexing, or ownership
+        // I think we are using 1-7667 for uploads and _ownerships uses 0-7667
+        // TODO another issue is that for some reason the multiple mint gives faulty tokens
+        // first one minted is ok, then it throws
+        await tx.wait()
+        displaySuccessToast(`upload successful, claiming SMPL...`, 'dark')
+        try {
+          const body = {
+            image: photo,
+            address: await contract.signer.getAddress(),
+            tokenId: availableTokenId.toNumber(),
+          }
+          console.log(body)
+          const res = await fetch(API_URL + '/get-smpl', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(body),
+          })
+          //
+          // add something went wrong, please contact ... here?
+          // in case the base64 image is lost the user would not be able to
+          // re-upload as the hash would always be different
+          //
+          // technically this should pass every time but shall assume it might fail
+          // due to network issues or sth
+          const text = await res.text()
+          if (res.status !== 200) {
+            displayErrorToast(`Error: ${text}`, 'dark')
+            console.log(text)
+          }
+          const metadata = JSON.parse(text)
+          console.log(metadata)
+          displaySuccessToast(metadata.name, 'dark')
+          setSmpl(metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'))
+        } catch (e) {
+          if (e.message == 'Failed to fetch') {
+            displayErrorToast(
+              "Couldn't connect to the backend. Please try again later.",
+              'dark'
+            )
+          }
+        }
+        setIsWaiting(false)
       } catch (e) {
         if (e.message.includes('cannot estimate gas')) {
           alert(e.message)
@@ -125,7 +184,7 @@ export const WebcamCapture = () => {
           displayErrorToast(e.message, 'dark')
         }
       }
-      setIsUploading(false)
+      setIsWaiting(false)
     }
   }
 
@@ -154,17 +213,33 @@ export const WebcamCapture = () => {
         </>
       ) : (
         <>
-          {waiting ? (
+          {waitingForLandmarks ? (
             <WaitingContainer>
               <Spinner />
             </WaitingContainer>
           ) : (
-            <img
-              width={513}
-              height={513}
-              src={landmarkedPhoto ? landmarkedPhoto : photo}
-              alt="photo"
-            />
+            <>
+              {!imageLoading ? (
+                <img
+                  width={512}
+                  height={512}
+                  src={smpl || imgSrc}
+                  alt="photo"
+                  onMouseEnter={() => setImgSrc(photo)}
+                  onMouseLeave={() => {
+                    if (landmarkedPhoto) {
+                      setImgSrc(landmarkedPhoto)
+                    }
+                  }}
+                  onLoadStart={() => setImageLoading(true)}
+                  onLoad={() => setImageLoading(false)}
+                />
+              ) : (
+                <WaitingContainer>
+                  <Spinner />
+                </WaitingContainer>
+              )}
+            </>
           )}
           {hash && <Text mt={4}>{hash}</Text>}
           <CenteredRow>
@@ -180,9 +255,9 @@ export const WebcamCapture = () => {
               <>
                 <EmptySpace />
                 <WebcamButtonContainer
-                  onClick={!isUploading ? upload : () => null}
+                  onClick={!isWaiting ? upload : () => null}
                 >
-                  {isUploading ? (
+                  {isWaiting ? (
                     <Spinner size={24} color={'black'} />
                   ) : (
                     <>UPLOAD</>

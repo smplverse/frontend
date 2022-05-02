@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { MouseEventHandler } from 'react'
-
+import { MintPage } from '../pages/MintPage'
 import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
 import { Wallet } from './Wallet'

@@ -51,6 +51,8 @@ export interface SMPLverseInterface extends utils.Interface {
     'explicitOwnershipOf(uint256)': FunctionFragment
     'explicitOwnershipsOf(uint256[])': FunctionFragment
     'getApproved(uint256)': FunctionFragment
+    'getAvailableTokens(address)': FunctionFragment
+    'getAvailableTokensCount(address)': FunctionFragment
     'imageHash()': FunctionFragment
     'isApprovedForAll(address,address)': FunctionFragment
     'maxMint()': FunctionFragment
@@ -90,6 +92,8 @@ export interface SMPLverseInterface extends utils.Interface {
       | 'explicitOwnershipOf'
       | 'explicitOwnershipsOf'
       | 'getApproved'
+      | 'getAvailableTokens'
+      | 'getAvailableTokensCount'
       | 'imageHash'
       | 'isApprovedForAll'
       | 'maxMint'
@@ -147,6 +151,14 @@ export interface SMPLverseInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: 'getApproved',
     values: [BigNumberish]
+  ): string
+  encodeFunctionData(
+    functionFragment: 'getAvailableTokens',
+    values: [string]
+  ): string
+  encodeFunctionData(
+    functionFragment: 'getAvailableTokensCount',
+    values: [string]
   ): string
   encodeFunctionData(functionFragment: 'imageHash', values?: undefined): string
   encodeFunctionData(
@@ -245,6 +257,14 @@ export interface SMPLverseInterface extends utils.Interface {
   ): Result
   decodeFunctionResult(
     functionFragment: 'getApproved',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
+    functionFragment: 'getAvailableTokens',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
+    functionFragment: 'getAvailableTokensCount',
     data: BytesLike
   ): Result
   decodeFunctionResult(functionFragment: 'imageHash', data: BytesLike): Result
@@ -463,6 +483,16 @@ export interface SMPLverse extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>
 
+    getAvailableTokens(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber[]]>
+
+    getAvailableTokensCount(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>
+
     imageHash(overrides?: CallOverrides): Promise<[string]>
 
     isApprovedForAll(
@@ -609,6 +639,16 @@ export interface SMPLverse extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>
 
+  getAvailableTokens(
+    owner: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber[]>
+
+  getAvailableTokensCount(
+    owner: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>
+
   imageHash(overrides?: CallOverrides): Promise<string>
 
   isApprovedForAll(
@@ -745,6 +785,16 @@ export interface SMPLverse extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>
+
+    getAvailableTokens(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber[]>
+
+    getAvailableTokensCount(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>
 
     imageHash(overrides?: CallOverrides): Promise<string>
 
@@ -937,6 +987,16 @@ export interface SMPLverse extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>
 
+    getAvailableTokens(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>
+
+    getAvailableTokensCount(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>
+
     imageHash(overrides?: CallOverrides): Promise<BigNumber>
 
     isApprovedForAll(
@@ -1081,6 +1141,16 @@ export interface SMPLverse extends BaseContract {
 
     getApproved(
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>
+
+    getAvailableTokens(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>
+
+    getAvailableTokensCount(
+      owner: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>
 
