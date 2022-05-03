@@ -29,7 +29,7 @@ export const MintPageText = () => (
       the metaverse, assigned to minters using facial recognition.
     </Text>
     <Text>
-      The collection comprises 1,022 synthetic face images used to develop face
+      The collection comprises 7,667 synthetic face images used to develop face
       tracking algorithms for Microsoft's mixed reality headsets.
     </Text>
     <Text>
@@ -54,7 +54,7 @@ export const MintPageText = () => (
       attributes increases.
     </Text>
     <Text>
-      11 smpls will each receive 5% of secondary revenue. These rare smpls are
+      7 smpls will each receive 5% of secondary revenue. These rare smpls are
       clustered by head pose.
     </Text>
     <Text>
