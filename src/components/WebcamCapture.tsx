@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
+
 import { WebcamButton } from './WebcamButton'
 
 const videoConstraints = {
@@ -20,7 +21,7 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
     if (screenshot) {
       setScreenshot(screenshot)
     }
-  }, [webcamRef])
+  }, [webcamRef, setScreenshot])
 
   return (
     <>

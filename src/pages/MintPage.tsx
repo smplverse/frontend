@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { ButtonContainer } from 'components/ButtonContainer'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Box, Spinner, Text } from 'theme-ui'
 
 import {
