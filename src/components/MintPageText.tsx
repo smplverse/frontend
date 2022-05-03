@@ -26,7 +26,7 @@ export const MintPageText = () => (
   <Container>
     <Text>
       SMPLverse is an NFT collection from the computational infrastructure of
-      the metaverse, assigned to minters using facial recognition.
+      the metaverse, assigned using facial recognition.
     </Text>
     <Text>
       The collection comprises 7,667 synthetic face images used to develop face
