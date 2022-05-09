@@ -39,34 +39,15 @@ const Row = styled.div`
 export const Footer = () => (
   <CenteredColumn>
     <Row>
-      <a
-        href="https://arxiv.org/pdf/2109.15102.pdf"
-        style={{ textDecoration: 'none' }}
-      >
-        <Link>info</Link>
-      </a>
-      <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
-        <LinkRight>etherscan</LinkRight>
-      </a>
+      <Link>info</Link>
+      <LinkRight>etherscan</LinkRight>
     </Row>
     <Row>
-      <a
-        href="https://testnets.opensea.io/collection/smplverse"
-        style={{ textDecoration: 'none' }}
-      >
-        <Link>opensea</Link>
-      </a>
-      <a
-        href="https://testnets.opensea.io/collection/smplverse"
-        style={{ textDecoration: 'none' }}
-      >
-        <LinkRight>zora</LinkRight>
-      </a>
+      <Link>opensea</Link>
+      <LinkRight>zora</LinkRight>
     </Row>
     <Row>
-      <a href="https://discord.gg/6uShTxfv" style={{ textDecoration: 'none' }}>
-        <Link>discord</Link>
-      </a>
+      <Link>discord</Link>
       <a
         href="https://twitter.com/smplverse"
         style={{ textDecoration: 'none' }}
