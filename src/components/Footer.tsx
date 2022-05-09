@@ -47,7 +47,12 @@ export const Footer = () => (
       <LinkRight>zora</LinkRight>
     </Row>
     <Row>
-      <Link>discord</Link>
+      <a
+        href="https://discord.gg/2hWDykfUdq"
+        style={{ textDecoration: 'none' }}
+      >
+        <Link>discord</Link>
+      </a>
       <a
         href="https://twitter.com/smplverse"
         style={{ textDecoration: 'none' }}
