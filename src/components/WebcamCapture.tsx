@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
+import { CurrentTime } from './CurrentTime'
 
 import { WebcamButton } from './WebcamButton'
 
@@ -39,6 +40,7 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
         height={513}
         videoConstraints={videoConstraints}
       />
+      <CurrentTime />
       <WebcamButton onClick={capture}>capture photo</WebcamButton>
     </>
   )
