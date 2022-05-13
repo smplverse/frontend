@@ -19,6 +19,7 @@ interface Metadata {
   image: string
   smpl_image: string
   attributes: Array<{ [key: string]: string }>
+  external_url: string
 }
 
 const EmptySpace = styled.div`
@@ -132,7 +133,7 @@ export const WebcamPanel = () => {
           console.log(metadata)
           displaySuccessToast(metadata.name, 'dark')
           setMetadata(metadata)
-          setImgSrc(metadata.smpl_image)
+          setImgSrc(metadata.external_url)
           setImageLoading(false)
         } catch (e) {
           if (e.message == 'Failed to fetch') {
@@ -187,8 +188,8 @@ export const WebcamPanel = () => {
                     alt="photo"
                     onMouseEnter={() => setImgSrc(screenshot)}
                     onMouseLeave={() => {
-                      if (metadata?.smpl_image) {
-                        setImgSrc(metadata.smpl_image)
+                      if (metadata?.external_url) {
+                        setImgSrc(metadata.external_url)
                       }
                     }}
                   />
