@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Box, Spinner, Text } from 'theme-ui'
 
 import {
+  Copyright,
   Footer,
   Header,
   MintingPanel,
@@ -116,6 +117,7 @@ export const MintPage = () => {
         <MintingPanel />
         <MintPageText />
         <Footer />
+        <Copyright />
       </Box>
     </div>
   )

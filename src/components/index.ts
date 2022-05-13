@@ -1,5 +1,6 @@
 export { ConnectButton } from './ConnectButton'
 export { Centered, CenteredColumn, CenteredRow, Flex } from './Flex'
+export { Copyright } from './Copyright'
 export { Footer } from './Footer'
 export { Header } from './Header'
 export { Identicon } from './Identicon'

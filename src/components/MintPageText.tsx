@@ -13,10 +13,10 @@ const Container = styled.div`
   & > span {
     margin-top: 25px;
   }
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 `
 
-const CenterContainer = styled(Container)`
+const Centered = styled(Container)`
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
