@@ -1,0 +1,15 @@
+address the reroll issues post mint
+
+use local storage
+
+fully functionally-test the app
+
+mobile scale
+
+also store metadata on ipfs
+
+if there is local storage image or other sign of activity, dont show the intro screen
+
+make sure the smpl shows straight after getting it (upload to aws s3 on success)
+
+use the infura endpoint instead of ipfs for images, might be quicker
