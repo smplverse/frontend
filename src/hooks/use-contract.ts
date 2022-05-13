@@ -12,7 +12,6 @@ export const useContract = () => {
 
   useEffect(() => {
     ;(async function () {
-      console.log(provider)
       const _contract = new Contract(
         CONTRACT_ADDRESS,
         SMPLverseArtifact.abi,

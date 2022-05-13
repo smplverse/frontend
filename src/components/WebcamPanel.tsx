@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { BigNumber } from 'ethers'
 import { sha256 } from 'js-sha256'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -99,7 +100,6 @@ export const WebcamPanel = () => {
       }
       setIsWaiting(true)
       try {
-        console.log(availableTokenId.toNumber())
         const tx = await contract.uploadImage(hash, availableTokenId)
         await tx.wait()
         displaySuccessToast(`upload successful, claiming SMPL...`, 'dark')
@@ -144,6 +144,7 @@ export const WebcamPanel = () => {
           }
         }
         setIsWaiting(false)
+        setImageLoading(false)
       } catch (e) {
         if (e.message.includes('cannot estimate gas')) {
           alert(e.message)
@@ -152,6 +153,7 @@ export const WebcamPanel = () => {
         }
       }
       setIsWaiting(false)
+      setImageLoading(false)
     }
   }
 
