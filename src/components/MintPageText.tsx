@@ -27,13 +27,13 @@ export const MintPageText = () => (
     <Text>
       SMPLverse is a collection of writable NFTs that use facial recognition to
       retrieve synthetic face data from the computational infrastructure of the
-      metaverse. This data is used to develop face tracking algorithms for
-      Microsoft's mixed reality headsets.
+      metaverse. The retrieved data is used to develop face tracking algorithms
+      for Microsoft's mixed reality headsets.
     </Text>
     <Text>
-      After minting, you receive a token that allows you to submit an image
-      through the webcam interface above. Your submitted image is stored
-      on-chain as a hash.
+      After minting, you will receive a token with which you can submit an
+      image through the webcam interface above. Your submitted image will be
+      stored on-chain as a hash.
     </Text>
     <Text>
       Our facial recognition model then matches your image to a smpl. When the
@@ -56,8 +56,8 @@ export const MintPageText = () => (
       are clustered by head pose.
     </Text>
     <Text>
-      There are 1,022 tokens in total. Once all tokens have been minted, any
-      token that is transferred to a new wallet will become writable again.
+      There are 1,022 tokens in total. Once all tokens have been minted, your
+      token will become writable again, allowing you to re-roll your match.
     </Text>
   </Container>
 )
