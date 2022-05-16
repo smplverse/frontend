@@ -39,7 +39,12 @@ const Row = styled.div`
 export const Footer = () => (
   <CenteredColumn>
     <Row>
-      <Link>info</Link>
+      <a
+        href="https://arxiv.org/pdf/2109.15102.pdf"
+        style={{ textDecoration: 'none' }}
+      >
+        <Link>info</Link>
+      </a>
       <LinkRight>etherscan</LinkRight>
     </Row>
     <Row>
