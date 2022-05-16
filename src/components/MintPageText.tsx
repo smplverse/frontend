@@ -27,8 +27,8 @@ export const MintPageText = () => (
     <Text>
       SMPLverse is a collection of writable NFTs that use facial recognition to
       retrieve synthetic face data from the computational infrastructure of the
-      metaverse. The data we retrieve was developed by Microsoft to build face
-      tracking algorithms for its mixed reality headsets.
+      metaverse. The data we retrieve was synthesized by Microsoft to develop
+      face tracking algorithms for its mixed reality headsets.
     </Text>
     <Text>
       After minting, you will receive a token with which you can submit an
