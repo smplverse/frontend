@@ -25,19 +25,19 @@ const Centered = styled(Container)`
 export const MintPageText = () => (
   <Container>
     <Text>
-      SMPLverse is a collection of writable NFTs that use facial recognition to
-      retrieve synthetic face data from the computational infrastructure of the
-      metaverse. The data we retrieve was synthesized by Microsoft to develop
-      face tracking algorithms for its mixed reality headsets.
+      SMPLverse are NFTs that use facial recognition to retrieve synthetic face
+      data from the computational infrastructure of the metaverse. The data we
+      retrieve was synthesized by Microsoft to develop face tracking algorithms
+      for its mixed reality headsets.
     </Text>
     <Text>
       After minting, you will receive a token with which you can submit an
       image through the webcam interface above. Your submitted image will be
-      stored on-chain as a hash.
+      written to the token as a hash.
     </Text>
     <Text>
-      Our facial recognition model then matches your image to a smpl. When the
-      image is matched, it receives one attribute: confidence.
+      Our facial recognition model uses this hash to match your image to a
+      smpl. When the image is matched, it receives one attribute: confidence.
     </Text>
     <Text>
       Confidence assesses the likelihood that your image matches the smpl you
