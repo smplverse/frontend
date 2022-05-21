@@ -33,7 +33,7 @@ export const MintPageText = () => (
     <Text>
       After minting, you will receive a token with which you can submit an
       image through the webcam interface above. Your submitted image will be
-      written to the token as a hash.
+      written to the token as a hash. There are 1,022 tokens in total.
     </Text>
     <Text>
       Our facial recognition model uses this hash to match your image to a
@@ -54,10 +54,6 @@ export const MintPageText = () => (
     <Text>
       7 smpls will each receive 4.14% of secondary revenue. These rare smpls
       are clustered by head pose.
-    </Text>
-    <Text>
-      There are 1,022 tokens in total. Once all tokens have been minted, your
-      token will become writable again, allowing you to re-roll your match.
     </Text>
   </Container>
 )
