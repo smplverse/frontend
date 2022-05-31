@@ -45,11 +45,12 @@ export const Footer = () => (
       >
         <Link>info</Link>
       </a>
-      <LinkRight>etherscan</LinkRight>
-    </Row>
-    <Row>
-      <Link>opensea</Link>
-      <LinkRight>zora</LinkRight>
+      <a
+        href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
+        style={{ textDecoration: 'none' }}
+      >
+        <LinkRight>statement</LinkRight>
+      </a>
     </Row>
     <Row>
       <a
@@ -63,6 +64,15 @@ export const Footer = () => (
         style={{ textDecoration: 'none' }}
       >
         <LinkRight>twitter</LinkRight>
+      </a>
+    </Row>
+    <Row>
+      <Link>opensea</Link>
+      <LinkRight>zora</LinkRight>
+    </Row>
+    <Row>
+      <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
+        <Link>etherscan</Link>
       </a>
     </Row>
   </CenteredColumn>

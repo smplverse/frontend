@@ -25,8 +25,8 @@ const Centered = styled(Container)`
 export const MintPageText = () => (
   <Container>
     <Text>
-      SMPLverse are NFTs that use facial recognition to retrieve synthetic face
-      data from the computational infrastructure of the metaverse. The data we
+      SMPLverse NFTs use facial recognition to retrieve synthetic face data
+      from the computational infrastructure of the metaverse. The data we
       retrieve was synthesized by Microsoft to develop face tracking algorithms
       for its mixed reality headsets.
     </Text>
@@ -52,8 +52,8 @@ export const MintPageText = () => (
       attributes increases.
     </Text>
     <Text>
-      7 smpls will each receive 4.14% of secondary revenue. These rare smpls
-      are clustered by head pose.
+      7 smpls will split 41.4% of secondary revenue. These rare smpls are
+      clustered by head pose.
     </Text>
   </Container>
 )
