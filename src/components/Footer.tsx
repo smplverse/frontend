@@ -40,16 +40,16 @@ export const Footer = () => (
   <CenteredColumn>
     <Row>
       <a
-        href="https://arxiv.org/pdf/2109.15102.pdf"
+        href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
         style={{ textDecoration: 'none' }}
       >
         <Link>info</Link>
       </a>
       <a
-        href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
+        href="https://arxiv.org/pdf/2109.15102.pdf"
         style={{ textDecoration: 'none' }}
       >
-        <LinkRight>statement</LinkRight>
+        <LinkRight>attribution</LinkRight>
       </a>
     </Row>
     <Row>
