@@ -16,7 +16,7 @@ export const TypeLandingPage = ({ setEntered }: Props) => (
         .pauseFor(1500)
         .typeString(`<br />7,414 POLYGONS`)
         .pauseFor(1500)
-        .typeString(`<br />511 3D SCANS`)
+        .typeString(`<br />611 3D SCANS`)
         .pauseFor(1500)
         .typeString(`<br />11 TYPES OF EYEWEAR`)
         .pauseFor(1500)
