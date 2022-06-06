@@ -51,8 +51,8 @@ export const MintPageText = () => (
       attributes increases.
     </Text>
     <Text>
-      7 smpls will split 41.4% of secondary revenue. These rare smpls are
-      clustered by head pose.
+      7 smpls are each entitled to 4.14% of secondary revenue. These rare smpls
+      are clustered by head pose.
     </Text>
   </Container>
 )
