@@ -26,7 +26,7 @@ export const MintPageText = () => (
   <Container>
     <Text>
       SMPLverse NFTs use facial recognition to retrieve data synthesized by
-      Microsoft to develop face tracking algorithms for its mixed reality
+      Microsoft to train face tracking algorithms for its mixed reality
       headsets.
     </Text>
     <Text>
