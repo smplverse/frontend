@@ -14,7 +14,7 @@ export const useTokenBalance = () => {
   useEffect(() => {
     ;(async function () {
       if (contract) {
-        const _signerAddress = await contract.signer.getAddress()
+        const _signerAddress = await contract?.signer?.getAddress()
         setSignerAddress(_signerAddress)
       }
     })()
