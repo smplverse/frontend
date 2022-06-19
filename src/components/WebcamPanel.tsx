@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { BigNumber } from 'ethers'
 import { sha256 } from 'js-sha256'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -51,41 +50,6 @@ export const WebcamPanel = () => {
   const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
   const [screenshot, setScreenshot] = useState<string>('')
-
-  async function detectFace() {
-    try {
-      setWaitingForLandmarks(true)
-      const res = await fetch(API_URL + '/detect-face', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          image: screenshot,
-        }),
-      })
-      const json = await res.json()
-      if (!json.error) {
-        setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
-        setImgSrc('data:image/jpeg;base64,' + json.image)
-        displaySuccessToast(
-          'face detected, hover to see original image',
-          'dark'
-        )
-      } else {
-        displayErrorToast(json.error, 'dark')
-      }
-    } catch (e) {
-      if (e.message == 'Failed to fetch') {
-        displayErrorToast(
-          "Couldn't connect to the backend. Please try again later.",
-          'dark'
-        )
-      }
-    }
-    setWaitingForLandmarks(false)
-  }
 
   async function upload() {
     if (contract) {
@@ -159,6 +123,41 @@ export const WebcamPanel = () => {
 
   useEffect(() => {
     ;(async function () {
+      async function detectFace() {
+        try {
+          setWaitingForLandmarks(true)
+          const res = await fetch(API_URL + '/detect-face', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
+              image: screenshot,
+            }),
+          })
+          const json = await res.json()
+          if (!json.error) {
+            setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
+            setImgSrc('data:image/jpeg;base64,' + json.image)
+            displaySuccessToast(
+              'face detected, hover to see original image',
+              'dark'
+            )
+          } else {
+            displayErrorToast(json.error, 'dark')
+          }
+        } catch (e) {
+          if (e.message == 'Failed to fetch') {
+            displayErrorToast(
+              "Couldn't connect to the backend. Please try again later.",
+              'dark'
+            )
+          }
+        }
+        setWaitingForLandmarks(false)
+      }
+
       if (screenshot) {
         setLandmarkedPhoto('')
         const _hash = '0x' + sha256(screenshot)

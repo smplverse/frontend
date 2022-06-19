@@ -16,12 +16,6 @@ const Container = styled.div`
   margin-bottom: 60px;
 `
 
-const Centered = styled(Container)`
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-`
-
 export const MintPageText = () => (
   <Container>
     <Text>

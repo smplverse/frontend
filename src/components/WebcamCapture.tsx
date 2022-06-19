@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
-import { CurrentTime } from './CurrentTime'
 
+import { CurrentTime } from './CurrentTime'
 import { WebcamButton } from './WebcamButton'
 
 const videoConstraints = {
