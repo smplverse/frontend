@@ -5,7 +5,7 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install --frozen-lockfile
 
-FROM node:current-alpine as builder
+FROM node:18.0.0-buster as builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
