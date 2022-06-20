@@ -17,4 +17,4 @@ ENV NODE_ENV production
 COPY --from=builder /app/build ./
 RUN npm i -g serve
 EXPOSE 3000
-CMD ["serve", "build", "-l", "3000"]
+CMD ["serve", "-s", "build"]
