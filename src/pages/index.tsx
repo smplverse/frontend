@@ -37,10 +37,11 @@ const Home: NextPage = () => {
         <meta name="robots" content="index,follow" />
         <meta name="googlebot" content="index,follow" />
         <meta name="Keywords" content="SMPLverse, NFT, art" />
+        {/*
         <meta
           http-equiv="Content-Security-Policy"
           content="
-            default-src 'self' rinkeby.infura.io;
+            default-src 'self' rinkeby.infura.io api.smplverse.xyz;
             font-src 'self';
             img-src 'self';
             manifest-src 'self';
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
             script-src 'self' 'unsafe-eval';
           "
         />
+      * */}
         <meta http-equiv="X-Content-Type-Options" content="nosniff" />
         <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
         <meta
