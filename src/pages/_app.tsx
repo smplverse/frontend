@@ -1,10 +1,12 @@
-import './index.css'
+import '../index.css'
+
 import type { AppProps } from 'next/app'
-import { theme } from '../theme'
 import { useState } from 'react'
 import { ThemeProvider } from 'theme-ui'
 import { InitializeColorMode } from 'theme-ui'
+
 import { WaitingContext } from '../contexts'
+import { theme } from '../theme'
 
 export const App = ({ Component, pageProps }: AppProps) => {
   const [isWaiting, setIsWaiting] = useState(false)
