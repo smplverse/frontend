@@ -4,7 +4,7 @@ import { StrictMode } from 'react'
 import { ThemeProvider } from 'theme-ui'
 import { InitializeColorMode } from 'theme-ui'
 import { theme } from './theme'
-import { App } from './pages/App'
+import { App } from './pages/_app'
 import { createRoot } from 'react-dom/client'
 
 createRoot(document.getElementById('root') || new HTMLElement()).render(
