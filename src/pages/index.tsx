@@ -5,8 +5,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
 
-import { LandingPage } from './LandingPage'
-import { MintPage } from './MintPage'
+import { LandingPage, MintPage } from '../components'
 
 const Home: NextPage = () => {
   const [entered, setEntered] = useState(false)
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+        <link rel="icon" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta
@@ -56,8 +55,8 @@ const Home: NextPage = () => {
           http-equiv="Strict-Transport-Security"
           content="max-age=63072000; includeSubDomains; preload;"
         />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <link rel="manifest" href="/manifest.json" />
         <title>SMPLverse</title>
       </Head>
       <>

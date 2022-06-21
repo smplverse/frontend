@@ -1,6 +1,6 @@
 import { Box } from 'theme-ui'
 
-import { TypeLandingPage } from '../components'
+import { TypeLandingPage } from './TypeLandingPage'
 
 interface Props {
   setEntered: (value: boolean) => void

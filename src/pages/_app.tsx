@@ -8,7 +8,7 @@ import { InitializeColorMode } from 'theme-ui'
 import { WaitingContext } from '../contexts'
 import { theme } from '../theme'
 
-export const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps) => {
   const [isWaiting, setIsWaiting] = useState(false)
   return (
     <>
@@ -21,3 +21,5 @@ export const App = ({ Component, pageProps }: AppProps) => {
     </>
   )
 }
+
+export default App
