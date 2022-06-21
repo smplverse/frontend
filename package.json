@@ -64,7 +64,9 @@
     "react-webcam": "^7.0.1",
     "remove": "^0.1.5",
     "theme-ui": "^0.14.2",
-    "typewriter-effect": "^2.18.2"
+    "typewriter-effect": "^2.18.2",
+    "nth-check": "^2.0.1",
+    "color-string": "^1.5.5"
   },
   "browserslist": {
     "production": [
