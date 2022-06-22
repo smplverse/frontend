@@ -11,7 +11,7 @@ interface LinkProps {
 const Link = styled.div<LinkProps>`
   border-radius: 1rem;
   background-color: #000000;
-  font-family: IBM Plex Mono, 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
   line-height: 1.25em;
   color: #008f11;

@@ -10,7 +10,7 @@ import { Box } from 'theme-ui'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
-  font-family: IBM Plex Mono, 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 `
 
 interface Props {
