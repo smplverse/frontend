@@ -8,6 +8,8 @@ import { InitializeColorMode } from 'theme-ui'
 import { WaitingContext } from '../contexts'
 import { theme } from '../theme'
 
+import dynamic from 'next/dynamic'
+
 const App = ({ Component, pageProps }: AppProps) => {
   const [isWaiting, setIsWaiting] = useState(false)
   return (
@@ -22,4 +24,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default App
+export default dynamic(() => Promise.resolve(App), {
+  ssr: false,
+})
