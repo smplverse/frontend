@@ -13,6 +13,7 @@ import {
   useMetamask,
 } from '../hooks'
 import { ConnectButton } from './ConnectButton'
+import { sliceUp } from '../utils'
 
 const DisconnectContainer = styled.div`
   font-size: 16px;
@@ -36,10 +37,6 @@ export const Wallet = ({ onClick }: Props) => {
   const metaMask = useMetamask()
   const [showDisconnect, setShowDisconnect] = useState(false)
   const disconnector = () => metaMask.deactivate()
-
-  const sliceUp = (address: string) => {
-    return address.slice(0, 4) + '...' + address.slice(address.length - 4)
-  }
 
   const connect = async () => {
     await metaMask.activate()

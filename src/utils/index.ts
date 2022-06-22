@@ -12,3 +12,7 @@ export function getLibrary(provider: any): Web3Provider {
   library.pollingInterval = 15_000
   return library
 }
+
+export const sliceUp = (address: string) => {
+  return address.slice(0, 4) + '...' + address.slice(address.length - 4)
+}

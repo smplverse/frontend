@@ -1,9 +1,14 @@
 import styled from '@emotion/styled'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 import { ETHERSCAN_LINK } from '../constants'
 import { CenteredColumn } from './Flex'
 
-const Link = styled.div`
+interface LinkProps {
+  width?: number
+}
+
+const Link = styled.div<LinkProps>`
   border-radius: 1rem;
   background-color: #000000;
   font-family: 'IBM Plex Mono', monospace;
@@ -14,7 +19,7 @@ const Link = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: ${(props) => props.width}px;
   margin-top: 7px;
   margin-bottom: 7px;
   margin-right: 6px;
@@ -36,44 +41,48 @@ const Row = styled.div`
   flex-direction: row;
 `
 
-export const Footer = () => (
-  <CenteredColumn>
-    <Row>
-      <a
-        href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
-        style={{ textDecoration: 'none' }}
-      >
-        <Link>info</Link>
-      </a>
-      <a
-        href="https://arxiv.org/pdf/2109.15102.pdf"
-        style={{ textDecoration: 'none' }}
-      >
-        <LinkRight>attribution</LinkRight>
-      </a>
-    </Row>
-    <Row>
-      <a
-        href="https://discord.gg/2hWDykfUdq"
-        style={{ textDecoration: 'none' }}
-      >
-        <Link>discord</Link>
-      </a>
-      <a
-        href="https://twitter.com/smplverse"
-        style={{ textDecoration: 'none' }}
-      >
-        <LinkRight>twitter</LinkRight>
-      </a>
-    </Row>
-    <Row>
-      <Link>opensea</Link>
-      <LinkRight>zora</LinkRight>
-    </Row>
-    <Row>
-      <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
-        <Link>etherscan</Link>
-      </a>
-    </Row>
-  </CenteredColumn>
-)
+export const Footer = () => {
+  const breakpointIndex = useBreakpointIndex()
+  const x = breakpointIndex > 2 ? 250 : 150
+  return (
+    <CenteredColumn>
+      <Row>
+        <a
+          href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
+          style={{ textDecoration: 'none' }}
+        >
+          <Link width={x}>info</Link>
+        </a>
+        <a
+          href="https://arxiv.org/pdf/2109.15102.pdf"
+          style={{ textDecoration: 'none' }}
+        >
+          <LinkRight width={x}>attribution</LinkRight>
+        </a>
+      </Row>
+      <Row>
+        <a
+          href="https://discord.gg/2hWDykfUdq"
+          style={{ textDecoration: 'none' }}
+        >
+          <Link width={x}>discord</Link>
+        </a>
+        <a
+          href="https://twitter.com/smplverse"
+          style={{ textDecoration: 'none' }}
+        >
+          <LinkRight width={x}>twitter</LinkRight>
+        </a>
+      </Row>
+      <Row>
+        <Link width={x}>opensea</Link>
+        <LinkRight width={x}>zora</LinkRight>
+      </Row>
+      <Row>
+        <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
+          <Link width={x}>etherscan</Link>
+        </a>
+      </Row>
+    </CenteredColumn>
+  )
+}

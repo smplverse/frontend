@@ -11,7 +11,7 @@ export const Copyright = () => {
   return (
     <CopyrightContainer
       sx={{
-        p: 5,
+        p: [4, 5],
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

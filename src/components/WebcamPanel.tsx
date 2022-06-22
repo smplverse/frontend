@@ -13,6 +13,7 @@ import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
 import { WebcamButton } from './WebcamButton'
 import { WebcamCapture } from './WebcamCapture'
 import { useBreakpointIndex } from '@theme-ui/match-media'
+import { sliceUp } from '../utils'
 
 interface Metadata {
   name: string
@@ -248,7 +249,13 @@ export const WebcamPanel = () => {
               </Box>
             </>
           ) : (
-            <>{hash && <Text mt={4}>{hash}</Text>}</>
+            <>
+              {hash && (
+                <Text mt={4}>
+                  {breakpointIndex < 2 ? 'img_hash: ' + sliceUp(hash) : hash}
+                </Text>
+              )}
+            </>
           )}
           <CenteredRow>
             {!isWaiting && Boolean(tokenBalance) && (

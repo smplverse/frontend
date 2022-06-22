@@ -8,8 +8,12 @@ interface Props {
   onClick: () => void
 }
 
-const WebcamButtonContainer = styled(ButtonContainer)`
-  width: 230px;
+interface ButtonProps {
+  width: number
+}
+
+const WebcamButtonContainer = styled(ButtonContainer)<ButtonProps>`
+  width: ${(props) => props.width}px;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -22,7 +26,7 @@ const InvertOnHover = styled.div`
 `
 
 export const WebcamButton = ({ children, onClick }: Props) => (
-  <WebcamButtonContainer onClick={onClick}>
+  <WebcamButtonContainer onClick={onClick} width={150}>
     <InvertOnHover>{children}</InvertOnHover>
   </WebcamButtonContainer>
 )
