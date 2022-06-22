@@ -1,5 +1,5 @@
 p {
-  font-family: sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
   line-height: 1.25em;
   margin: 20px;
@@ -14,7 +14,7 @@ p {
 .top-nav {
   color: #00ff41;
   /* have a hover-over color  hover: ; */
-  font-family: sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +39,7 @@ p {
 .links {
   border: 1px solid #00ff41;
   border-radius: 1rem;
-  font-family: sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
   line-height: 1.25em;
   color: #00ff41;
