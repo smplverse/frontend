@@ -18,7 +18,6 @@ import { sliceUp } from '../utils'
 const DisconnectContainer = styled.div`
   font-size: 16px;
   display: flex;
-  width: 150px;
   justify-content: center;
   align-items: center;
   user-select: none;

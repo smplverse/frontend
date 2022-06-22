@@ -11,7 +11,6 @@ const SmplverseButtonContainer = styled.div`
   user-select: none;
   display: flex;
   justify-content: center;
-  width: 150px;
 `
 
 export const SmplverseButton = ({ onClick, text }: Props) => {

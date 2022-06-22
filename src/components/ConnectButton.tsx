@@ -14,7 +14,6 @@ const LargeButtonContainer = styled.div`
   user-select: none;
   display: flex;
   justify-content: center;
-  width: 150px;
   &:hover {
     color: white;
   }

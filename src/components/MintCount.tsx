@@ -7,7 +7,6 @@ import { useMintPrice, useNumberOfRemaining } from '../hooks'
 const MintCountContainer = styled.div`
   font-size: 16px;
   display: flex;
-  width: 150px;
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -44,8 +43,8 @@ export const MintCount = () => {
                 strokeWidth={3}
                 sx={{ margin: 'none' }}
               />
-            )}{' '}
-            / 7667
+            )}
+            /7667
           </Text>
         )}
       </MintCountContainer>
