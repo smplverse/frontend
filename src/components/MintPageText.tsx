@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  font-family: IBM Plex Mono, 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   color: #ffffff;
   display: flex;
   flex-direction: column;
