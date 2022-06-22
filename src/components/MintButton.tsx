@@ -49,7 +49,7 @@ export const MintButton = ({
   const chainId = useChainId()
 
   const MintButtonContainer = styled(ButtonContainer)`
-    width: ${displayAdditional ? 356 : 256}px;
+    width: ${displayAdditional ? 326 : 226}px;
   `
   const increment = () => {
     if (quantity < 10) {
@@ -78,8 +78,8 @@ export const MintButton = ({
                   </PlusMinusContainer>
                   <InvertOnHover>
                     <Text onClick={onClick}>
-                      MINT {quantity} {displayAdditional ? 'ADDITIONAL' : ''}{' '}
-                      FOR Ξ{ethRequired}
+                      MINT {quantity} {displayAdditional ? 'MORE' : ''} FOR Ξ
+                      {ethRequired}
                     </Text>
                   </InvertOnHover>
                   <PlusMinusContainer onClick={increment}>

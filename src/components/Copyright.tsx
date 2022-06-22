@@ -13,8 +13,9 @@ export const Copyright = () => {
       sx={{
         p: [4, 5],
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
+        textAlign: 'center',
       }}
     >
       SMPLverse is copylefted under the&nbsp;
@@ -24,7 +25,6 @@ export const Copyright = () => {
       >
         Viral Public License
       </a>
-      .
     </CopyrightContainer>
   )
 }

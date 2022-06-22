@@ -26,6 +26,7 @@ export const Header = ({ onClick }: Props) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         mb: [3, 0],
+        mt: [2, 0],
       }}
     >
       <Box sx={{ flex: 1 }}>
