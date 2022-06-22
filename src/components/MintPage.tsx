@@ -32,7 +32,7 @@ const InvertOnHover = styled.div`
   }
 `
 const Container = styled.div`
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: IBM Plex Mono, 'IBM Plex Mono', monospace;
   color: 'green';
   text-justify: center;
   width: 512px;

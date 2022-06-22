@@ -17,8 +17,8 @@ export const theme: Theme = {
     useColorSchemeMediaQuery: true,
   },
   fonts: {
-    body: '"IBM Plex Mono", monospace',
-    monospace: '"IBM Plex Mono", monospace',
+    body: 'IBM Plex Mono, "IBM Plex Mono", monospace',
+    monospace: 'IBM Plex Mono, "IBM Plex Mono", monospace',
     heading: 'inherit',
   },
   colors: {
