@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 import { CurrentTime } from './CurrentTime'
 import { WebcamButton } from './WebcamButton'
@@ -24,6 +25,9 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
     }
   }, [webcamRef, setScreenshot])
 
+  const breakpointIndex = useBreakpointIndex()
+  const x = breakpointIndex > 2 ? 513 : 256
+
   return (
     <>
       <Webcam
@@ -36,8 +40,8 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
         imageSmoothing={false}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        width={513}
-        height={513}
+        width={x}
+        height={x}
         videoConstraints={videoConstraints}
       />
       <CurrentTime />

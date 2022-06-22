@@ -107,7 +107,6 @@ export const MintPage = () => {
                         <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
                       </ClaimMenuButton>
                     )}
-
                     <Container>
                       <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
                       <b>{tokenBalance}</b>

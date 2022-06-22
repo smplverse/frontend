@@ -12,6 +12,7 @@ import { CenteredRow } from './Flex'
 import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
 import { WebcamButton } from './WebcamButton'
 import { WebcamCapture } from './WebcamCapture'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 
 interface Metadata {
   name: string
@@ -50,6 +51,9 @@ export const WebcamPanel = () => {
   const [hash, setHash] = useState<string>('')
   const availableTokenId = useAvailableTokenId()
   const [screenshot, setScreenshot] = useState<string>('')
+
+  const breakpointIndex = useBreakpointIndex()
+  const x = breakpointIndex > 2 ? 513 : 256
 
   async function upload() {
     if (contract) {
@@ -183,8 +187,8 @@ export const WebcamPanel = () => {
               {!imageLoading ? (
                 metadata?.smpl_image ? (
                   <img
-                    width={512}
-                    height={512}
+                    width={x}
+                    height={x}
                     src={imgSrc}
                     alt="photo"
                     onMouseEnter={() => setImgSrc(screenshot)}
@@ -196,8 +200,8 @@ export const WebcamPanel = () => {
                   />
                 ) : (
                   <img
-                    width={512}
-                    height={512}
+                    width={x}
+                    height={x}
                     src={imgSrc}
                     alt="photo"
                     onMouseEnter={() => setImgSrc(screenshot)}
