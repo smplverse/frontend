@@ -51,10 +51,10 @@ const Home: NextPage = () => {
           "
         />
       * */}
-        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-        <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
         <meta
-          http-equiv="Strict-Transport-Security"
+          httpEquiv="Strict-Transport-Security"
           content="max-age=63072000; includeSubDomains; preload;"
         />
         <link rel="apple-touch-icon" href="/logo192.png" />

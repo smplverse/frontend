@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 import { ButtonContainer } from 'components/ButtonContainer'
 import { useState } from 'react'
 import { Box, Spinner, Text } from 'theme-ui'
@@ -63,6 +64,9 @@ export const MintPage = () => {
   const [minting, setMinting] = useState(true)
   const isActive = useIsActive()
 
+  const breakpointIndex = useBreakpointIndex()
+  const x = breakpointIndex > 2 ? 513 : 256
+
   return (
     <div
       sx={{
@@ -77,14 +81,14 @@ export const MintPage = () => {
         sx={{
           display: 'flex',
           flex: '1 1 auto',
-          p: 3,
+          p: [1, 3],
           alignItems: 'center',
           flexDirection: 'column',
         }}
       >
         {minting ? (
           <>
-            <SmplImage />
+            <SmplImage width={x} height={x} />
             <MintTime />
           </>
         ) : (

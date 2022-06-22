@@ -11,13 +11,11 @@ export const LandingPage = ({ setEntered }: Props) => (
     sx={{
       display: 'flex',
       flex: '1 1 auto',
-      p: 3,
+      p: [1, 3],
       alignItems: 'center',
       flexDirection: 'column',
     }}
   >
-    <div style={{ fontSize: 15, width: 550 }}>
-      <TypeLandingPage setEntered={setEntered} />
-    </div>
+    <TypeLandingPage setEntered={setEntered} />
   </Box>
 )

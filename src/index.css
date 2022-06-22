@@ -67,7 +67,6 @@ p {
 
 @media screen and (max-width: 800px) {
   html {
-    min-width: 800px;
-    font-size: 18px;
+    font-size: 16px;
   }
 }

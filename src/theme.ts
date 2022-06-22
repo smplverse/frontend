@@ -216,14 +216,14 @@ export const theme: Theme = {
     primary: {
       bg: 'elevated',
       color: 'text',
-      p: [3, 4],
+      p: [1, 2, 3, 4],
       borderRadius: 'extra',
       boxShadow: 'card',
       overflow: 'hidden',
     },
     sunken: {
       bg: 'sunken',
-      p: [3, 4],
+      p: [1, 2, 3, 4],
       borderRadius: 'extra',
       'th, td': { borderColor: 'muted' },
     },

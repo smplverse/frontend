@@ -1,8 +1,13 @@
 import styled from '@emotion/styled'
 
-export const SmplImage = styled.div`
+interface ImageProps {
+  width?: string | number
+  height?: string | number
+}
+
+export const SmplImage = styled.div<ImageProps>`
   background: url('/smpl.png');
   background-size: contain;
-  width: 513px;
-  height: 513px;
+  width: ${(props) => (props?.width ? props?.width : 513)}px;
+  height: ${(props) => (props?.height ? props?.height : 513)}px;
 `
