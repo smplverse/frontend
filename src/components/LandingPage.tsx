@@ -16,6 +16,8 @@ export const LandingPage = ({ setEntered }: Props) => (
       flexDirection: 'column',
     }}
   >
-    <TypeLandingPage setEntered={setEntered} />
+    <div style={{ fontSize: 15, width: 550 }}>
+      <TypeLandingPage setEntered={setEntered} />
+    </div>
   </Box>
 )
