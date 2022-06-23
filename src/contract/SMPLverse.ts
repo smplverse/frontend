@@ -43,6 +43,7 @@ export declare namespace ERC721A {
 
 export interface SMPLverseInterface extends utils.Interface {
   functions: {
+    '_merkleRoot()': FunctionFragment
     'approve(address,uint256)': FunctionFragment
     'balanceOf(address)': FunctionFragment
     'baseTokenURI()': FunctionFragment
@@ -68,8 +69,10 @@ export interface SMPLverseInterface extends utils.Interface {
     'safeTransferFrom(address,address,uint256,bytes)': FunctionFragment
     'setApprovalForAll(address,bool)': FunctionFragment
     'setBaseTokenURI(string)': FunctionFragment
+    'setMerkleRoot(bytes32)': FunctionFragment
     'supportsInterface(bytes4)': FunctionFragment
     'symbol()': FunctionFragment
+    'toggleWhitelistMint()': FunctionFragment
     'tokenURI(uint256)': FunctionFragment
     'tokensOfOwner(address)': FunctionFragment
     'tokensOfOwnerIn(address,uint256,uint256)': FunctionFragment
@@ -79,11 +82,16 @@ export interface SMPLverseInterface extends utils.Interface {
     'unpause()': FunctionFragment
     'uploadImage(bytes32,uint256)': FunctionFragment
     'uploads(uint256)': FunctionFragment
+    'verifyProof(bytes32[],bytes32)': FunctionFragment
+    'whitelistMint(uint256,bytes32[])': FunctionFragment
+    'whitelistMintOpen()': FunctionFragment
+    'whitelistMintPrice()': FunctionFragment
     'withdraw()': FunctionFragment
   }
 
   getFunction(
     nameOrSignatureOrTopic:
+      | '_merkleRoot'
       | 'approve'
       | 'balanceOf'
       | 'baseTokenURI'
@@ -109,8 +117,10 @@ export interface SMPLverseInterface extends utils.Interface {
       | 'safeTransferFrom(address,address,uint256,bytes)'
       | 'setApprovalForAll'
       | 'setBaseTokenURI'
+      | 'setMerkleRoot'
       | 'supportsInterface'
       | 'symbol'
+      | 'toggleWhitelistMint'
       | 'tokenURI'
       | 'tokensOfOwner'
       | 'tokensOfOwnerIn'
@@ -120,9 +130,17 @@ export interface SMPLverseInterface extends utils.Interface {
       | 'unpause'
       | 'uploadImage'
       | 'uploads'
+      | 'verifyProof'
+      | 'whitelistMint'
+      | 'whitelistMintOpen'
+      | 'whitelistMintPrice'
       | 'withdraw'
   ): FunctionFragment
 
+  encodeFunctionData(
+    functionFragment: '_merkleRoot',
+    values?: undefined
+  ): string
   encodeFunctionData(
     functionFragment: 'approve',
     values: [string, BigNumberish]
@@ -197,10 +215,18 @@ export interface SMPLverseInterface extends utils.Interface {
     values: [string]
   ): string
   encodeFunctionData(
+    functionFragment: 'setMerkleRoot',
+    values: [BytesLike]
+  ): string
+  encodeFunctionData(
     functionFragment: 'supportsInterface',
     values: [BytesLike]
   ): string
   encodeFunctionData(functionFragment: 'symbol', values?: undefined): string
+  encodeFunctionData(
+    functionFragment: 'toggleWhitelistMint',
+    values?: undefined
+  ): string
   encodeFunctionData(
     functionFragment: 'tokenURI',
     values: [BigNumberish]
@@ -234,8 +260,28 @@ export interface SMPLverseInterface extends utils.Interface {
     functionFragment: 'uploads',
     values: [BigNumberish]
   ): string
+  encodeFunctionData(
+    functionFragment: 'verifyProof',
+    values: [BytesLike[], BytesLike]
+  ): string
+  encodeFunctionData(
+    functionFragment: 'whitelistMint',
+    values: [BigNumberish, BytesLike[]]
+  ): string
+  encodeFunctionData(
+    functionFragment: 'whitelistMintOpen',
+    values?: undefined
+  ): string
+  encodeFunctionData(
+    functionFragment: 'whitelistMintPrice',
+    values?: undefined
+  ): string
   encodeFunctionData(functionFragment: 'withdraw', values?: undefined): string
 
+  decodeFunctionResult(
+    functionFragment: '_merkleRoot',
+    data: BytesLike
+  ): Result
   decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result
   decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result
   decodeFunctionResult(
@@ -301,10 +347,18 @@ export interface SMPLverseInterface extends utils.Interface {
     data: BytesLike
   ): Result
   decodeFunctionResult(
+    functionFragment: 'setMerkleRoot',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
     functionFragment: 'supportsInterface',
     data: BytesLike
   ): Result
   decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result
+  decodeFunctionResult(
+    functionFragment: 'toggleWhitelistMint',
+    data: BytesLike
+  ): Result
   decodeFunctionResult(functionFragment: 'tokenURI', data: BytesLike): Result
   decodeFunctionResult(
     functionFragment: 'tokensOfOwner',
@@ -332,6 +386,22 @@ export interface SMPLverseInterface extends utils.Interface {
     data: BytesLike
   ): Result
   decodeFunctionResult(functionFragment: 'uploads', data: BytesLike): Result
+  decodeFunctionResult(
+    functionFragment: 'verifyProof',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
+    functionFragment: 'whitelistMint',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
+    functionFragment: 'whitelistMintOpen',
+    data: BytesLike
+  ): Result
+  decodeFunctionResult(
+    functionFragment: 'whitelistMintPrice',
+    data: BytesLike
+  ): Result
   decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result
 
   events: {
@@ -454,6 +524,8 @@ export interface SMPLverse extends BaseContract {
   removeListener: OnEvent<this>
 
   functions: {
+    _merkleRoot(overrides?: CallOverrides): Promise<[string]>
+
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -555,12 +627,21 @@ export interface SMPLverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>
 
+    setMerkleRoot(
+      _root: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<[boolean]>
 
     symbol(overrides?: CallOverrides): Promise<[string]>
+
+    toggleWhitelistMint(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>
 
     tokenURI(
       _tokenId: BigNumberish,
@@ -605,10 +686,28 @@ export interface SMPLverse extends BaseContract {
 
     uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>
 
+    verifyProof(
+      proof: BytesLike[],
+      leaf: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>
+
+    whitelistMint(
+      quantity: BigNumberish,
+      proof: BytesLike[],
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>
+
+    whitelistMintOpen(overrides?: CallOverrides): Promise<[boolean]>
+
+    whitelistMintPrice(overrides?: CallOverrides): Promise<[BigNumber]>
+
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>
   }
+
+  _merkleRoot(overrides?: CallOverrides): Promise<string>
 
   approve(
     to: string,
@@ -708,12 +807,21 @@ export interface SMPLverse extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>
 
+  setMerkleRoot(
+    _root: BytesLike,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>
+
   supportsInterface(
     interfaceId: BytesLike,
     overrides?: CallOverrides
   ): Promise<boolean>
 
   symbol(overrides?: CallOverrides): Promise<string>
+
+  toggleWhitelistMint(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>
 
   tokenURI(_tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>
 
@@ -752,11 +860,29 @@ export interface SMPLverse extends BaseContract {
 
   uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>
 
+  verifyProof(
+    proof: BytesLike[],
+    leaf: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<boolean>
+
+  whitelistMint(
+    quantity: BigNumberish,
+    proof: BytesLike[],
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>
+
+  whitelistMintOpen(overrides?: CallOverrides): Promise<boolean>
+
+  whitelistMintPrice(overrides?: CallOverrides): Promise<BigNumber>
+
   withdraw(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>
 
   callStatic: {
+    _merkleRoot(overrides?: CallOverrides): Promise<string>
+
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -845,12 +971,16 @@ export interface SMPLverse extends BaseContract {
 
     setBaseTokenURI(_uri: string, overrides?: CallOverrides): Promise<void>
 
+    setMerkleRoot(_root: BytesLike, overrides?: CallOverrides): Promise<void>
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<boolean>
 
     symbol(overrides?: CallOverrides): Promise<string>
+
+    toggleWhitelistMint(overrides?: CallOverrides): Promise<void>
 
     tokenURI(
       _tokenId: BigNumberish,
@@ -892,6 +1022,22 @@ export interface SMPLverse extends BaseContract {
     ): Promise<void>
 
     uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>
+
+    verifyProof(
+      proof: BytesLike[],
+      leaf: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>
+
+    whitelistMint(
+      quantity: BigNumberish,
+      proof: BytesLike[],
+      overrides?: CallOverrides
+    ): Promise<void>
+
+    whitelistMintOpen(overrides?: CallOverrides): Promise<boolean>
+
+    whitelistMintPrice(overrides?: CallOverrides): Promise<BigNumber>
 
     withdraw(overrides?: CallOverrides): Promise<void>
   }
@@ -958,6 +1104,8 @@ export interface SMPLverse extends BaseContract {
   }
 
   estimateGas: {
+    _merkleRoot(overrides?: CallOverrides): Promise<BigNumber>
+
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -1059,12 +1207,21 @@ export interface SMPLverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>
 
+    setMerkleRoot(
+      _root: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>
+
+    toggleWhitelistMint(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>
 
     tokenURI(
       _tokenId: BigNumberish,
@@ -1106,12 +1263,30 @@ export interface SMPLverse extends BaseContract {
 
     uploads(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>
 
+    verifyProof(
+      proof: BytesLike[],
+      leaf: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>
+
+    whitelistMint(
+      quantity: BigNumberish,
+      proof: BytesLike[],
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>
+
+    whitelistMintOpen(overrides?: CallOverrides): Promise<BigNumber>
+
+    whitelistMintPrice(overrides?: CallOverrides): Promise<BigNumber>
+
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>
   }
 
   populateTransaction: {
+    _merkleRoot(overrides?: CallOverrides): Promise<PopulatedTransaction>
+
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -1216,12 +1391,21 @@ export interface SMPLverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>
 
+    setMerkleRoot(
+      _root: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>
+
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>
+
+    toggleWhitelistMint(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>
 
     tokenURI(
       _tokenId: BigNumberish,
@@ -1266,6 +1450,24 @@ export interface SMPLverse extends BaseContract {
 
     uploads(
       arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>
+
+    verifyProof(
+      proof: BytesLike[],
+      leaf: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>
+
+    whitelistMint(
+      quantity: BigNumberish,
+      proof: BytesLike[],
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>
+
+    whitelistMintOpen(overrides?: CallOverrides): Promise<PopulatedTransaction>
+
+    whitelistMintPrice(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>
 
