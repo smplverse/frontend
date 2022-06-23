@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { BigNumber } from '@ethersproject/bignumber'
-import { formatEther, parseEther } from '@ethersproject/units'
+import { formatEther } from '@ethersproject/units'
+import keccak256 from 'keccak256'
 import {
   displayErrorToast,
   displaySuccessToast,
@@ -10,7 +11,12 @@ import { useContext, useEffect, useState } from 'react'
 
 import { WaitingContext } from '../contexts'
 import { type SMPLverse } from '../contract'
-import { useContract, useEthBalance } from '../hooks'
+import {
+  useContract,
+  useEthBalance,
+  useWhitelistToggled,
+  useMerkleTree,
+} from '../hooks'
 import { MintButton } from './MintButton'
 
 export const MintingPanel = () => {
@@ -22,15 +28,28 @@ export const MintingPanel = () => {
   const [ethRequired, setEthRequired] = useState<string>()
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
 
+  const whitelistToggled = useWhitelistToggled()
+  const merkleTree = useMerkleTree()
+
   useEffect(() => {
-    if (quantity) {
-      const price = BigNumber.from(parseEther('0.07'))
-      const weiRequired = price.mul(quantity)
-      const ethRequired = formatEther(weiRequired)
-      setWeiRequired(weiRequired)
-      setEthRequired(ethRequired)
-    }
-  }, [quantity])
+    ;(async () => {
+      if (quantity && contract) {
+        if (whitelistToggled === true) {
+          const price = await contract.whitelistMintPrice()
+          const weiRequired = price.mul(quantity)
+          const ethRequired = formatEther(weiRequired)
+          setWeiRequired(weiRequired)
+          setEthRequired(ethRequired)
+        } else if (whitelistToggled === false) {
+          const price = await contract.mintPrice()
+          const weiRequired = price.mul(quantity)
+          const ethRequired = formatEther(weiRequired)
+          setWeiRequired(weiRequired)
+          setEthRequired(ethRequired)
+        }
+      }
+    })()
+  }, [quantity, contract, whitelistToggled])
 
   const mint = async () => {
     if (contract.signer && weiRequired && balance) {
@@ -56,11 +75,45 @@ export const MintingPanel = () => {
     }
   }
 
+  const whitelistMint = async () => {
+    if (
+      contract.signer &&
+      merkleTree &&
+      whitelistToggled &&
+      weiRequired &&
+      balance
+    ) {
+      try {
+        if (weiRequired.gt(balance)) {
+          throw Error('insufficient balance!')
+        }
+        setIsWaiting(true)
+        const leaf = keccak256(await contract.signer.getAddress())
+        const proof = merkleTree.getHexProof(leaf)
+        const tx = await contract.whitelistMint(quantity, proof, {
+          value: weiRequired,
+        })
+        await tx.wait()
+        setIsWaiting(false)
+        displaySuccessToast(tx.hash, 'dark')
+      } catch (err) {
+        setIsWaiting(false)
+        if (err?.message) {
+          displayErrorToast(err.message, 'dark')
+        } else {
+          displayErrorToast(err, 'dark')
+        }
+      }
+    }
+  }
+
   return (
     <>
+      {whitelistToggled === true && <div>ALLOWLIST MINT</div>}
+      {whitelistToggled === false && <div>GENERAL MINT</div>}
       <MintButton
         ethRequired={ethRequired}
-        onClick={mint}
+        onClick={whitelistToggled ? whitelistMint : mint}
         isLoading={isWaiting}
         small={false}
         quantity={quantity}
