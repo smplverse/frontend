@@ -75,7 +75,12 @@ export const Footer = () => {
         </a>
       </Row>
       <Row>
-        <Link width={x}>opensea</Link>
+        <a
+          href="https://opensea.io/collection/smplverse"
+          style={{ textDecoration: 'none' }}
+        >
+          <Link width={x}>opensea</Link>
+        </a>
         <LinkRight width={x}>zora</LinkRight>
       </Row>
       <Row>
