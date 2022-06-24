@@ -267,7 +267,7 @@ export const WebcamPanel = () => {
                     toast.dismiss()
                   }}
                 >
-                  {metadata ? 'claim another one' : 'try again'}
+                  {metadata ? 'claim another' : 'try again'}
                 </WebcamButton>
               </>
             )}
