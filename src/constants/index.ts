@@ -1,12 +1,15 @@
-export const CHAIN_ID = 4
+export const CHAIN_ID = 1
+
+export const CONTRACT_ADDRESS_MAINNET =
+  '0x4370CB4Eb0926AC022Bb87D268Fa39f34cc0DdFC'
 
 export const CONTRACT_ADDRESS_RINKEBY =
   '0xbD02d92Bef6fea722391b700BD1c72fE9Bfd9eb3'
 
-export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_RINKEBY
+export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_MAINNET
 
 export const ETHERSCAN_LINK =
-  'https://rinkeby.etherscan.io/address/' + CONTRACT_ADDRESS
+  'https://etherscan.io/address/' + CONTRACT_ADDRESS
 
 export const API_URL = 'https://api.smplverse.xyz'
 // export const API_URL = 'http://localhost:8000'

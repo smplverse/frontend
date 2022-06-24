@@ -10,7 +10,7 @@ export const useContract = () => {
   const [contract, setContract] = useState<SMPLverse>()
   const chainId = useChainId()
   const provider = useProvider()
-  const url = `https://rinkeby.infura.io/v3/${PROJECT_ID}`
+  const url = `https://mainnet.infura.io/v3/${PROJECT_ID}`
 
   useEffect(() => {
     ;(async function () {
