@@ -44,7 +44,7 @@ export const MintCount = () => {
                 sx={{ margin: 'none' }}
               />
             )}
-            /7667
+            /511
           </Text>
         )}
       </MintCountContainer>
