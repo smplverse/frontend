@@ -81,11 +81,8 @@ export const Footer = () => {
         >
           <Link width={x}>opensea</Link>
         </a>
-        <LinkRight width={x}>zora</LinkRight>
-      </Row>
-      <Row>
         <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
-          <Link width={x}>etherscan</Link>
+          <LinkRight width={x}>etherscan</LinkRight>
         </a>
       </Row>
     </CenteredColumn>
