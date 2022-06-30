@@ -44,7 +44,6 @@ export const WebcamCapture = ({ setScreenshot }: Props) => {
         height={x}
         videoConstraints={videoConstraints}
       />
-      <CurrentTime />
       <WebcamButton onClick={capture}>capture photo</WebcamButton>
     </>
   )

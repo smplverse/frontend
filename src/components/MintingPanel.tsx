@@ -109,8 +109,6 @@ export const MintingPanel = () => {
 
   return (
     <>
-      {whitelistToggled === true && <div>ALLOWLIST MINT</div>}
-      {whitelistToggled === false && <div>GENERAL MINT</div>}
       <MintButton
         ethRequired={ethRequired}
         onClick={whitelistToggled ? whitelistMint : mint}

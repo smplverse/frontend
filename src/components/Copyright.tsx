@@ -13,7 +13,7 @@ export const Copyright = () => {
       sx={{
         p: [4, 5],
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         textAlign: 'center',
       }}

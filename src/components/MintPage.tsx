@@ -10,7 +10,6 @@ import {
   Header,
   MintingPanel,
   MintPageText,
-  MintTime,
   SmplImage,
   WebcamPanel,
 } from '../components'
@@ -89,7 +88,6 @@ export const MintPage = () => {
         {minting ? (
           <>
             <SmplImage width={x} height={x} />
-            <MintTime />
           </>
         ) : (
           <WebcamPanel />
