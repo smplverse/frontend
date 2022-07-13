@@ -1,8 +1,7 @@
+import { useBreakpointIndex } from '@theme-ui/match-media'
 import { useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
-import { useBreakpointIndex } from '@theme-ui/match-media'
 
-import { CurrentTime } from './CurrentTime'
 import { WebcamButton } from './WebcamButton'
 
 const videoConstraints = {

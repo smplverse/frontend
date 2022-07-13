@@ -1,12 +1,11 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { MouseEventHandler } from 'react'
+import { Box } from 'theme-ui'
 
 import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
 import { Wallet } from './Wallet'
-
-import { Box } from 'theme-ui'
 
 const HeaderContainer = styled.header`
   color: #ffffff;

@@ -12,8 +12,8 @@ import {
   useIsActive,
   useMetamask,
 } from '../hooks'
-import { ConnectButton } from './ConnectButton'
 import { sliceUp } from '../utils'
+import { ConnectButton } from './ConnectButton'
 
 const DisconnectContainer = styled.div`
   font-size: 16px;

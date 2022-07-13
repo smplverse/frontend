@@ -1,14 +1,13 @@
 import '../index.css'
 
 import type { AppProps } from 'next/app'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { ThemeProvider } from 'theme-ui'
 import { InitializeColorMode } from 'theme-ui'
 
 import { WaitingContext } from '../contexts'
 import { theme } from '../theme'
-
-import dynamic from 'next/dynamic'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [isWaiting, setIsWaiting] = useState(false)

@@ -2,10 +2,10 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { useBreakpointIndex } from '@theme-ui/match-media'
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import { useState } from 'react'
 
 import { LandingPage, MintPage } from '../components'
-import Head from 'next/head'
 
 const Home: NextPage = () => {
   const [entered, setEntered] = useState(false)

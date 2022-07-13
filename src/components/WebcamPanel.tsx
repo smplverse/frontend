@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 import { sha256 } from 'js-sha256'
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -8,12 +9,11 @@ import { Text } from 'theme-ui'
 import { API_URL } from '../constants'
 import { WaitingContext } from '../contexts'
 import { useAvailableTokenId, useContract, useTokenBalance } from '../hooks'
+import { sliceUp } from '../utils'
 import { CenteredRow } from './Flex'
 import { displayErrorToast, displaySuccessToast, Toast } from './Toast'
 import { WebcamButton } from './WebcamButton'
 import { WebcamCapture } from './WebcamCapture'
-import { useBreakpointIndex } from '@theme-ui/match-media'
-import { sliceUp } from '../utils'
 
 interface Metadata {
   name: string

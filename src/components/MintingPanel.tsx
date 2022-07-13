@@ -1,12 +1,12 @@
 /** @jsxImportSource theme-ui */
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther } from '@ethersproject/units'
-import keccak256 from 'keccak256'
 import {
   displayErrorToast,
   displaySuccessToast,
   Toast,
 } from 'components/Toast'
+import keccak256 from 'keccak256'
 import { useContext, useEffect, useState } from 'react'
 
 import { WaitingContext } from '../contexts'
@@ -14,8 +14,8 @@ import { type SMPLverse } from '../contract'
 import {
   useContract,
   useEthBalance,
-  useWhitelistToggled,
   useMerkleTree,
+  useWhitelistToggled,
 } from '../hooks'
 import { MintButton } from './MintButton'
 

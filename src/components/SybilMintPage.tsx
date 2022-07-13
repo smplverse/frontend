@@ -8,9 +8,9 @@ import {
   SybilCopyright,
   SybilFooter,
   SybilHeader,
+  SybilImage,
   SybilMintingPanel,
   SybilMintPageText,
-  SybilImage,
 } from '../components'
 import { useIsActive, useTokenBalance } from '../hooks'
 
