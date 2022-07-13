@@ -2,7 +2,7 @@
 import styled from '@emotion/styled'
 import { useColorMode } from 'theme-ui'
 import { MouseEventHandler, useEffect } from 'react'
-import { Box, Button } from 'theme-ui'
+import { Box, IconButton } from 'theme-ui'
 
 import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
@@ -48,9 +48,41 @@ export const Header = ({ onClick }: Props) => {
       </Box>
       <Box sx={{ flex: 1 }}>
         <SmplverseButton onClick={onClick} text="SMPLVERSE" />
-        <Button onClick={goSybil}>go sybil</Button>
       </Box>
-      <Box sx={{ flex: 1 }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <IconButton
+          onClick={goSybil}
+          sx={{
+            color: 'text',
+            cursor: 'pointer',
+            borderRadius: 'circle',
+            transition: 'box-shadow .125s ease-in-out',
+            ':hover': {
+              boxShadow: '0 0 0 3px',
+              outline: 'none',
+            },
+            mr: 4,
+          }}
+        >
+          <svg viewBox="0 0 32 32" width={24} height={24} fill="currentcolor">
+            <circle
+              cx={16}
+              cy={16}
+              r={14}
+              fill="none"
+              stroke="currentcolor"
+              strokeWidth={4}
+            />
+            <path d="M 16 0 A 16 16 0 0 0 16 32 z" />
+          </svg>
+        </IconButton>
         <Wallet onClick={onClick} />
       </Box>
     </HeaderContainer>

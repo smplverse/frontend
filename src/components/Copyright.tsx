@@ -2,7 +2,7 @@
 import styled from '@emotion/styled'
 
 const CopyrightContainer = styled.header`
-  color: #ffffff;
+  color: white;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 14.5px;
 `
