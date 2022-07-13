@@ -53,6 +53,7 @@ export const SybilMintButton = ({
   const MintButtonContainer = styled(ButtonContainer)`
     width: ${displayAdditional ? 326 : 226}px;
     background-color: hotpink;
+    font-family: 'Chalkduster', fantasy;
   `
   const increment = () => {
     if (quantity < 10) {
