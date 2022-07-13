@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { MouseEventHandler, useState } from 'react'
-import { Flex, Spinner } from 'theme-ui'
+import { Flex, Spinner, Text } from 'theme-ui'
 
 import { CHAIN_ID } from '../constants'
 import {
@@ -67,25 +67,27 @@ export const Wallet = ({ onClick }: Props) => {
     return <ConnectButton onClick={changeChain} text="SWITCH NETWORK" />
   } else if (isActive) {
     return (
-      <DisconnectContainer
-        onMouseEnter={() => setShowDisconnect(true)}
-        onMouseLeave={() => setShowDisconnect(false)}
-      >
-        {showDisconnect ? (
-          <ConnectButton
-            onClick={(e) => {
-              disconnector()
-              onClick(e)
-            }}
-          >
-            DISCONNECT
-          </ConnectButton>
-        ) : (
-          <ConnectButton>
-            {accounts?.length ? sliceUp(accounts[0]) : 'DISCONNECT'}
-          </ConnectButton>
-        )}
-      </DisconnectContainer>
+      <Text color="text">
+        <DisconnectContainer
+          onMouseEnter={() => setShowDisconnect(true)}
+          onMouseLeave={() => setShowDisconnect(false)}
+        >
+          {showDisconnect ? (
+            <ConnectButton
+              onClick={(e) => {
+                disconnector()
+                onClick(e)
+              }}
+            >
+              DISCONNECT
+            </ConnectButton>
+          ) : (
+            <ConnectButton>
+              {accounts?.length ? sliceUp(accounts[0]) : 'DISCONNECT'}
+            </ConnectButton>
+          )}
+        </DisconnectContainer>
+      </Text>
     )
   } else if (error) {
     alert(error)

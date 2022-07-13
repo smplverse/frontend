@@ -1,3 +1,4 @@
+/** jsxImportSource theme-ui */
 import styled from '@emotion/styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
 import { MouseEventHandler, ReactNode } from 'react'
@@ -14,9 +15,6 @@ const LargeButtonContainer = styled.div`
   user-select: none;
   display: flex;
   justify-content: center;
-  &:hover {
-    color: white;
-  }
 `
 
 const SmallButtonContainer = styled(LargeButtonContainer)``
@@ -26,11 +24,15 @@ export const ConnectButton = ({ onClick, text, children }: Props) => {
 
   return index > 2 ? (
     <LargeButtonContainer onClick={onClick}>
-      {text ? <Text>{text.toUpperCase()}</Text> : children && children}
+      {text ? (
+        <Text color="text">{text.toUpperCase()}</Text>
+      ) : (
+        children && children
+      )}
     </LargeButtonContainer>
   ) : (
     <SmallButtonContainer onClick={onClick}>
-      {text ? <Text>{text}</Text> : children && children}
+      {text ? <Text color="text">{text}</Text> : children && children}
     </SmallButtonContainer>
   )
 }

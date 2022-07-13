@@ -106,8 +106,7 @@ export const MintPage = () => {
                       </ClaimMenuButton>
                     )}
                     <Container>
-                      <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
-                      <b>{tokenBalance}</b>
+                      <Text>TOKENS AVAILABLE:</Text> <b>{tokenBalance}</b>
                     </Container>
                   </>
                 )}

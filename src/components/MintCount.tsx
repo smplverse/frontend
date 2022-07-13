@@ -23,7 +23,7 @@ export const MintCount = () => {
         onMouseLeave={() => setShowPrice(false)}
       >
         {showPrice ? (
-          <Text>
+          <Text color="text">
             Ξ
             {mintPrice || (
               <Spinner
@@ -35,10 +35,10 @@ export const MintCount = () => {
             )}
           </Text>
         ) : (
-          <Text>
+          <Text color="text">
             {numberOfRemaining || (
               <Spinner
-                color="white"
+                color="text"
                 size="10"
                 strokeWidth={3}
                 sx={{ margin: 'none' }}

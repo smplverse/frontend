@@ -14,6 +14,7 @@ export const LandingPage = ({ setEntered }: Props) => (
       p: [1, 3],
       alignItems: 'center',
       flexDirection: 'column',
+      color: 'primary',
     }}
   >
     <div style={{ fontSize: 15, width: 550 }}>

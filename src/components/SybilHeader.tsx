@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, useEffect } from 'react'
 import { Box, Button } from 'theme-ui'
 
 import { MintCount } from './MintCount'
@@ -19,11 +19,16 @@ interface Props {
 }
 
 export const SybilHeader = ({ onClick }: Props) => {
-  const [colorMode, setColorMode] = useColorMode()
+  const [_, setColorMode] = useColorMode()
   const router = useRouter()
 
+  useEffect(() => {
+    if (setColorMode) {
+      setColorMode('dark')
+    }
+  }, [setColorMode])
+
   const goBackNormal = () => {
-    setColorMode(colorMode === 'light' ? 'dark' : 'light')
     router.push('/')
   }
 

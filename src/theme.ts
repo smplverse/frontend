@@ -28,13 +28,13 @@ export const theme: Theme = {
     ...colors,
     primary: colors.green,
     secondary: colors.greener,
-    text: colors.green,
+    text: colors.white,
     background: colors.black,
     modes: {
       dark: {
         primary: colors.pink,
         secondary: colors.pinker,
-        text: colors.pink,
+        text: colors.black,
         background: colors.white,
       },
     },
