@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Chalkduster', fantasy;
   display: flex;
   flex-direction: column;
   text-justify: center;
@@ -26,7 +26,7 @@ export const SybilMintPageText = () => {
   return (
     <Container width={x}>
       <Text>
-        SMPLverse NFTs use facial recognition to retrieve data synthesized by
+        Sybilverse NFTs use facial recognition to retrieve data synthesized by
         Microsoft to train face tracking algorithms for its mixed reality
         headsets.
       </Text>

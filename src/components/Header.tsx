@@ -65,13 +65,13 @@ export const Header = ({ onClick }: Props) => {
             borderRadius: 'circle',
             transition: 'box-shadow .125s ease-in-out',
             ':hover': {
-              boxShadow: '0 0 0 3px',
+              boxShadow: '0 0 0 2px',
               outline: 'none',
             },
             mr: 4,
           }}
         >
-          <svg viewBox="0 0 32 32" width={24} height={24} fill="currentcolor">
+          <svg viewBox="0 0 32 32" width={20} height={20} fill="currentcolor">
             <circle
               cx={16}
               cy={16}

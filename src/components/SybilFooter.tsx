@@ -10,11 +10,11 @@ interface LinkProps {
 
 const Link = styled.div<LinkProps>`
   border-radius: 1rem;
-  background-color: #000000;
-  font-family: 'IBM Plex Mono', monospace;
+  background-color: #ffffff;
+  font-family: 'Chalkduster', fantasy;
   font-size: 16px;
   line-height: 1.25em;
-  color: #008f11;
+  color: hotpink;
   padding: 0.75rem 0;
   text-align: center;
   display: flex;
@@ -24,10 +24,10 @@ const Link = styled.div<LinkProps>`
   margin-bottom: 7px;
   margin-right: 6px;
   text-transform: uppercase;
-  border: 1px solid #008f11;
+  border: 1px solid hotpink;
   &:hover {
-    color: #ffffff;
-    border-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
   }
 `
 

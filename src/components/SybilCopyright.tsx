@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 const CopyrightContainer = styled.header`
   color: black;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Chalkduster', fantasy;
   font-size: 14.5px;
 `
 
@@ -18,10 +18,10 @@ export const SybilCopyright = () => {
         textAlign: 'center',
       }}
     >
-      SMPLverse is copylefted under the&nbsp;
+      Sybilverse is copylefted under the&nbsp;
       <a
         href="https://viralpubliclicense.org/"
-        style={{ textDecoration: 'none', color: 'hotpink' }}
+        style={{ textDecoration: 'none', color: '#008f11' }}
       >
         Viral Public License
       </a>

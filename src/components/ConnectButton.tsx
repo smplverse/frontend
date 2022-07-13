@@ -15,6 +15,9 @@ const LargeButtonContainer = styled.div`
   user-select: none;
   display: flex;
   justify-content: center;
+  &:hover {
+    filter: invert(1);
+  }
 `
 
 const SmallButtonContainer = styled(LargeButtonContainer)``
