@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { Box, Spinner, Text } from 'theme-ui'
 
 import {
-  Copyright,
+  SybilCopyright,
   SybilFooter,
   SybilHeader,
-  MintingPanel,
+  SybilMintingPanel,
   SybilMintPageText,
   SybilImage,
 } from '../components'
@@ -108,10 +108,10 @@ export const SybilMintPage = () => {
             )}
           </>
         )}
-        <MintingPanel />
+        <SybilMintingPanel />
         <SybilMintPageText />
         <SybilFooter />
-        <Copyright />
+        <SybilCopyright />
       </Box>
     </div>
   )
