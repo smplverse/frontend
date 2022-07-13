@@ -17,7 +17,7 @@ import {
   useMerkleTree,
   useWhitelistToggled,
 } from '../hooks'
-import { MintButton } from './MintButton'
+import { SybilMintButton } from './SybilMintButton'
 
 export const SybilMintingPanel = () => {
   const contract = useContract() as SMPLverse
@@ -109,7 +109,7 @@ export const SybilMintingPanel = () => {
 
   return (
     <>
-      <MintButton
+      <SybilMintButton
         ethRequired={ethRequired}
         onClick={whitelistToggled ? whitelistMint : mint}
         isLoading={isWaiting}
