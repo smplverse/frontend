@@ -48,13 +48,13 @@ export const SybilFooter = () => {
     <CenteredColumn>
       <Row>
         <a
-          href="https://mirror.xyz/wiebe.eth/FKNOHWEOs_3Il0Mbz4Gj3IqfDz32cHWBe3fNIGujlSY"
+          href="https://www.youtube.com/watch?v=d-kcczAff40"
           style={{ textDecoration: 'none' }}
         >
           <Link width={x}>info</Link>
         </a>
         <a
-          href="https://arxiv.org/pdf/2109.15102.pdf"
+          href="https://www.youtube.com/watch?v=txHNcE_d7ro"
           style={{ textDecoration: 'none' }}
         >
           <LinkRight width={x}>attribution</LinkRight>

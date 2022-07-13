@@ -26,9 +26,8 @@ export const SybilMintPageText = () => {
   return (
     <Container width={x}>
       <Text>
-        Sybilverse NFTs use facial recognition to retrieve data synthesized by
-        Microsoft to train face tracking algorithms for its mixed reality
-        headsets.
+        Sybilverse NFTs are randomly matched from data synthesized by Microsoft
+        to train face tracking algorithms for its mixed reality headsets.
       </Text>
       <Text>
         After minting, you will receive a token with which you can submit an
