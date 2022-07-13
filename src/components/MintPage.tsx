@@ -102,7 +102,9 @@ export const MintPage = () => {
                   <>
                     {minting && (
                       <ClaimMenuButton onClick={() => setMinting(!minting)}>
-                        <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
+                        <Text color="text">
+                          <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
+                        </Text>
                       </ClaimMenuButton>
                     )}
                     <Container>

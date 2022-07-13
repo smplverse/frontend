@@ -74,16 +74,16 @@ export const MintButton = ({
               {isActive && chainId === CHAIN_ID ? (
                 <>
                   <PlusMinusContainer onClick={decrement}>
-                    ⊟ &nbsp;
+                    <Text color="text">⊟ &nbsp;</Text>
                   </PlusMinusContainer>
                   <InvertOnHover>
-                    <Text onClick={onClick}>
+                    <Text onClick={onClick} color="text">
                       MINT {quantity} {displayAdditional ? 'MORE' : ''} FOR Ξ
                       {ethRequired}
                     </Text>
                   </InvertOnHover>
                   <PlusMinusContainer onClick={increment}>
-                    &nbsp; ⊞
+                    <Text color="text">&nbsp; ⊞</Text>
                   </PlusMinusContainer>
                 </>
               ) : (

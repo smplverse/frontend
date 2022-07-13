@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { ReactNode } from 'react'
 
 import { ButtonContainer } from './ButtonContainer'
+import { Text } from 'theme-ui'
 
 interface Props {
   children: ReactNode
@@ -27,6 +28,8 @@ const InvertOnHover = styled.div`
 
 export const WebcamButton = ({ children, onClick }: Props) => (
   <WebcamButtonContainer onClick={onClick} width={150}>
-    <InvertOnHover>{children}</InvertOnHover>
+    <InvertOnHover>
+      <Text color="text">{children}</Text>
+    </InvertOnHover>
   </WebcamButtonContainer>
 )

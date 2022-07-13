@@ -21,6 +21,9 @@ const DisconnectContainer = styled.div`
   justify-content: center;
   align-items: center;
   user-select: none;
+  &:hover {
+    filter: invert(1);
+  }
 `
 
 interface Props {
