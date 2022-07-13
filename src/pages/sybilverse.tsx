@@ -2,6 +2,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { useBreakpointIndex } from '@theme-ui/match-media'
 import type { NextPage } from 'next'
+
+import { SybilMintPage } from '../components'
 import Head from 'next/head'
 
 const Sybilverse: NextPage = () => {
@@ -13,7 +15,9 @@ const Sybilverse: NextPage = () => {
         <link rel="manifest" href="/manifest.json" />
         <title>Sybilverse</title>
       </Head>
-      <div>hello world, the bpi is {breakpointIndex}</div>
+      <>
+        <SybilMintPage />
+      </>
     </div>
   )
 }
