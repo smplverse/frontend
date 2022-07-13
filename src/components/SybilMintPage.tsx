@@ -86,28 +86,6 @@ export const SybilMintPage = () => {
         }}
       >
         <SybilImage width={x} height={x} />
-        {isActive && (
-          <>
-            {tokenBalance === undefined ? (
-              <WaitingIndicator />
-            ) : (
-              <>
-                {Boolean(tokenBalance) && (
-                  <>
-                    {minting && (
-                      <ClaimMenuButton onClick={() => setMinting(!minting)}>
-                        <InvertOnHover>TOGGLE WEBCAM VIEW</InvertOnHover>
-                      </ClaimMenuButton>
-                    )}
-                    <Container>
-                      <Text>TOKENS AVAILABLE:</Text> <b>{tokenBalance}</b>
-                    </Container>
-                  </>
-                )}
-              </>
-            )}
-          </>
-        )}
         <SybilMintingPanel />
         <SybilMintPageText />
         <SybilFooter />
