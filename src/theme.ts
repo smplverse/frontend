@@ -6,6 +6,9 @@ export const colors = {
   green: '#00ff41',
   greener: '#008F11',
   black: '#0d0208',
+  white: '#ffffff',
+  pink: '#ffc0cb',
+  pinker: '#e06666',
 }
 
 export const theme: Theme = {
@@ -27,6 +30,14 @@ export const theme: Theme = {
     secondary: colors.greener,
     text: colors.green,
     background: colors.black,
+    modes: {
+      dark: {
+        primary: colors.pink,
+        secondary: colors.pinker,
+        text: colors.pink,
+        background: colors.white,
+      },
+    },
   },
   borders: {
     thick: '2px solid',

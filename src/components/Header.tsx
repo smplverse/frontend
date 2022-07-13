@@ -1,11 +1,13 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
+import { useColorMode } from 'theme-ui'
 import { MouseEventHandler } from 'react'
-import { Box } from 'theme-ui'
+import { Box, Button } from 'theme-ui'
 
 import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
 import { Wallet } from './Wallet'
+import { useRouter } from 'next/router'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
@@ -17,6 +19,14 @@ interface Props {
 }
 
 export const Header = ({ onClick }: Props) => {
+  const [colorMode, setColorMode] = useColorMode()
+  const router = useRouter()
+
+  const goSybil = () => {
+    setColorMode(colorMode === 'light' ? 'dark' : 'light')
+    router.push('/sybilverse')
+  }
+
   return (
     <HeaderContainer
       sx={{
@@ -33,6 +43,7 @@ export const Header = ({ onClick }: Props) => {
       </Box>
       <Box sx={{ flex: 1 }}>
         <SmplverseButton onClick={onClick} text="SMPLVERSE" />
+        <Button onClick={goSybil}>go sybil</Button>
       </Box>
       <Box sx={{ flex: 1 }}>
         <Wallet onClick={onClick} />

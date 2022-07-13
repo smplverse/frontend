@@ -57,6 +57,7 @@ const WaitingIndicator = () => (
     </Box>
   </>
 )
+
 export const SybilMintPage = () => {
   const tokenBalance = useTokenBalance()
   const [minting, setMinting] = useState(true)
@@ -99,8 +100,7 @@ export const SybilMintPage = () => {
                       </ClaimMenuButton>
                     )}
                     <Container>
-                      <Text color={'white'}>TOKENS AVAILABLE:</Text>{' '}
-                      <b>{tokenBalance}</b>
+                      <Text>TOKENS AVAILABLE:</Text> <b>{tokenBalance}</b>
                     </Container>
                   </>
                 )}
