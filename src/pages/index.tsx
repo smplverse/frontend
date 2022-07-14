@@ -6,10 +6,16 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 import { LandingPage, MintPage } from '../components'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
-  const [entered, setEntered] = useState(false)
+  const router = useRouter()
   const breakpointIndex = useBreakpointIndex()
+  console.log(router.query)
+
+  const [entered, setEntered] = useState(
+    router.query.skipLandingPage === 'true'
+  )
   return (
     <div>
       <Head>

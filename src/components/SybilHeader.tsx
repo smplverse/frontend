@@ -30,7 +30,7 @@ export const SybilHeader = ({ onClick }: Props) => {
   }, [setColorMode])
 
   const goBackNormal = () => {
-    router.push('/')
+    router.push({ pathname: '/', query: { skipLandingPage: 'true' } })
     return <Home />
   }
 
