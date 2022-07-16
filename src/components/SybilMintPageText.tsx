@@ -44,8 +44,8 @@ export const SybilMintPageText = () => {
       </Text>
       <Text>
         The pseudonymous patient the analyst constructed and profited from had
-        been formatively integrated into the analyst's own identity: had the
-        analyst's obsession with the image of Sybil overtaken Sybil's obsession
+        been formatively integrated into the analyst's own identity: did the
+        analyst's obsession with the image of Sybil overtake Sybil's obsession
         with the image of her analyst?
       </Text>
       <Text>
