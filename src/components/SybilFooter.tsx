@@ -62,13 +62,13 @@ export const SybilFooter = () => {
       </Row>
       <Row>
         <a
-          href="https://discord.gg/2hWDykfUdq"
+          href="https://www.youtube.com/watch?v=iktKXIsRUIg"
           style={{ textDecoration: 'none' }}
         >
           <Link width={x}>discord</Link>
         </a>
         <a
-          href="https://twitter.com/smplverse"
+          href="https://www.youtube.com/watch?v=TCgeaNfcw-w"
           style={{ textDecoration: 'none' }}
         >
           <LinkRight width={x}>twitter</LinkRight>
@@ -76,12 +76,15 @@ export const SybilFooter = () => {
       </Row>
       <Row>
         <a
-          href="https://opensea.io/collection/smplverse"
+          href="https://www.youtube.com/watch?v=sxf55dYW8X8"
           style={{ textDecoration: 'none' }}
         >
           <Link width={x}>opensea</Link>
         </a>
-        <a href={ETHERSCAN_LINK} style={{ textDecoration: 'none' }}>
+        <a
+          href="https://www.youtube.com/watch?v=J7GY1Xg6X20"
+          style={{ textDecoration: 'none' }}
+        >
           <LinkRight width={x}>etherscan</LinkRight>
         </a>
       </Row>
