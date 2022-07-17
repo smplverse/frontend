@@ -26,7 +26,7 @@ export const SybilMintPageText = () => {
   return (
     <Container width={x}>
       <Text>
-        An artist sought treatment from an analyst who specialized in multiple
+        An artist sought treatment from an analyst with an interest in multiple
         personalities and began to develop signs of dissociative identity
         disorder.
       </Text>
@@ -38,21 +38,20 @@ export const SybilMintPageText = () => {
       </Text>
       <Text>
         But the analyst refused to accept Sybil's confession and Sybil
-        recanted, ultimately developing six additional personalities. Whether
-        or not Sybil had formed these personalities to please her analyst, the
-        analyst could not but be formed by them.
+        recanted, ultimately developing six additional personalities.
       </Text>
       <Text>
-        Our identities occur in a matrix of obsessions and counter-obsessions,
+        Whether or not Sybil formed these personalities out of an obsession
+        with her analyst, her analyst could not but become obsessed with them.
+      </Text>
+      <Text>
+        Identity occurs in a matrix of obsessions and counter-obsessions,
         overidentifications and misrecog-nitions, synthetic doppelgängers and
         real strangers.
       </Text>
       <Text>
-        We are not the sum of our biometric identifiers, but the sum of the
-        signs that become our signatures.
-      </Text>
-      <Text>
-        <i>Signo, ergo sum.</i>
+        I am not the sum of my biometric identifiers, but the sum of the signs
+        that become my signature. <i>Signo, ergo sum.</i>
       </Text>
     </Container>
   )
