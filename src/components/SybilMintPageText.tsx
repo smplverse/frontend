@@ -45,13 +45,14 @@ export const SybilMintPageText = () => {
         with her analyst, her analyst could not but become obsessed with them.
       </Text>
       <Text>
-        Identity occurs in a matrix of obsessions and counter-obsessions,
-        overidentifications and misrecog-nitions, synthetic doppelgängers and
-        real strangers.
+        Identities coagulate and dissolve in a matrix of obsessions and
+        counter-obsessions, overidentifications and misrecognitions, synthetic
+        doppelgängers and real strangers.
       </Text>
       <Text>
-        I am not the sum of my biometric identifiers, but the sum of the signs
-        that become my signature. <i>Signo, ergo sum.</i>
+        Sybilverse forks the SMPLverse dataset to a randomly-matched contract,
+        as if to say: I am not the sum of my biometric identifiers, but the sum
+        of the signs that become my signature. <i>Signo, ergo sum.</i>
       </Text>
     </Container>
   )
