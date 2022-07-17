@@ -37,24 +37,19 @@ export const SybilMintPageText = () => {
         them."
       </Text>
       <Text>
-        In Sybil's telling, her multiple personalities were borne of an
-        overidentification with her analyst's professional interests. But the
-        analyst refused to accept Sybil's confession and Sybil recanted,
-        ultimately developing six additional personalities.
-      </Text>
-      <Text>
-        The pseudonymous patient the analyst constructed and profited from had
-        been formatively integrated into the analyst's own identity: did the
-        analyst's obsession with the image of Sybil overtake Sybil's obsession
-        with the image of her analyst?
+        But the analyst refused to accept Sybil's confession and Sybil
+        recanted, ultimately developing six additional personalities. Whether
+        or not Sybil had formed these personalities to please her analyst, the
+        analyst could not but be formed by them.
       </Text>
       <Text>
         Our identities occur in a matrix of obsessions and counter-obsessions,
-        expressed in the tongue of our social context.
+        overidentifications and misrecog-nitions, synthetic doppelgängers and
+        real strangers.
       </Text>
       <Text>
-        I am not the sum of my biometric identifiers, but the sum of the signs
-        that become my signature. I am ƎꙄЯƎV⅃IᙠYꙄ, and so are you.
+        We are not the sum of our biometric identifiers, but the sum of the
+        signs that become our signatures.
       </Text>
       <Text>
         <i>Signo, ergo sum.</i>
