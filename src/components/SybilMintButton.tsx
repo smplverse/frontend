@@ -25,14 +25,14 @@ const PlusMinusContainer = styled.div`
   cursor: pointer;
   user-select: none;
   font-size: 20;
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Helvetica Neue', sans-serif;
 `
 
 const InvertOnHover = styled.div`
   &:hover {
     filter: invert(1);
   }
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Helvetica Neue', sans-serif;
 `
 
 export const SybilMintButton = ({
@@ -53,7 +53,7 @@ export const SybilMintButton = ({
   const MintButtonContainer = styled(ButtonContainer)`
     width: ${displayAdditional ? 326 : 226}px;
     background-color: hotpink;
-    font-family: 'Chalkduster', fantasy;
+    font-family: 'Helvetica Neue', sans-serif;
   `
   const increment = () => {
     if (quantity < 10) {

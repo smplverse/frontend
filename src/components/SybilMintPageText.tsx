@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Helvetica Neue', sans-serif;
   display: flex;
   flex-direction: column;
   text-justify: center;
@@ -26,33 +26,35 @@ export const SybilMintPageText = () => {
   return (
     <Container width={x}>
       <Text>
-        An artist sought treatment from an analyst with an interest in multiple
-        personalities and began to develop signs of dissociative identity
-        disorder.
+        An artist sought treatment from an analyst who expressed interest in
+        multiple personalities and began to develop signs of dissociative
+        identity disorder herself.
       </Text>
       <Text>
-        Four years and 10 personalities later, the patient pseudonymously
-        referred to as Sybil wrote to her analyst, "I do not really have any
-        multiple personalities. I do not even have a 'double.' I am all of
-        them."
+        Four years and 10 personalities later, the patient confessed to her
+        analyst, "I do not really have any multiple personalities. I do not
+        even have a 'double.' I am all of them."
       </Text>
       <Text>
-        But the analyst refused to accept Sybil's confession and Sybil
-        recanted, ultimately developing six additional personalities.
+        But the analyst refused to accept the patient's confession and the
+        patient recanted, ultimately developing an additional six personalities
+        over the course of her treatment.
       </Text>
       <Text>
-        Whether or not Sybil formed these personalities out of an obsession
-        with her analyst, her analyst could not but become obsessed with them.
+        The fiction which the patient had constructed now acted back on her
+        through the contorted mirror of her analyst, who reassembled the
+        patient's image under the pseudonym Sybil.
       </Text>
       <Text>
-        Identities coagulate and dissolve in a matrix of obsessions and
-        counter-obsessions, overidentifications and misrecognitions, synthetic
-        doppelgängers and real strangers.
+        Sybilverse forks the SMPLverse dataset to a new contract that randomly
+        matches the training data to minters, reassembling Microsoft's
+        images—with their "unprecedented realism and diversity"—under a new
+        sign.
       </Text>
       <Text>
-        Sybilverse forks the SMPLverse dataset to a randomly-matched contract,
-        as if to say: I am not the sum of my biometric identifiers, but the sum
-        of the signs that become my signature. <i>Signo, ergo sum.</i>
+        I am not the sum of my biometric identifiers, but the sum of the signs
+        that become my signature. <i>Signo, ergo sum.</i> I mint, therefore I
+        am.
       </Text>
     </Container>
   )

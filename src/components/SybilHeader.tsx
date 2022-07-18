@@ -12,7 +12,7 @@ import Home from '../pages/index'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Helvetica Neue', sans-serif;
 `
 
 interface Props {

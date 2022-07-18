@@ -11,7 +11,7 @@ interface LinkProps {
 const Link = styled.div<LinkProps>`
   border-radius: 1rem;
   background-color: #ffffff;
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Webdings', sans-serif;
   font-size: 16px;
   line-height: 1.25em;
   color: hotpink;

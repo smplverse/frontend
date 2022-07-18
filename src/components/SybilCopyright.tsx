@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 const CopyrightContainer = styled.header`
   color: black;
-  font-family: 'Chalkduster', fantasy;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 14.5px;
 `
 
