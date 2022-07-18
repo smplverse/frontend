@@ -11,7 +11,7 @@ const Sybilverse: NextPage = () => {
       <Head>
         <link rel="apple-touch-icon" href="/logo192.png" />
         <link rel="manifest" href="/manifest.json" />
-        <title>Sybilverse</title>
+        <title>ƎꙄЯƎV⅃IᙠYꙄ</title>
       </Head>
       <SybilMintPage />
     </div>
