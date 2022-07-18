@@ -44,7 +44,7 @@ export const SybilMintCount = () => {
                 sx={{ margin: 'none' }}
               />
             )}
-            /1111
+            /2222
           </Text>
         )}
       </MintCountContainer>
