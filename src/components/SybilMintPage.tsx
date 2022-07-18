@@ -89,7 +89,6 @@ export const SybilMintPage = () => {
         <SybilMintingPanel />
         <SybilMintPageText />
         <SybilFooter />
-        <SybilCopyright />
       </Box>
     </div>
   )

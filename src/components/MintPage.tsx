@@ -119,7 +119,6 @@ export const MintPage = () => {
         <MintingPanel />
         <MintPageText />
         <Footer />
-        <Copyright />
       </Box>
     </div>
   )
