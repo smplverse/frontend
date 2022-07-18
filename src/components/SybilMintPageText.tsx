@@ -46,7 +46,7 @@ export const SybilMintPageText = () => {
         patient's image under the pseudonym Sybil.
       </Text>
       <Text>
-        Sybilverse forks the SMPLverse dataset to a new contract that randomly
+        ƎꙄЯƎV⅃IᙠYꙄ forks the SMPLverse dataset to a new contract that randomly
         matches the training data to minters, reassembling Microsoft's
         images—with their "unprecedented realism and diversity"—under a new
         sign.
