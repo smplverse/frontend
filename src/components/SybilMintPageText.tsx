@@ -41,20 +41,18 @@ export const SybilMintPageText = () => {
         over the course of her treatment.
       </Text>
       <Text>
-        The fiction which the patient had constructed now acted back on her
+        The identities which the patient had constructed now acted back on her
         through the contorted mirror of her analyst, who reassembled the
         patient's image under the pseudonym Sybil.
       </Text>
       <Text>
         ƎꙄЯƎV⅃IᙠYꙄ forks the SMPLverse dataset to a new contract that randomly
-        matches the training data to minters, reassembling Microsoft's
-        images—with their "unprecedented realism and diversity"—under a new
-        sign.
+        distributes the training data, reassembling Microsoft's images—with
+        their "unprecedented realism and diversity"—under a new sign.
       </Text>
       <Text>
-        I am not the sum of my biometric identifiers, but the sum of the signs
-        that become my signature. <i>Signo, ergo sum.</i> I mint, therefore I
-        am.
+        You do not really have any multiple personalities. You do not even have
+        a 'double.' You are all of them.
       </Text>
     </Container>
   )
