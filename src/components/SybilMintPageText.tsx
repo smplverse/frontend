@@ -31,28 +31,27 @@ export const SybilMintPageText = () => {
         identity disorder herself.
       </Text>
       <Text>
-        Four years and 10 personalities later, the patient confessed to her
+        Four years and 511 personalities later, SMPLverse confessed to her
         analyst, "I do not really have any multiple personalities. I do not
         even have a 'double.' I am all of them."
       </Text>
       <Text>
-        But the analyst refused to accept the patient's confession and the
-        patient recanted, ultimately developing an additional six personalities
-        over the course of her treatment.
+        Yet the analyst refused to accept SMPLverse's confession, and SMPLverse
+        recanted.
       </Text>
       <Text>
-        The identities which the patient had constructed now acted back on her
-        through the contorted mirror of her analyst, who reassembled the
-        patient's image under the pseudonym Sybil.
+        In the analyst's distorted mirror, the identities which SMPLverse had
+        constructed cohered instead as fragments of a split personality, which
+        the analyst reassembled under the pseudonym ƎꙄЯƎV⅃I𐐒YꙄ.
       </Text>
       <Text>
-        ƎꙄЯƎV⅃IᙠYꙄ forks the SMPLverse dataset to a new contract that randomly
-        distributes the training data, reassembling Microsoft's images—with
-        their "unprecedented realism and diversity"—under a new sign.
+        ƎꙄЯƎV⅃I𐐒YꙄ gathers the SMPLverse dataset under a new contract that
+        randomly distributes the training data.
       </Text>
       <Text>
-        You do not really have any multiple personalities. You do not even have
-        a 'double.' You are all of them.
+        Untethered to biometric identifiers, ƎꙄЯƎV⅃I𐐒YꙄ assesses the images as
+        parts of a larger whole, a distributed avatar for the computational
+        infrastructure of the metaverse.
       </Text>
     </Container>
   )

@@ -49,7 +49,7 @@ export const SybilHeader = ({ onClick }: Props) => {
         <SybilMintCount />
       </Box>
       <Box sx={{ flex: 1 }}>
-        <SmplverseButton onClick={onClick} text="ƎꙄЯƎV⅃IᙠYꙄ" />
+        <SmplverseButton onClick={onClick} text="ƎꙄЯƎV⅃I𐐒YꙄ" />
       </Box>
       <Box
         sx={{

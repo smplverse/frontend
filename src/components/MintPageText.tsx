@@ -49,8 +49,9 @@ export const MintPageText = () => {
         likelihood of receiving a high confidence match decreases.
       </Text>
       <Text>
-        Conversely, your likelihood of receiving a SMPL with rarer visual
-        attributes increases.
+        The minting process elaborates the tension between individual agency
+        and computational constraint: even a pool of 100,000 images is too
+        small to consistently deliver high confidence matches.
       </Text>
     </Container>
   )
