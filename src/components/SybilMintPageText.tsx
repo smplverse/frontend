@@ -36,7 +36,7 @@ export const SybilMintPageText = () => {
         even have a 'double.' I am all of them."
       </Text>
       <Text>
-        Yet the analyst refused to accept SMPLverse's confession, and SMPLverse
+        But the analyst refused to accept SMPLverse's confession, and SMPLverse
         recanted.
       </Text>
       <Text>
