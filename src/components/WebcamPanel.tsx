@@ -146,7 +146,7 @@ export const WebcamPanel = () => {
             setLandmarkedPhoto('data:image/jpeg;base64,' + json.image)
             setImgSrc('data:image/jpeg;base64,' + json.image)
             displaySuccessToast(
-              'face detected, hover to see original image',
+              'Face detected. Hover to see original image.',
               'dark'
             )
           } else {
