@@ -43,7 +43,7 @@ export const SybilMintPage = () => {
         ) : (
           <SybilImageLoad />
         )}
-        <SybilMintingPanel setMinting={setMinting} />
+        <SybilMintingPanel />
         <SybilMintPageText />
         <SybilFooter />
       </Box>
