@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 import { Spinner, Text } from 'theme-ui'
 
-import { useMintPrice, useNumberOfRemaining } from '../hooks'
+import { useMintPriceSybil, useNumberOfRemainingSybil } from '../hooks'
 
 const MintCountContainer = styled.div`
   font-size: 16px;
@@ -14,8 +14,8 @@ const MintCountContainer = styled.div`
 
 export const SybilMintCount = () => {
   const [showPrice, setShowPrice] = useState(false)
-  const mintPrice = useMintPrice()
-  const numberOfRemaining = useNumberOfRemaining()
+  const mintPrice = useMintPriceSybil()
+  const numberOfRemaining = useNumberOfRemainingSybil()
   return (
     <div className="blocktext">
       <MintCountContainer

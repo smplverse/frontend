@@ -2,15 +2,15 @@ import { Contract } from '@ethersproject/contracts'
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 
-import { CHAIN_ID, CONTRACT_ADDRESS, PROJECT_ID } from '../constants'
-import { SMPLverse, SMPLverseArtifact } from '../contract'
-import { useChainId, useProvider } from '../hooks'
+import { CHAIN_ID, CONTRACT_ADDRESS, PROJECT_ID } from '../constants-sybil'
+import { Sybilverse, SybilverseArtifact } from '../contract-sybil'
+import { useChainId, useProvider } from '.'
 
-export const useContract = () => {
-  const [contract, setContract] = useState<SMPLverse>()
+export const useContractSybil = () => {
+  const [contract, setContract] = useState<Sybilverse>()
   const chainId = useChainId()
   const provider = useProvider()
-  const url = `https://mainnet.infura.io/v3/${PROJECT_ID}`
+  const url = `https://goerli.infura.io/v3/${PROJECT_ID}`
 
   useEffect(() => {
     ;(async function () {
@@ -19,9 +19,9 @@ export const useContract = () => {
 
       const _contract = new Contract(
         CONTRACT_ADDRESS,
-        SMPLverseArtifact.abi,
+        SybilverseArtifact.abi,
         shouldUseSigner ? signer : ethers.getDefaultProvider(url)
-      ) as SMPLverse
+      ) as Sybilverse
 
       setContract(_contract)
     })()

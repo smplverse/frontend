@@ -46,14 +46,13 @@ export const SybilMintPageText = () => {
       </Text>
       <Text>
         ƎꙄЯƎV⅃I𐐒YꙄ gathers the SMPLverse dataset under a new contract that
-        randomly assigns the training data. A ⅃I𐐒YꙄ is scored not on its
-        proximity to the minter but on the disposition of the rendering
-        process.
+        randomly assigns its images. A ⅃I𐐒YꙄ is scored not on its proximity to
+        the minter but on the disposition of the rendering process.
       </Text>
       <Text>
-        Untethered to biometric identifiers, ƎꙄЯƎV⅃I𐐒YꙄ assesses the images as
-        a distributed avatar for the computational infrastructure of the
-        metaverse.
+        Untethered to biometric identifiers, ƎꙄЯƎV⅃I𐐒YꙄ assesses the training
+        data as a distributed avatar for the computational infrastructure of
+        the metaverse.
       </Text>
     </Container>
   )

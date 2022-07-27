@@ -1,17 +1,17 @@
 import keccak256 from 'keccak256'
 import { MerkleTree } from 'merkletreejs'
 
-import { WHITELISTED_ADDRESSES } from '../constants'
+import { ALLOWLISTED_ADDRESSES } from '../constants-sybil'
 
 const createTree = () => {
-  const tree = new MerkleTree(WHITELISTED_ADDRESSES, keccak256, {
+  const tree = new MerkleTree(ALLOWLISTED_ADDRESSES, keccak256, {
     hashLeaves: true,
     sortPairs: true,
   })
   return tree
 }
 
-export const useMerkleTree = () => {
+export const useMerkleTreeSybil = () => {
   const tree = createTree()
   return tree
 }

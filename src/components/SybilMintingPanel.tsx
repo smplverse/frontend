@@ -10,46 +10,43 @@ import keccak256 from 'keccak256'
 import { useContext, useEffect, useState } from 'react'
 
 import { WaitingContext } from '../contexts'
-import { type SMPLverse } from '../contract'
+import { type Sybilverse } from '../contract-sybil'
 import {
-  useContract,
-  useEthBalance,
-  useMerkleTree,
-  useWhitelistToggled,
+  useContractSybil,
+  useEthBalanceSybil,
+  useFreeMintCountSybil,
+  useFreeMintSybil,
+  useMerkleTreeSybil,
+  useNumberFreeMintSybil,
 } from '../hooks'
+import { SybilFreeMintButton } from './SybilFreeMintButton'
 import { SybilMintButton } from './SybilMintButton'
 
 export const SybilMintingPanel = () => {
-  const contract = useContract() as SMPLverse
-  const balance = useEthBalance()
+  const contract = useContractSybil() as Sybilverse
+  const balance = useEthBalanceSybil()
 
   const [quantity, setQuantity] = useState<number>(1)
-  const [weiRequired, setWeiRequired] = useState<BigNumber>()
+  const [weiRequired, setWeiRequired] = useState<BigNumber | 0>()
   const [ethRequired, setEthRequired] = useState<string>()
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
 
-  const whitelistToggled = useWhitelistToggled()
-  const merkleTree = useMerkleTree()
+  const numberFreeMint = useNumberFreeMintSybil()
+  const freeMintCount = useFreeMintCountSybil()
+  const freeMintActive = useFreeMintSybil()
+  const merkleTree = useMerkleTreeSybil()
 
   useEffect(() => {
     ;(async () => {
       if (quantity && contract) {
-        if (whitelistToggled === true) {
-          const price = await contract.whitelistMintPrice()
-          const weiRequired = price.mul(quantity)
-          const ethRequired = formatEther(weiRequired)
-          setWeiRequired(weiRequired)
-          setEthRequired(ethRequired)
-        } else if (whitelistToggled === false) {
-          const price = await contract.mintPrice()
-          const weiRequired = price.mul(quantity)
-          const ethRequired = formatEther(weiRequired)
-          setWeiRequired(weiRequired)
-          setEthRequired(ethRequired)
-        }
+        const price = await contract.getMintPrice()
+        const weiRequired = price.mul(quantity)
+        const ethRequired = formatEther(weiRequired)
+        setWeiRequired(weiRequired)
+        setEthRequired(ethRequired)
       }
     })()
-  }, [quantity, contract, whitelistToggled])
+  }, [quantity, contract])
 
   const mint = async () => {
     if (contract.signer && weiRequired && balance) {
@@ -75,30 +72,27 @@ export const SybilMintingPanel = () => {
     }
   }
 
-  const whitelistMint = async () => {
-    if (
-      contract.signer &&
-      merkleTree &&
-      whitelistToggled &&
-      weiRequired &&
-      balance
-    ) {
+  const freeMint = async () => {
+    if (contract.signer && merkleTree && freeMintActive) {
       try {
-        if (weiRequired.gt(balance)) {
-          throw Error('insufficient balance!')
+        if (numberFreeMint === 0) {
+          throw Error('Free mint is sold out!')
+        }
+        if (freeMintCount != undefined && freeMintCount > 0) {
+          throw Error('You already minted your free Sybil!')
         }
         setIsWaiting(true)
         const leaf = keccak256(await contract.signer.getAddress())
         const proof = merkleTree.getHexProof(leaf)
-        const tx = await contract.whitelistMint(quantity, proof, {
-          value: weiRequired,
-        })
+        const tx = await contract.freeMint(proof)
         await tx.wait()
         setIsWaiting(false)
         displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
         setIsWaiting(false)
-        if (err?.message) {
+        if (err.message.includes('cannot estimate gas')) {
+          displayErrorToast('This wallet is not on the allowlist!', 'dark')
+        } else if (err.message) {
           displayErrorToast(err.message, 'dark')
         } else {
           displayErrorToast(err, 'dark')
@@ -109,14 +103,30 @@ export const SybilMintingPanel = () => {
 
   return (
     <>
-      <SybilMintButton
-        ethRequired={ethRequired}
-        onClick={whitelistToggled ? whitelistMint : mint}
-        isLoading={isWaiting}
-        small={false}
-        quantity={quantity}
-        setQuantity={setQuantity}
-      />
+      {freeMintActive === true &&
+      numberFreeMint != undefined &&
+      numberFreeMint > 0 ? (
+        <>
+          <SybilFreeMintButton onClick={freeMint} isLoading={isWaiting} />
+          <SybilMintButton
+            ethRequired={ethRequired}
+            onClick={mint}
+            isLoading={isWaiting}
+            small={false}
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
+        </>
+      ) : (
+        <SybilMintButton
+          ethRequired={ethRequired}
+          onClick={mint}
+          isLoading={isWaiting}
+          small={false}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+      )}
       <Toast />
     </>
   )

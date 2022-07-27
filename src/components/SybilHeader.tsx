@@ -1,14 +1,14 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 import { Box, IconButton } from 'theme-ui'
-
-import { SybilMintCount } from './SybilMintCount'
-import { SmplverseButton } from './SmplverseButton'
-import { Wallet } from './Wallet'
-import { useRouter } from 'next/router'
 import { useColorMode } from 'theme-ui'
+
 import Home from '../pages/index'
+import { SmplverseButton } from './SmplverseButton'
+import { SybilMintCount } from './SybilMintCount'
+import { SybilWallet } from './SybilWallet'
 
 const HeaderContainer = styled.header`
   color: #ffffff;
@@ -85,7 +85,7 @@ export const SybilHeader = ({ onClick }: Props) => {
             <path d="M 16 0 A 16 16 0 0 0 16 32 z" />
           </svg>
         </IconButton>
-        <Wallet onClick={onClick} />
+        <SybilWallet onClick={onClick} />
       </Box>
     </HeaderContainer>
   )

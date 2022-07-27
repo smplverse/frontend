@@ -1,13 +1,13 @@
 /** @jsxImportSource theme-ui */
 import styled from '@emotion/styled'
-import { useColorMode } from 'theme-ui'
+import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
+import { useColorMode } from 'theme-ui'
 import { Box, IconButton } from 'theme-ui'
 
 import { MintCount } from './MintCount'
 import { SmplverseButton } from './SmplverseButton'
 import { Wallet } from './Wallet'
-import { useRouter } from 'next/router'
 
 const HeaderContainer = styled.header`
   color: #ffffff;

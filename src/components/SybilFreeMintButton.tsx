@@ -10,23 +10,9 @@ import { ButtonContainer } from './ButtonContainer'
 import { SybilWallet } from './SybilWallet'
 
 interface Props {
-  ethRequired: string | undefined
   onClick: MouseEventHandler<HTMLDivElement>
   isLoading: boolean
-  small: boolean
-  quantity: number
-  setQuantity: (quantity: number) => void
 }
-
-const PlusMinusContainer = styled.div`
-  &:hover {
-    filter: invert(1);
-  }
-  cursor: pointer;
-  user-select: none;
-  font-size: 20;
-  font-family: 'Helvetica Neue', sans-serif;
-`
 
 const InvertOnHover = styled.div`
   &:hover {
@@ -35,13 +21,7 @@ const InvertOnHover = styled.div`
   font-family: 'Helvetica Neue', sans-serif;
 `
 
-export const SybilMintButton = ({
-  ethRequired,
-  onClick,
-  isLoading,
-  quantity,
-  setQuantity,
-}: Props) => {
+export const SybilFreeMintButton = ({ onClick, isLoading }: Props) => {
   // const fontSize = useResponsiveValue([2, 2, 2, 6])
 
   const isActive = useIsActive()
@@ -53,17 +33,6 @@ export const SybilMintButton = ({
     background-color: hotpink;
     font-family: 'Helvetica Neue', sans-serif;
   `
-  const increment = () => {
-    if (quantity < 10) {
-      setQuantity(quantity + 1)
-    }
-  }
-
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1)
-    }
-  }
 
   return (
     <>
@@ -75,17 +44,11 @@ export const SybilMintButton = ({
             <>
               {isActive && chainId === CHAIN_ID ? (
                 <>
-                  <PlusMinusContainer onClick={decrement}>
-                    <Text color="text">⊟ &nbsp;</Text>
-                  </PlusMinusContainer>
                   <InvertOnHover>
                     <Text onClick={onClick} color="text">
-                      MINT {quantity} {''} FOR Ξ{ethRequired}
+                      FREE ALLOWLIST MINT
                     </Text>
                   </InvertOnHover>
-                  <PlusMinusContainer onClick={increment}>
-                    <Text color="text">&nbsp; ⊞</Text>
-                  </PlusMinusContainer>
                 </>
               ) : (
                 <SybilWallet onClick={() => null} />

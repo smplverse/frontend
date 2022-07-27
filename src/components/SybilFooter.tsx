@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useBreakpointIndex } from '@theme-ui/match-media'
 
-import { ETHERSCAN_LINK } from '../constants'
+import { ETHERSCAN_LINK } from '../constants-sybil'
 import { CenteredColumn } from './Flex'
 
 interface LinkProps {

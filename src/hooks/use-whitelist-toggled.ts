@@ -1,8 +1,9 @@
-import { WaitingContext } from '../contexts'
 import { useContext, useEffect, useState } from 'react'
+
+import { WaitingContext } from '../contexts'
 import { SMPLverse } from '../contract'
-import { useContract } from './use-contract'
 import { useIsActive } from './metamask'
+import { useContract } from './use-contract'
 
 export const useWhitelistToggled = () => {
   const [whitelistToggled, setWhitelistToggled] = useState<boolean>()

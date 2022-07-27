@@ -1,9 +1,9 @@
 import { toast, ToastContainer } from 'react-toastify'
 
 export const displaySuccessToast = (txHash: string, colorMode: any) =>
-  toast.success(`success! tx: ${txHash}`, {
+  toast.success(`Success! ${txHash}`, {
     position: 'top-center',
-    autoClose: 5000,
+    autoClose: false,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -13,7 +13,7 @@ export const displaySuccessToast = (txHash: string, colorMode: any) =>
   })
 
 export const displayErrorToast = (error: any, colorMode: any) =>
-  toast.error(`${error}`.toLowerCase(), {
+  toast.error(`${error}`, {
     position: 'top-center',
     autoClose: 5000,
     hideProgressBar: false,
