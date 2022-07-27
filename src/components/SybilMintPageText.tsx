@@ -46,7 +46,7 @@ export const SybilMintPageText = () => {
       </Text>
       <Text>
         ƎꙄЯƎV⅃I𐐒YꙄ gathers the SMPLverse dataset under a new contract that
-        randomly assigns its images. A ⅃I𐐒YꙄ is scored not on its proximity to
+        randomly assigns its images. A Sybil is scored not on its proximity to
         the minter but on the disposition of the rendering process.
       </Text>
       <Text>
