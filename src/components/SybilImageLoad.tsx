@@ -27,24 +27,27 @@ export const SybilImageLoad = ({ txReceipt }: Props) => {
       async function imageLoad() {
         try {
           setImageLoading(true)
-          const external_url =
-            API_URL + parseInt(txReceipt.logs[0].topics[3]) + '.json'
-          const response = await fetch(external_url, {
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-            },
-          })
-          const metadata = await response.json()
-          setMetadata(metadata)
-          setImgSrc(metadata.image)
-          setImageLoading(false)
+          if (txReceipt) {
+            const external_url =
+              API_URL + parseInt(txReceipt.logs[0].topics[3]) + '.json'
+            const response = await fetch(external_url, {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+              },
+            })
+            const metadata = await response.json()
+            setMetadata(metadata)
+            setImgSrc(metadata.image)
+            setImageLoading(false)
+          } else {
+            setImageLoading(true)
+          }
         } catch (e) {
           if (e.message) {
             alert(e.message)
           }
         }
-        setImageLoading(false)
       }
       if (txReceipt) {
         await imageLoad()
