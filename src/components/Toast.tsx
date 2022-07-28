@@ -3,7 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 export const displaySuccessToast = (txHash: string, colorMode: any) =>
   toast.success(`Success! ${txHash}`, {
     position: 'top-center',
-    autoClose: false,
+    autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

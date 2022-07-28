@@ -12,11 +12,6 @@ import {
 } from '../components'
 
 export const SybilMintPage = () => {
-  const [minting, setMinting] = useState(true)
-
-  const breakpointIndex = useBreakpointIndex()
-  const x = breakpointIndex > 2 ? 513 : 256
-
   return (
     <div
       sx={{
@@ -26,7 +21,7 @@ export const SybilMintPage = () => {
         backgroundColor: 'background',
       }}
     >
-      <SybilHeader onClick={() => setMinting(true)} />
+      <SybilMintingPanel />
       <Box
         sx={{
           display: 'flex',
@@ -36,14 +31,6 @@ export const SybilMintPage = () => {
           flexDirection: 'column',
         }}
       >
-        {minting ? (
-          <>
-            <SybilImage width={x} height={x} />
-          </>
-        ) : (
-          <SybilImageLoad />
-        )}
-        <SybilMintingPanel />
         <SybilMintPageText />
         <SybilFooter />
       </Box>

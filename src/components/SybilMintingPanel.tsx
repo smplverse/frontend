@@ -1,14 +1,24 @@
 /** @jsxImportSource theme-ui */
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther } from '@ethersproject/units'
+import { useBreakpointIndex } from '@theme-ui/match-media'
 import {
   displayErrorToast,
   displaySuccessToast,
   Toast,
 } from 'components/Toast'
+import { ContractReceipt } from 'ethers'
 import keccak256 from 'keccak256'
 import { useContext, useEffect, useState } from 'react'
+import { Box } from 'theme-ui'
 
+import {
+  SybilFreeMintButton,
+  SybilHeader,
+  SybilImage,
+  SybilImageLoad,
+  SybilMintButton,
+} from '../components'
 import { WaitingContext } from '../contexts'
 import { type Sybilverse } from '../contract-sybil'
 import {
@@ -19,8 +29,6 @@ import {
   useMerkleTreeSybil,
   useNumberFreeMintSybil,
 } from '../hooks'
-import { SybilFreeMintButton } from './SybilFreeMintButton'
-import { SybilMintButton } from './SybilMintButton'
 
 export const SybilMintingPanel = () => {
   const contract = useContractSybil() as Sybilverse
@@ -29,7 +37,12 @@ export const SybilMintingPanel = () => {
   const [quantity, setQuantity] = useState<number>(1)
   const [weiRequired, setWeiRequired] = useState<BigNumber | 0>()
   const [ethRequired, setEthRequired] = useState<string>()
+  const [txReceipt, setTxReceipt] = useState<ContractReceipt>()
   const { isWaiting, setIsWaiting } = useContext(WaitingContext)
+
+  const [showImage, setShowImage] = useState(false)
+  const breakpointIndex = useBreakpointIndex()
+  const x = breakpointIndex > 2 ? 513 : 256
 
   const numberFreeMint = useNumberFreeMintSybil()
   const freeMintCount = useFreeMintCountSybil()
@@ -58,8 +71,10 @@ export const SybilMintingPanel = () => {
         const tx = await contract.mint(quantity, {
           value: weiRequired,
         })
-        await tx.wait()
+        const txResult = await tx.wait()
+        setTxReceipt(txResult)
         setIsWaiting(false)
+        setShowImage(true)
         displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
         setIsWaiting(false)
@@ -85,8 +100,10 @@ export const SybilMintingPanel = () => {
         const leaf = keccak256(await contract.signer.getAddress())
         const proof = merkleTree.getHexProof(leaf)
         const tx = await contract.freeMint(proof)
-        await tx.wait()
+        const txResult = await tx.wait()
+        setTxReceipt(txResult)
         setIsWaiting(false)
+        setShowImage(true)
         displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
         setIsWaiting(false)
@@ -103,11 +120,38 @@ export const SybilMintingPanel = () => {
 
   return (
     <>
-      {freeMintActive === true &&
-      numberFreeMint != undefined &&
-      numberFreeMint > 0 ? (
-        <>
-          <SybilFreeMintButton onClick={freeMint} isLoading={isWaiting} />
+      <SybilHeader onClick={() => setShowImage(false)} />
+      <Box
+        sx={{
+          display: 'flex',
+          flex: '1 1 auto',
+          p: [1, 3],
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        {!showImage ? (
+          <>
+            <SybilImage width={x} height={x} />
+          </>
+        ) : (
+          <SybilImageLoad txReceipt={txReceipt} />
+        )}
+        {freeMintActive === true &&
+        numberFreeMint != undefined &&
+        numberFreeMint > 0 ? (
+          <>
+            <SybilFreeMintButton onClick={freeMint} isLoading={isWaiting} />
+            <SybilMintButton
+              ethRequired={ethRequired}
+              onClick={mint}
+              isLoading={isWaiting}
+              small={false}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+          </>
+        ) : (
           <SybilMintButton
             ethRequired={ethRequired}
             onClick={mint}
@@ -116,17 +160,8 @@ export const SybilMintingPanel = () => {
             quantity={quantity}
             setQuantity={setQuantity}
           />
-        </>
-      ) : (
-        <SybilMintButton
-          ethRequired={ethRequired}
-          onClick={mint}
-          isLoading={isWaiting}
-          small={false}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-      )}
+        )}
+      </Box>
       <Toast />
     </>
   )
