@@ -12,7 +12,7 @@ export const useNumberOfRemainingSybil = () => {
     ;(async function () {
       if (contract) {
         const totalSupply = await contract.totalSupply()
-        const collectionSize = await contract.collectionSize()
+        const collectionSize = await contract.getCollectionSize()
         setNumberOfRemaining(collectionSize.sub(totalSupply).toNumber())
       }
     })()

@@ -254,32 +254,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "collectionSize",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "devAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "bytes32[]",
@@ -314,6 +288,32 @@
         }
       ],
       "name": "getApproved",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCollectionSize",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDevAddress",
       "outputs": [
         {
           "internalType": "address",
@@ -672,6 +672,19 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "_collectionSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCollectionSize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "_devAddress",
           "type": "address"
@@ -850,6 +863,19 @@
     {
       "inputs": [],
       "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawTokens",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

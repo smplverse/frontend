@@ -1,15 +1,14 @@
-export const CHAIN_ID = 5
+export const CHAIN_ID = 1
 
-export const CONTRACT_ADDRESS_GOERLI =
-  '0xb0B482090298812Cf9E917b55F6615825c4c5bbe'
+export const CONTRACT_ADDRESS_MAINNET =
+  '0xe15b045ebce82692ffcba6307a951be1b1ab5215'
 
-export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_GOERLI
+export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_MAINNET
 
 export const ETHERSCAN_LINK =
-  'https://goerli.etherscan.io/address/' + CONTRACT_ADDRESS
+  'https://etherscan.io/address/' + CONTRACT_ADDRESS
 
-export const API_URL =
-  'https://sybilverse-api-preview.vercel.app/api/metadata/'
+export const API_URL = 'https://sybilverse-api-chi.vercel.app/api/metadata/'
 
 export const PROJECT_ID = '184b79ed40c9470b9afc4ae3737cff4e'
 

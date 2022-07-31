@@ -31,11 +31,11 @@ export interface SybilverseInterface extends utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "collectionSize()": FunctionFragment;
-    "devAddress()": FunctionFragment;
     "freeMint(bytes32[])": FunctionFragment;
     "freeMintMerkleRoot()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "getCollectionSize()": FunctionFragment;
+    "getDevAddress()": FunctionFragment;
     "getFreeMintCount(address)": FunctionFragment;
     "getGiftCount(address)": FunctionFragment;
     "getMintPrice()": FunctionFragment;
@@ -58,6 +58,7 @@ export interface SybilverseInterface extends utils.Interface {
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "setBaseURI(string)": FunctionFragment;
+    "setCollectionSize(uint256)": FunctionFragment;
     "setDevAddress(address)": FunctionFragment;
     "setFreeMintActive(bool)": FunctionFragment;
     "setFreeMintMerkleRoot(bytes32)": FunctionFragment;
@@ -71,17 +72,18 @@ export interface SybilverseInterface extends utils.Interface {
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "withdraw()": FunctionFragment;
+    "withdrawTokens(address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
       | "approve"
       | "balanceOf"
-      | "collectionSize"
-      | "devAddress"
       | "freeMint"
       | "freeMintMerkleRoot"
       | "getApproved"
+      | "getCollectionSize"
+      | "getDevAddress"
       | "getFreeMintCount"
       | "getGiftCount"
       | "getMintPrice"
@@ -104,6 +106,7 @@ export interface SybilverseInterface extends utils.Interface {
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setApprovalForAll"
       | "setBaseURI"
+      | "setCollectionSize"
       | "setDevAddress"
       | "setFreeMintActive"
       | "setFreeMintMerkleRoot"
@@ -117,6 +120,7 @@ export interface SybilverseInterface extends utils.Interface {
       | "transferFrom"
       | "transferOwnership"
       | "withdraw"
+      | "withdrawTokens"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -124,14 +128,6 @@ export interface SybilverseInterface extends utils.Interface {
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
-  encodeFunctionData(
-    functionFragment: "collectionSize",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "devAddress",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "freeMint",
     values: [BytesLike[]]
@@ -143,6 +139,14 @@ export interface SybilverseInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "getApproved",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getCollectionSize",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDevAddress",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "getFreeMintCount",
@@ -209,6 +213,10 @@ export interface SybilverseInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
   encodeFunctionData(
+    functionFragment: "setCollectionSize",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setDevAddress",
     values: [string]
   ): string;
@@ -254,14 +262,13 @@ export interface SybilverseInterface extends utils.Interface {
     values: [string]
   ): string;
   encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "withdrawTokens",
+    values: [string]
+  ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "collectionSize",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "devAddress", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "freeMint", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "freeMintMerkleRoot",
@@ -269,6 +276,14 @@ export interface SybilverseInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getCollectionSize",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getDevAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -333,6 +348,10 @@ export interface SybilverseInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "setCollectionSize",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "setDevAddress",
     data: BytesLike
   ): Result;
@@ -375,6 +394,10 @@ export interface SybilverseInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawTokens",
+    data: BytesLike
+  ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
@@ -488,10 +511,6 @@ export interface Sybilverse extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    collectionSize(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    devAddress(overrides?: CallOverrides): Promise<[string]>;
-
     freeMint(
       merkleProof: BytesLike[],
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -503,6 +522,10 @@ export interface Sybilverse extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    getCollectionSize(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getDevAddress(overrides?: CallOverrides): Promise<[string]>;
 
     getFreeMintCount(
       owner: string,
@@ -587,6 +610,11 @@ export interface Sybilverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    setCollectionSize(
+      _collectionSize: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     setDevAddress(
       _devAddress: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -646,6 +674,11 @@ export interface Sybilverse extends BaseContract {
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    withdrawTokens(
+      token: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
 
   approve(
@@ -655,10 +688,6 @@ export interface Sybilverse extends BaseContract {
   ): Promise<ContractTransaction>;
 
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-  collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
-
-  devAddress(overrides?: CallOverrides): Promise<string>;
 
   freeMint(
     merkleProof: BytesLike[],
@@ -671,6 +700,10 @@ export interface Sybilverse extends BaseContract {
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  getCollectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getDevAddress(overrides?: CallOverrides): Promise<string>;
 
   getFreeMintCount(owner: string, overrides?: CallOverrides): Promise<number>;
 
@@ -746,6 +779,11 @@ export interface Sybilverse extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  setCollectionSize(
+    _collectionSize: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   setDevAddress(
     _devAddress: string,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -803,6 +841,11 @@ export interface Sybilverse extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  withdrawTokens(
+    token: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     approve(
       to: string,
@@ -811,10 +854,6 @@ export interface Sybilverse extends BaseContract {
     ): Promise<void>;
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
-
-    collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devAddress(overrides?: CallOverrides): Promise<string>;
 
     freeMint(
       merkleProof: BytesLike[],
@@ -827,6 +866,10 @@ export interface Sybilverse extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    getCollectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getDevAddress(overrides?: CallOverrides): Promise<string>;
 
     getFreeMintCount(owner: string, overrides?: CallOverrides): Promise<number>;
 
@@ -891,6 +934,11 @@ export interface Sybilverse extends BaseContract {
 
     setBaseURI(baseURI: string, overrides?: CallOverrides): Promise<void>;
 
+    setCollectionSize(
+      _collectionSize: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     setDevAddress(
       _devAddress: string,
       overrides?: CallOverrides
@@ -945,6 +993,8 @@ export interface Sybilverse extends BaseContract {
     ): Promise<void>;
 
     withdraw(overrides?: CallOverrides): Promise<void>;
+
+    withdrawTokens(token: string, overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -1013,10 +1063,6 @@ export interface Sybilverse extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    collectionSize(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devAddress(overrides?: CallOverrides): Promise<BigNumber>;
-
     freeMint(
       merkleProof: BytesLike[],
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1028,6 +1074,10 @@ export interface Sybilverse extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    getCollectionSize(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getDevAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     getFreeMintCount(
       owner: string,
@@ -1109,6 +1159,11 @@ export interface Sybilverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    setCollectionSize(
+      _collectionSize: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     setDevAddress(
       _devAddress: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1168,6 +1223,11 @@ export interface Sybilverse extends BaseContract {
     withdraw(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    withdrawTokens(
+      token: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -1182,10 +1242,6 @@ export interface Sybilverse extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    collectionSize(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    devAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     freeMint(
       merkleProof: BytesLike[],
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1199,6 +1255,10 @@ export interface Sybilverse extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    getCollectionSize(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getDevAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getFreeMintCount(
       owner: string,
@@ -1288,6 +1348,11 @@ export interface Sybilverse extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    setCollectionSize(
+      _collectionSize: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     setDevAddress(
       _devAddress: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1345,6 +1410,11 @@ export interface Sybilverse extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     withdraw(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    withdrawTokens(
+      token: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

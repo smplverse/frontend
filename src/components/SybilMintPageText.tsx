@@ -42,15 +42,15 @@ export const SybilMintPageText = () => {
       <Text>
         In the analyst's distorted mirror, SMPLverse's dispersed identities
         cohered instead as fragments of a split personality, which the analyst
-        reassembled under the pseudonym ƎꙄЯƎV⅃I𐐒YꙄ.
+        reassembled under the pseudonym Sybilverse.
       </Text>
       <Text>
-        ƎꙄЯƎV⅃I𐐒YꙄ gathers the SMPLverse dataset under a new contract that
+        Sybilverse gathers the SMPLverse dataset under a new contract that
         randomly assigns its images. A Sybil is scored not on its proximity to
         the minter but on the disposition of the rendering process.
       </Text>
       <Text>
-        Untethered to biometric identifiers, ƎꙄЯƎV⅃I𐐒YꙄ assesses the training
+        Untethered to biometric identifiers, Sybilverse assesses the training
         data as a distributed avatar for the computational infrastructure of
         the metaverse.
       </Text>

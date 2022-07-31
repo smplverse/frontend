@@ -27,7 +27,9 @@ import {
   useFreeMintCountSybil,
   useFreeMintSybil,
   useMerkleTreeSybil,
+  useMintActiveSybil,
   useNumberFreeMintSybil,
+  useNumberOfRemainingSybil,
 } from '../hooks'
 
 export const SybilMintingPanel = () => {
@@ -43,6 +45,9 @@ export const SybilMintingPanel = () => {
   const [showImage, setShowImage] = useState(false)
   const breakpointIndex = useBreakpointIndex()
   const x = breakpointIndex > 2 ? 513 : 256
+
+  const mintActive = useMintActiveSybil()
+  const mintCount = useNumberOfRemainingSybil()
 
   const numberFreeMint = useNumberFreeMintSybil()
   const freeMintCount = useFreeMintCountSybil()
@@ -78,7 +83,9 @@ export const SybilMintingPanel = () => {
         displaySuccessToast(tx.hash, 'dark')
       } catch (err) {
         setIsWaiting(false)
-        if (err?.message) {
+        if (err.message.includes('There are no public mint tokens left.')) {
+          displayErrorToast('Not enough mints remaining!', 'dark')
+        } else if (err.message) {
           displayErrorToast(err.message, 'dark')
         } else {
           displayErrorToast(err, 'dark')
@@ -151,7 +158,7 @@ export const SybilMintingPanel = () => {
               setQuantity={setQuantity}
             />
           </>
-        ) : (
+        ) : mintActive != false && mintCount != 0 ? (
           <SybilMintButton
             ethRequired={ethRequired}
             onClick={mint}
@@ -160,7 +167,7 @@ export const SybilMintingPanel = () => {
             quantity={quantity}
             setQuantity={setQuantity}
           />
-        )}
+        ) : null}
       </Box>
       <Toast />
     </>

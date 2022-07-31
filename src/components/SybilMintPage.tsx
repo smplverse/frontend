@@ -1,12 +1,7 @@
-import { useBreakpointIndex } from '@theme-ui/match-media'
-import { useState } from 'react'
 import { Box } from 'theme-ui'
 
 import {
   SybilFooter,
-  SybilHeader,
-  SybilImage,
-  SybilImageLoad,
   SybilMintingPanel,
   SybilMintPageText,
 } from '../components'

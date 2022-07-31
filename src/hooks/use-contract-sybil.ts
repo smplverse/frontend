@@ -10,7 +10,7 @@ export const useContractSybil = () => {
   const [contract, setContract] = useState<Sybilverse>()
   const chainId = useChainId()
   const provider = useProvider()
-  const url = `https://goerli.infura.io/v3/${PROJECT_ID}`
+  const url = `https://mainnet.infura.io/v3/${PROJECT_ID}`
 
   useEffect(() => {
     ;(async function () {
