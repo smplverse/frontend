@@ -8,7 +8,7 @@ export const CONTRACT_ADDRESS = CONTRACT_ADDRESS_MAINNET
 export const ETHERSCAN_LINK =
   'https://etherscan.io/address/' + CONTRACT_ADDRESS
 
-export const API_URL = 'https://sybilverse-api-chi.vercel.app/api/metadata/'
+export const API_URL = 'https://api.sybilverse.smplverse.xyz/api/metadata/'
 
 export const PROJECT_ID = '184b79ed40c9470b9afc4ae3737cff4e'
 
